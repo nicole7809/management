@@ -46,16 +46,16 @@
 			cpw.setMaxAge(60*60);
 			cauto.setMaxAge(60*60);
 		}
-		response.sendRedirect("manageMentMain.jsp");				// 쿠키로 로그인 되어 manageMentMain.으로 이동
-	}else if (check == 1) {											//아이디,비번 일치.
+		response.sendRedirect("manageMentMain.jsp");	//---------- 쿠키로 로그인 되어 manageMentMain.으로 이동
+	}else if (check == 1) {								//---------- 아이디,비번 일치.
 		session.setAttribute("admin_id", admin_id);
 		response.sendRedirect("manageMentMain.jsp");
-	}else if( check == 0) {											// 비밀번호 불일치	%>
+	}else if( check == 0) {								//---------- 비밀번호 불일치	%>
 	<script>
 		alert("비밀번호가 맞지 않습니다.");
-		history.go(-1);												//전 페이지로 이동.
+		history.go(-1);									//---------- 전 페이지로 이동.
 	</script>	
-	<%}else {														//아이디 검색 안됨. %>
+	<%}else {											//---------- 아이디 검색 안됨. %>
 	<script>
 		alert("아이디가 맞지 않습니다.");
 		history.go(-1);
