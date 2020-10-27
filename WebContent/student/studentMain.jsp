@@ -30,6 +30,7 @@
 				</td>
 				<td align= "center">
 					페이지 선택 시 실행 될 곳... 어떻게 하지?
+					include 하면 되지않을까??
 				</td>
 			</tr>
 		</table>

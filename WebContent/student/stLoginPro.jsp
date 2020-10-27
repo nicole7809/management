@@ -10,7 +10,7 @@
 //	String id = request.getParameter("STUDENT_ID");
 //	String pw = request.getParameter("PASSWORD");
 %>
-	<jsp:useBean id = "dto" class = "team.elite.management.Student_MembersDTO"/>
+	<jsp:useBean id = "dto" class ="team.elite.management.Student_MembersDTO"> </jsp:useBean>
 	<jsp:setProperty property= "*" name = "dto" />
 	
 <%
@@ -48,7 +48,7 @@
 				Cookie cauto = new Cookie("cauto", dto.getAuto());
 				cid.setMaxAge(60*60);
 				cpw.setMaxAge(60*60);
-				cauto.setMaxAge(60*60);								//자동로그인 유효시간 1시간.
+				cauto.setMaxAge(60*60);						//---------- 자동로그인 유효시간 1시간.
 			}
 			response.sendRedirect("studentMain.jsp");		//---------- 쿠키로 로그인 되어 studentMain.으로 이동
 		}else if (check == 1) { 							//---------- 아이디,비번 일치.  

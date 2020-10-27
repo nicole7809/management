@@ -21,7 +21,7 @@ public class ControlDAO {
 		DataSource ds = (DataSource) j.lookup("jdbc/orcl");
 		Connection conn = ds.getConnection();
 		return conn;
-	}					1,2단계 로그인을 import 했으니까 이부분은 주석처리.
+	}------------------- 1,2단계 로그인을 import 했으니까 이부분은 주석처리.
 */	
 	private static ControlDAO instance = new ControlDAO();
 	
@@ -31,6 +31,68 @@ public class ControlDAO {
 	private ControlDAO() {
 		
 	}
+	
+	// 학생 DB 전송
+	public void insert(Student_MembersDTO dto) {
+		try {
+			conn = DataBaseConnection.getConnection();
+			String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getStudent_id());
+			pstmt.setString(2, dto.getStudent_name());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getPhone());
+			pstmt.setString(6, dto.getStudent_pic());
+			pstmt.executeUpdate();		//DB 에 업에이트
+		}catch(Exception e )  {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+	}
+	
+	// 강사 DB 전송
+		public void insert(Teacher_MembersDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getTeacher_id());
+				pstmt.setString(2, dto.getTeacher_name());
+				pstmt.setString(3, dto.getPassword());
+				pstmt.setString(4, dto.getEmail());
+				pstmt.setString(5, dto.getPhone());
+				pstmt.setString(6, dto.getTeacher_pic());
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				closeAll();
+			}
+		}
+		
+		// 행정 DB 전송
+		public void insert(Admin_MembersDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getAdmin_id());
+				pstmt.setString(2, dto.getAdmin_name());
+				pstmt.setString(3, dto.getPassword());
+				pstmt.setString(4, dto.getEmail());
+				pstmt.setString(5, dto.getPhone());
+				pstmt.setString(6, dto.getAdmin_pic());
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				closeAll();
+			}
+		}
+	
+	
 	
 	// 학생 로그인 db와 맞는지 확인하는 메서드.
 	public int studentCheck(String student_id, String password)
@@ -61,9 +123,12 @@ public class ControlDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			closeAll();
+			/* closeAll() 로 한번에 닫는다.
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
 			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+			*/
 		}
 		return x;
 	}
@@ -95,9 +160,12 @@ public class ControlDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
+			closeAll();
+			/* closeAll() 로 한번에 닫는다.
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
 			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+			*/
 		}
 		return x;
 	}
@@ -129,11 +197,33 @@ public class ControlDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
+			closeAll();
+			/* closeAll() 로 한번에 닫는다.
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
 			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+			*/
 		}
 		return x;
+	}
+	
+	//SQL close 메서드
+	private void closeAll() {
+		if(rs != null) {
+			try {
+				rs.close();
+			}catch(SQLException s ) {}
+		}
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			}catch(SQLException s ) {}
+		}
+		if(conn != null) {
+			try {
+				conn.close();
+			}catch(SQLException s ) {}
+		}
 	}
 
 }
