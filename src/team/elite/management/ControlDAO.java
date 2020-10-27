@@ -101,31 +101,29 @@ public class ControlDAO {
 	
 	
 	// 학생 로그인 db와 맞는지 확인하는 메서드.
-	public int studentCheck(String student_id, String password)
+	public int studentCheck(Student_MembersDTO dto)
 	 throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String dbpassword = "";
 		int x = -1;
-		
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn.prepareStatement( "select password from student_members where student_id = ?");
-			pstmt.setString(1, student_id);
+			pstmt = conn.prepareStatement( "select * from student_members where student_id = ?");
+			pstmt.setString(1, dto.getStudent_id());
 			rs = pstmt.executeQuery();		//아이디를 검색
 			
-			if( rs.next() ) {
-				dbpassword= rs.getString("password");
-				if(dbpassword.equals(password)) {
-					x = 1; 		// 인증 성공
+			if(rs.next() ) {
+				dbpassword = rs.getString("password") ;
+				if(dbpassword.equals(dto.getPassword())) {
+					x = 1;
 				}else {
-					x = 0;		//비밀번호 틀림
+					x=0;
 				}
 			}else {
-				x = -1; 		//DB에 검색된 아이디 없음.
-			}
-			
+				x = -1;		//DB검색 없음.
+			}		
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
@@ -137,7 +135,7 @@ public class ControlDAO {
 	}
 	
 	// 강사 로그인 db와 맞는지 확인하는 메서드.
-	public int teacherCheck(String teacher_id, String password)
+	public int teacherCheck(Teacher_MembersDTO dto)
 	 throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -147,12 +145,12 @@ public class ControlDAO {
 		
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn.prepareStatement("select password from TEACHER_MEMBERS where teacher_id=?") ;
-			pstmt.setString(1, teacher_id);
+			pstmt = conn.prepareStatement("select password from teacher_members where teacher_id=?") ;
+			pstmt.setString(1, dto.getTeacher_id());
 			rs = pstmt.executeQuery();
 			if(rs.next() ) {
 				dbpassword = rs.getString("password") ;
-				if(dbpassword.equals(password)) {
+				if(dbpassword.equals(dto.getPassword())) {
 					x = 1;
 				}else {
 					x=0;
@@ -171,7 +169,7 @@ public class ControlDAO {
 	}
 	
 	// 행정 로그인 db와 맞는지 확인하는 메서드.
-	public int adminCheck(String admin_id, String password)
+	public int adminCheck(Admin_MembersDTO dto)
 	  throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -182,11 +180,11 @@ public class ControlDAO {
 		try {
 			conn = DataBaseConnection.getConnection();
 			pstmt = conn.prepareStatement("select password from ADMIN_MEMBERS where admin_id=?") ;
-			pstmt.setString(1, admin_id);
+			pstmt.setString(1, dto.getAdmin_id());
 			rs = pstmt.executeQuery();
 			if(rs.next() ) {
 				dbpassword = rs.getString("password") ;
-				if(dbpassword.equals(password)) {
+				if(dbpassword.equals(dto.getPassword())) {
 					x = 1;
 				}else {
 					x=0;
