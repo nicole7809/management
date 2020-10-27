@@ -10,7 +10,7 @@
 //	String id = request.getParameter("STUDENT_ID");
 //	String pw = request.getParameter("PASSWORD");
 %>
-	<jsp:useBean id = "dto" class ="team.elite.management.Student_MembersDTO"> </jsp:useBean>
+	<jsp:useBean id = "dto" class ="team.elite.management.Student_MembersDTO"/>
 	<jsp:setProperty property= "*" name = "dto" />
 	
 <%

@@ -23,7 +23,7 @@
 		
  --%>		
  	
-		<form action= stLoginPro.jsp" method="post" > 
+		<form action= "mgtLoginPro.jsp" method="post" > 
 				<h3 align="center"> 행정 </h3>
 				
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
