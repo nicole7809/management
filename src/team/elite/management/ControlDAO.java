@@ -72,7 +72,7 @@ public class ControlDAO {
 			}
 		}
 		
-		// 青沥 DB 傈价
+		//青沥 DB 傈价
 		public void insert(Admin_MembersDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
