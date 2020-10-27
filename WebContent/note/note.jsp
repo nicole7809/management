@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ page import= "team.elite.db.DataBaseConnection" %>    
-<%@ page import= "team.elite.logon.logonDAO" %>    
-<%@ page import= "team.elite.logon.logoDTO" %> --%>
+
 <!doctype html>
 <html>
 <head>
@@ -10,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>5조 프로젝트 사이트</title>
-<link href="css/mainTemplate.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -35,6 +33,9 @@
       
       <h4>메모불러오기</h4>
       <p>메모 불러오기.</p>
+    
+    
+    
     </div>
   </div>
   <footer class="secondary_header footer">
