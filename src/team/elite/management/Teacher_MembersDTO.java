@@ -2,7 +2,7 @@ package team.elite.management;
 
 import com.sun.jmx.snmp.Timestamp;
 
-public class Teacher_Members {
+public class Teacher_MembersDTO {
 	private String teacher_id;
 	private String teacher_name;
 	private String password;

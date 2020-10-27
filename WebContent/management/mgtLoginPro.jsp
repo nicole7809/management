@@ -1,30 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import = "logon.logonDAO" %>
+<%@ page import = "team.elite.management.ControlDAO" %>
 
 <%
 	// post타입 인코딩
 	request.setCharacterEncoding("UTF-8");
 %>
-	<jsp:useBean id = "dto" class = "logon.mgtLogonDTO"/>
+	<jsp:useBean id = "dto" class = "team.elite.management.Admin_MembersDTO"/>
 	<jsp:setProperty property="*" name="dto"/>
 	
 <%
 	// 쿠키 확인
 	String auto = request.getParameter("auto");
 	
-	String ADMIN_ID = null, PASSWORD = null; auto = null;
+	String admin_id = null, password = null; auto = null;
 	Cookie [] cookies = request.getCookies();
 	if(cookies != null ) {
 		for(Cookie c : cookies) {
 			if(c.getName().equals("cid")) {
-				ADMIN_ID = c.getValue();
-				dto.setADMIN_ID(ADMIN_ID);
+				admin_id = c.getValue();
+				dto.setAdmin_id(admin_id);
 			}
 			if(c.getName().equals("cpw")) {
 				PASSWORD = c.getValue();
-				dto.setPASSWORD(PASSWORD);
+				dto.setPassword(password);
 			}
 			if(c.getName().equals("cauto")) {
 				auto = c.getValue();
@@ -34,13 +34,13 @@
 	}
 	
 	//id, pw 확인
-	logonDAO dao = logonDAO.getInstance();
-	int check = dao.adminCheck(ADMIN_ID, PASSWORD);
+	ControlDAO dao = ControlDAO.getInstance();		// 메서드 다시
+	int check = dao.adminCheck(admin_id, password);
 	if(check == 1) {	// 아이디 있다면
-		session.setAttribute("ADMIN_ID", dto.getADMIN_ID()); 	//세션 생성
+		session.setAttribute("admin_id", dto.getAdmin_id()); 	//세션 생성
 		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.
-			Cookie cid = new Cookie("cid", dto.getADMIN_ID());
-			Cookie cpw = new Cookie("cpw", dto.getPASSWORD());
+			Cookie cid = new Cookie("cid", dto.getAdmin_id());
+			Cookie cpw = new Cookie("cpw", dto.getPassword());
 			Cookie cauto = new Cookie("cauto", dto.getAuto());
 			cid.setMaxAge(60*60);
 			cpw.setMaxAge(60*60);
@@ -48,7 +48,7 @@
 		}
 		response.sendRedirect("manageMentMain.jsp");
 	}else if (check == 1) {											//아이디,비번 일치.
-		session.setAttribute("ADMIN_ID", ADMIN_ID);
+		session.setAttribute("admin_id", admin_id);
 		response.sendRedirect("manageMent.jsp");
 	}else if( check == 0) {											// 비밀번호 불일치	%>
 	<script>
