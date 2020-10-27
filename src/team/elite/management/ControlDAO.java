@@ -112,7 +112,7 @@ public class ControlDAO {
 		int x = -1;
 		
 		try {
-			conn = getConnection();
+			conn = DataBaseConnection.getConnection();
 			pstmt = conn.prepareStatement("select password from ADMIN_MEMBERS where admin_id=?") ;
 			pstmt.setString(1, admin_id);
 			rs = pstmt.executeQuery();
