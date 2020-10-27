@@ -1,11 +1,11 @@
 package team.elite.management;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class Student_MembersDTO {
 	private String student_id;
 	private String student_name;
-	private String password;
+	private String password; 
 	private String email;
 	private String phone;
 	private String student_pic;

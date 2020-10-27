@@ -105,7 +105,7 @@ public class ControlDAO {
 		
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn.prepareStatement( "select password from student_mambers where student_id = ?");
+			pstmt = conn.prepareStatement( "select password from student_members where student_id = ?");
 			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();		//아이디를 검색
 			

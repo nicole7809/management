@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ page import= "team.elite.management.ControlDAO" %>
+<%@ page import="team.elite.management.Student_MembersDTO" %>
 
 <%
 	//post타입 인코딩하기
@@ -9,8 +9,8 @@
 
 //	String id = request.getParameter("STUDENT_ID");
 //	String pw = request.getParameter("PASSWORD");
-%>
-	<jsp:useBean id = "dto" class ="team.elite.management.Student_MembersDTO"/>
+%>									
+	<jsp:useBean id="dto" class="team.elite.management.Student_MembersDTO" />
 	<jsp:setProperty property= "*" name = "dto" />
 	
 <%
