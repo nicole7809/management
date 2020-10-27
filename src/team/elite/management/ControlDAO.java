@@ -48,7 +48,9 @@ public class ControlDAO {
 		}catch(Exception e )  {
 			e.printStackTrace();
 		}finally {
-			closeAll();
+			if (rs != null) try {rs.close(); } catch(SQLException e) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 		}
 	}
 	
@@ -68,7 +70,9 @@ public class ControlDAO {
 			}catch(Exception e )  {
 				e.printStackTrace();
 			}finally {
-				closeAll();
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 			}
 		}
 		
@@ -88,7 +92,9 @@ public class ControlDAO {
 			}catch(Exception e )  {
 				e.printStackTrace();
 			}finally {
-				closeAll();
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 			}
 		}
 	
@@ -123,12 +129,9 @@ public class ControlDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			closeAll();
-			/* closeAll() 로 한번에 닫는다.
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}
-			*/
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 		}
 		return x;
 	}
@@ -160,12 +163,9 @@ public class ControlDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
-			closeAll();
-			/* closeAll() 로 한번에 닫는다.
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}
-			*/
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 		}
 		return x;
 	}
@@ -197,33 +197,19 @@ public class ControlDAO {
 		}catch (Exception e ) {
 			e.printStackTrace();
 		}finally {
-			closeAll();
-			/* closeAll() 로 한번에 닫는다.
+
 			if (rs != null) try {rs.close(); } catch(SQLException e) {}
 			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}
-			*/
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
 		}
 		return x;
 	}
 	
-	//SQL close 메서드
-	private void closeAll() {
-		if(rs != null) {
-			try {
-				rs.close();
-			}catch(SQLException s ) {}
-		}
-		if(pstmt != null) {
-			try {
-				pstmt.close();
-			}catch(SQLException s ) {}
-		}
-		if(conn != null) {
-			try {
-				conn.close();
-			}catch(SQLException s ) {}
-		}
-	}
+	/*
+	 * //SQL close 메서드 private void closeAll() { if(rs != null) { try { rs.close();
+	 * }catch(SQLException s ) {} } if(pstmt != null) { try { pstmt.close();
+	 * }catch(SQLException s ) {} } if(conn != null) { try { conn.close();
+	 * }catch(SQLException s ) {} } }
+	 */
 
 }

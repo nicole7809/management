@@ -23,7 +23,7 @@
 		
  --%>		
  	
-		<form action= tcLoginPro.jsp" method="post" > 
+		<form action= "tcLoginPro.jsp" method="post" > 
 				<h3 align="center"> 강사 </h3>
 				
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
