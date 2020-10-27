@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!doctype html>
 <html>
 <head>
@@ -19,7 +18,9 @@
     </div>
     <nav class="secondary_header" id="menu">
       <ul class="title">
-        <li>네비게이션</li>
+        <li><a href="mgtLoginForm.jsp">STAFF</a></li>
+        <li><a href="tcLoginForm.jsp">TEACHER</a></li>
+        <li><a href="stLoginForm.jsp">STUDENT</a></li>
       </ul>
     </nav>
   </header>
@@ -33,9 +34,6 @@
       
       <h4>메모불러오기</h4>
       <p>메모 불러오기.</p>
-    
-    
-    
     </div>
   </div>
   <footer class="secondary_header footer">
