@@ -2,7 +2,7 @@ package team.elite.management;
 
 import com.sun.jmx.snmp.Timestamp;
 
-public class Teacher_Members {
+public class Teacher_MembersDTO {
 	private String teacher_id;
 	private String teacher_name;
 	private String password;
@@ -10,6 +10,7 @@ public class Teacher_Members {
 	private String phone;
 	private String teacher_pic;
 	private Timestamp reg_date;
+	private String auto;
 
 	public String getTeacher_id() {
 		return teacher_id;
@@ -65,6 +66,13 @@ public class Teacher_Members {
 
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
+	}
+	
+	public String getAuto () {
+		return auto;
+	}
+	public void setAuto (String auto) {
+		this.auto = auto;
 	}
 
 }

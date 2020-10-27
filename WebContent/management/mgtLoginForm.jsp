@@ -23,17 +23,17 @@
 		
  --%>		
  	
-		<form action= stLoginPro.jsp" method="post" > 
+		<form action= "mgtLoginPro.jsp" method="post" > 
 				<h3 align="center"> 행정 </h3>
 				
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
 					<tr>
 						<td> 아이디 :  </td>
-						<td> <input type="text" name ="STUDENT_ID" /> </td>
+						<td> <input type="text" name ="admin_id" /> </td>
 					</tr>
 					<tr>
 						<td> 비밀번호 : </td>
-						<td> <input type="password" name="PASSWORD" /> </td>
+						<td> <input type="password" name="password" /> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
