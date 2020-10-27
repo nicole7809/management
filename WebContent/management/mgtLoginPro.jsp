@@ -35,7 +35,7 @@
 	
 	//id, pw 확인
 	ControlDAO dao = ControlDAO.getInstance();		// 메서드 다시
-	int check = dao.adminCheck(admin_id, password);
+	int check = dao.adminCheck(dto);
 	if(check == 1) {	// 아이디 있다면
 		session.setAttribute("admin_id", dto.getAdmin_id()); 	//세션 생성
 		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.
@@ -46,10 +46,10 @@
 			cpw.setMaxAge(60*60);
 			cauto.setMaxAge(60*60);
 		}
-		response.sendRedirect("manageMentMain.jsp");	//---------- 쿠키로 로그인 되어 manageMentMain.으로 이동
+		response.sendRedirect("managementMain.jsp");	//---------- 쿠키로 로그인 되어 manageMentMain.으로 이동
 	}else if (check == 1) {								//---------- 아이디,비번 일치.
 		session.setAttribute("admin_id", admin_id);
-		response.sendRedirect("manageMentMain.jsp");
+		response.sendRedirect("managementMain.jsp");
 	}else if( check == 0) {								//---------- 비밀번호 불일치	%>
 	<script>
 		alert("비밀번호가 맞지 않습니다.");

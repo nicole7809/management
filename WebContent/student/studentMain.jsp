@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> 학생 메인</title>
+		<link href="css/mainTemplate.css" rel="stylesheet" type="text/css">
 	</head>
 	<%
 //		String ADMIN_ID = (String)session.getAttribute("teacher_id");
@@ -34,7 +35,25 @@
 					include 하면 되지않을까??
 				</td>
 			</tr>
-		</table>
-	
+		</table> 
+		이걸 활용 하고 싶습니다.....
+		<div class = "container">
+			<div class = "left" >
+				<ul>
+					<li><a href ="/Total.Management.System/studentInfo.jsp"> student </a> </li>
+					<li><a href ="/Total.Management.System/courseList.jsp"> 내 강의</a> </li>
+					<li><a href ="/Total.Management.System/schdule.jsp"> 일정</a> </li>
+					<li><a href ="/Total.Management.System/memo.jsp"> 메모</a> </li>
+					<li><a href ="/Total.Management.System/board/notice.jsp"> 공지사항 </a> </li>
+					<li><a href ="/Total.Management.System/massage.jsp"> Q & A </a> </li>
+				</ul>
+			</div>
+			<div class = "center">
+				<p> 여기엔 뭐가 있어야 할까요? </p>
+			</div>
+			<footer class="secondary_header footer">
+   				 <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+ 			</footer>
+		</div>
 	</body>
 </html>
