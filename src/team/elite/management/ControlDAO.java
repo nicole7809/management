@@ -32,106 +32,108 @@ public class ControlDAO {
 		
 	}
 	
+	// 학생 로그인 db와 맞는지 확인하는 메서드.
 	public int studentCheck(String student_id, String password)
-			 throws Exception {
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				String dbpassword = "";
-				int x = -1;
-				
-				try {
-					conn = DataBaseConnection.getConnection();
-					pstmt = conn.prepareStatement( "select password from student_mambers where student_id = ?");
-					pstmt.setString(1, student_id);
-					rs = pstmt.executeQuery();		//아이디를 검색
-					
-					if( rs.next() ) {
-						dbpassword= rs.getString(password);
-						if(dbpassword.equals(password)) {
-							x = 1; 		// 인증 성공
-						}else {
-							x = 0;		//비밀번호 틀림
-						}
-					}else {
-						x = -1; 		//DB에 검색된 아이디 없음.
-					}
-					
-				}catch (Exception e) {
-					e.printStackTrace();
-				}finally {
-					if (rs != null) try {rs.close(); } catch(SQLException e) {}
-					if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-					if (conn != null) try {conn.close(); } catch(SQLException e) {}
+	 throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String dbpassword = "";
+		int x = -1;
+		
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement( "select password from student_mambers where student_id = ?");
+			pstmt.setString(1, student_id);
+			rs = pstmt.executeQuery();		//아이디를 검색
+			
+			if( rs.next() ) {
+				dbpassword= rs.getString(password);
+				if(dbpassword.equals(password)) {
+					x = 1; 		// 인증 성공
+				}else {
+					x = 0;		//비밀번호 틀림
 				}
-				return x;
+			}else {
+				x = -1; 		//DB에 검색된 아이디 없음.
 			}
 			
-			public int teacherCheck(String teacher_id, String password)
-				throws Exception {
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				String dbpassword = "";
-				int x = -1;
-				
-				try {
-					conn = DataBaseConnection.getConnection();
-					pstmt = conn.prepareStatement("select password from TEACHER_MEMBERS where teacher_id=?") ;
-					pstmt.setString(1, teacher_id);
-					rs = pstmt.executeQuery();
-					if(rs.next() ) {
-						dbpassword = rs.getString(password) ;
-						if(dbpassword.equals(password)) {
-							x = 1;
-						}else {
-							x=0;
-						}
-					}else {
-						x = -1;		//DB검색 없음.
-					}
-				}catch (Exception e ) {
-					e.printStackTrace();
-				}finally {
-					if (rs != null) try {rs.close(); } catch(SQLException e) {}
-					if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-					if (conn != null) try {conn.close(); } catch(SQLException e) {}
-				}
-				return x;
-			}
-			
-			public int adminCheck(String admin_id, String password)
-					throws Exception {
-					Connection conn = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					String dbpassword = "";
-					int x = -1;
-					
-					try {
-						conn = DataBaseConnection.getConnection();
-						pstmt = conn.prepareStatement("select password from ADMIN_MEMBERS where admin_id=?") ;
-						pstmt.setString(1, admin_id);
-						rs = pstmt.executeQuery();
-						if(rs.next() ) {
-							dbpassword = rs.getString(password) ;
-							if(dbpassword.equals(password)) {
-								x = 1;
-							}else {
-								x=0;
-							}
-						}else {
-							x = -1;		//DB검색 없음.
-						}
-					}catch (Exception e ) {
-						e.printStackTrace();
-					}finally {
-						if (rs != null) try {rs.close(); } catch(SQLException e) {}
-						if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-						if (conn != null) try {conn.close(); } catch(SQLException e) {}
-					}
-					return x;
-				}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (rs != null) try {rs.close(); } catch(SQLException e) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+		}
+		return x;
+	}
 	
+	// 강사 로그인 db와 맞는지 확인하는 메서드.
+	public int teacherCheck(String teacher_id, String password)
+	 throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String dbpassword = "";
+		int x = -1;
+		
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select password from TEACHER_MEMBERS where teacher_id=?") ;
+			pstmt.setString(1, teacher_id);
+			rs = pstmt.executeQuery();
+			if(rs.next() ) {
+				dbpassword = rs.getString(password) ;
+				if(dbpassword.equals(password)) {
+					x = 1;
+				}else {
+					x=0;
+				}
+			}else {
+				x = -1;		//DB검색 없음.
+			}
+		}catch (Exception e ) {
+			e.printStackTrace();
+		}finally {
+			if (rs != null) try {rs.close(); } catch(SQLException e) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+		}
+		return x;
+	}
+	
+	// 행정 로그인 db와 맞는지 확인하는 메서드.
+	public int adminCheck(String admin_id, String password)
+	  throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String dbpassword = "";
+		int x = -1;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select password from ADMIN_MEMBERS where admin_id=?") ;
+			pstmt.setString(1, admin_id);
+			rs = pstmt.executeQuery();
+			if(rs.next() ) {
+				dbpassword = rs.getString(password) ;
+				if(dbpassword.equals(password)) {
+					x = 1;
+				}else {
+					x=0;
+				}
+			}else {
+				x = -1;		//DB검색 없음.
+			}
+		}catch (Exception e ) {
+			e.printStackTrace();
+		}finally {
+			if (rs != null) try {rs.close(); } catch(SQLException e) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+			if (conn != null) try {conn.close(); } catch(SQLException e) {}
+		}
+		return x;
+	}
 
 }
