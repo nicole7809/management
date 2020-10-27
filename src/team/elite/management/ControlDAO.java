@@ -6,21 +6,132 @@ import java.sql.ResultSet;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import java.sql.SQLException;
+
+import team.elite.db.DataBaseConnection;	// 1,2 단계 로그인
 
 public class ControlDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	public static Connection getConnection() throws Exception {
+/*	public static Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		Context j = (Context) ctx.lookup("java:comp/env");
 		DataSource ds = (DataSource) j.lookup("jdbc/orcl");
 		Connection conn = ds.getConnection();
 		return conn;
+	}					1,2단계 로그인을 import 했으니까 이부분은 주석처리.
+*/	
+	private static ControlDAO instance = new ControlDAO();
+	
+	public static ControlDAO getInstance() {
+		return instance;
+	}
+	private ControlDAO() {
+		
 	}
 	
-	
+	public int studentCheck(String student_id, String password)
+			 throws Exception {
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String dbpassword = "";
+				int x = -1;
+				
+				try {
+					conn = DataBaseConnection.getConnection();
+					pstmt = conn.prepareStatement( "select password from student_mambers where student_id = ?");
+					pstmt.setString(1, student_id);
+					rs = pstmt.executeQuery();		//아이디를 검색
+					
+					if( rs.next() ) {
+						dbpassword= rs.getString(password);
+						if(dbpassword.equals(password)) {
+							x = 1; 		// 인증 성공
+						}else {
+							x = 0;		//비밀번호 틀림
+						}
+					}else {
+						x = -1; 		//DB에 검색된 아이디 없음.
+					}
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					if (rs != null) try {rs.close(); } catch(SQLException e) {}
+					if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+					if (conn != null) try {conn.close(); } catch(SQLException e) {}
+				}
+				return x;
+			}
+			
+			public int teacherCheck(String teacher_id, String password)
+				throws Exception {
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String dbpassword = "";
+				int x = -1;
+				
+				try {
+					conn = DataBaseConnection.getConnection();
+					pstmt = conn.prepareStatement("select password from TEACHER_MEMBERS where teacher_id=?") ;
+					pstmt.setString(1, teacher_id);
+					rs = pstmt.executeQuery();
+					if(rs.next() ) {
+						dbpassword = rs.getString(password) ;
+						if(dbpassword.equals(password)) {
+							x = 1;
+						}else {
+							x=0;
+						}
+					}else {
+						x = -1;		//DB검색 없음.
+					}
+				}catch (Exception e ) {
+					e.printStackTrace();
+				}finally {
+					if (rs != null) try {rs.close(); } catch(SQLException e) {}
+					if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+					if (conn != null) try {conn.close(); } catch(SQLException e) {}
+				}
+				return x;
+			}
+			
+			public int adminCheck(String admin_id, String password)
+					throws Exception {
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					String dbpassword = "";
+					int x = -1;
+					
+					try {
+						conn = DataBaseConnection.getConnection();
+						pstmt = conn.prepareStatement("select password from ADMIN_MEMBERS where admin_id=?") ;
+						pstmt.setString(1, admin_id);
+						rs = pstmt.executeQuery();
+						if(rs.next() ) {
+							dbpassword = rs.getString(password) ;
+							if(dbpassword.equals(password)) {
+								x = 1;
+							}else {
+								x=0;
+							}
+						}else {
+							x = -1;		//DB검색 없음.
+						}
+					}catch (Exception e ) {
+						e.printStackTrace();
+					}finally {
+						if (rs != null) try {rs.close(); } catch(SQLException e) {}
+						if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+						if (conn != null) try {conn.close(); } catch(SQLException e) {}
+					}
+					return x;
+				}
 	
 
 }

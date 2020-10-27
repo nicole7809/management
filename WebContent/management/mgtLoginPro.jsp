@@ -23,7 +23,7 @@
 				dto.setAdmin_id(admin_id);
 			}
 			if(c.getName().equals("cpw")) {
-				PASSWORD = c.getValue();
+				password = c.getValue();
 				dto.setPassword(password);
 			}
 			if(c.getName().equals("cauto")) {

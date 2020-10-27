@@ -29,11 +29,11 @@
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
 					<tr>
 						<td> 아이디 :  </td>
-						<td> <input type="text" name ="TEACHER_ID" /> </td>
+						<td> <input type="text" name ="teacher_id" /> </td>
 					</tr>
 					<tr>
 						<td> 비밀번호 : </td>
-						<td> <input type="password" name="PASSWORD" /> </td>
+						<td> <input type="password" name="password" /> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

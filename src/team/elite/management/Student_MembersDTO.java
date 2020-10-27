@@ -10,6 +10,7 @@ public class Student_MembersDTO {
 	private String phone;
 	private String student_pic;
 	private Timestamp reg_date;
+	private String auto;
 
 	public String getStudent_id() {
 		return student_id;
@@ -67,4 +68,11 @@ public class Student_MembersDTO {
 		this.reg_date = reg_date;
 	}
 
+	public String getAuto () {
+		return auto;
+	}
+	public void setAuto (String auto) {
+		this.auto = auto;
+	}
+	
 }

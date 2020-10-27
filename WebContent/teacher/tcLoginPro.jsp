@@ -35,7 +35,7 @@
 	
 	//id, pw 확인
 	ControlDAO dao = ControlDAO.getInstance();		// 메서드 다시
-	int check = dao.teacherCheck(TEACHER_ID, PASSWORD);
+	int check = dao.teacherCheck(teacher_id, password);
 	if(check == 1) {	// 아이디 있다면
 		session.setAttribute("teacher_id", dto.getTeacher_id()); 	//세션 생성
 		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.

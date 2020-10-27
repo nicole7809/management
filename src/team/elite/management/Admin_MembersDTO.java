@@ -10,6 +10,7 @@ public class Admin_MembersDTO {
 	private String phone;
 	private String admin_pic;
 	private Timestamp reg_date;
+	private String auto;
 
 	public String getAdmin_id() {
 		return admin_id;
@@ -65,6 +66,13 @@ public class Admin_MembersDTO {
 
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
+	}
+	
+	public String getAuto () {
+		return auto;
+	}
+	public void setAuto (String auto) {
+		this.auto = auto;
 	}
 
 }
