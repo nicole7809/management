@@ -116,7 +116,7 @@ public class ControlDAO {
 			rs = pstmt.executeQuery();		//아이디를 검색
 			
 			if( rs.next() ) {
-				dbpassword= rs.getString(password);
+				dbpassword= rs.getString("password");
 				if(dbpassword.equals(password)) {
 					x = 1; 		// 인증 성공
 				}else {
@@ -126,12 +126,12 @@ public class ControlDAO {
 				x = -1; 		//DB에 검색된 아이디 없음.
 			}
 			
-		}catch (Exception e) {
-			e.printStackTrace();
+		}catch (Exception ex) {
+			ex.printStackTrace();
 		}finally {
-			if (rs != null) try {rs.close(); } catch(SQLException e) {}
-			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			if (rs != null) try {rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try {conn.close(); } catch(SQLException ex) {}	
 		}
 		return x;
 	}
@@ -151,7 +151,7 @@ public class ControlDAO {
 			pstmt.setString(1, teacher_id);
 			rs = pstmt.executeQuery();
 			if(rs.next() ) {
-				dbpassword = rs.getString(password) ;
+				dbpassword = rs.getString("password") ;
 				if(dbpassword.equals(password)) {
 					x = 1;
 				}else {
@@ -160,12 +160,12 @@ public class ControlDAO {
 			}else {
 				x = -1;		//DB검색 없음.
 			}
-		}catch (Exception e ) {
-			e.printStackTrace();
+		}catch (Exception ex ) {
+			ex.printStackTrace();
 		}finally {
-			if (rs != null) try {rs.close(); } catch(SQLException e) {}
-			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			if (rs != null) try {rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try {conn.close(); } catch(SQLException ex) {}	
 		}
 		return x;
 	}
@@ -185,7 +185,7 @@ public class ControlDAO {
 			pstmt.setString(1, admin_id);
 			rs = pstmt.executeQuery();
 			if(rs.next() ) {
-				dbpassword = rs.getString(password) ;
+				dbpassword = rs.getString("password") ;
 				if(dbpassword.equals(password)) {
 					x = 1;
 				}else {
@@ -194,13 +194,13 @@ public class ControlDAO {
 			}else {
 				x = -1;		//DB검색 없음.
 			}
-		}catch (Exception e ) {
-			e.printStackTrace();
+		}catch (Exception ex ) {
+			ex.printStackTrace();
 		}finally {
 
-			if (rs != null) try {rs.close(); } catch(SQLException e) {}
-			if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
-			if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			if (rs != null) try {rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try {conn.close(); } catch(SQLException ex) {}	
 		}
 		return x;
 	}
