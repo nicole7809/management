@@ -18,25 +18,25 @@
     </div>
     <nav class="secondary_header" id="menu">
       <ul class="title">
-        <li><a href="mgtLoginForm.jsp">STAFF</a></li>
-        <li><a href="tcLoginForm.jsp">TEACHER</a></li>
-        <li><a href="stLoginForm.jsp">STUDENT</a></li>
+        <li><a href="management/mgtLoginForm.jsp">STAFF</a></li>
+        <li><a href="teacher/tcLoginForm.jsp">TEACHER</a></li>
+        <li><a href="student/stLoginForm.jsp">STUDENT</a></li>
       </ul>
     </nav>
   </header>
   <div class="row">
     <div class="columns">
-      <a href="mgtLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_01.jpg" alt="" class="thumbnail"/> </p>
+      <a href="management/mgtLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_01.jpg" alt="" class="thumbnail"/> </p>
       <h4>STAFF</h4>
       <p>학원스텝은 학원스텝아이디로 로그인합니다.</p></a>
     </div>
     <div class="columns">
-      <a href=tcLoginForm.jsp><p class="thumbnail_align"> <img src="img/bkg_02.jpg" alt="" class="thumbnail"/> </p>
+      <a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_02.jpg" alt="" class="thumbnail"/> </p>
       <h4>TEACHER</h4>
       <p>강사는 강사 아이디로 로그인합니다.</p></a>
     </div>
     <div class="columns">
-     <a href="stLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_03.jpg" alt="" class="thumbnail"/> </p>
+     <a href="student/stLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_03.jpg" alt="" class="thumbnail"/> </p>
       <h4>STUDENT</h4>
       <p>학생은 학생으로 로그인합니다.</p></a>
     </div>
