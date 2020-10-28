@@ -20,7 +20,7 @@
 
 <% //페이지!!!
 	String pageNum = request.getParameter("pageNum");
-	if(pageNum ==null){pageNum ="1"; }
+	if(pageNum ==null){pageNum ="1";}
 	
 	int currentPage = Integer.parseInt(pageNum);
 	int startRow = (currentPage - 1) * pageSize + 1;
@@ -121,7 +121,8 @@
         if (endPage < pageCount) {  %>
         <a href="list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
 
-       <%}%> 
+       <%}}%>
+     
     
 
 </center>
