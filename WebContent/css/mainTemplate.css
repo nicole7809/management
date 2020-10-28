@@ -13,7 +13,7 @@
 }
 
 .row {
-	width: 90%;
+	width: 100%;
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
@@ -492,9 +492,9 @@ body {
 }
 
 .thumbnail {
-	width: 100px;
+	width: 170px;
 	border-radius: 0px;
-	height: 100px;
+	height: 170px;
 	margin-left: auto;
 }
 
