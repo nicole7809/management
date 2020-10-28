@@ -24,6 +24,7 @@
       </ul>
     </nav>
   </header>
+  <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
   <div class="row">
     <div class="columns">
       <a href="management/mgtLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_01.jpg" alt="" class="thumbnail"/> </p>
