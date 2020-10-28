@@ -27,6 +27,7 @@
         <li><a href="teacher/tcLoginForm.jsp">TEACHER</a></li>
         <li><a href="student/stLoginForm.jsp">STUDENT</a></li>
       </ul>
+<<<<<<< HEAD
     </nav> -->
 		</header>
 		<div class="row">
@@ -58,5 +59,31 @@
 			</div>
 		</footer>
 	</div>
+=======
+    </nav>
+  </header>
+  <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+  <div class="row">
+    <div class="columns">
+      <a href="management/mgtLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_01.jpg" alt="" class="thumbnail"/> </p>
+      <h4>STAFF</h4>
+      <p>학원스텝은 학원스텝아이디로 로그인합니다.</p></a>
+    </div>
+    <div class="columns">
+      <a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_02.jpg" alt="" class="thumbnail"/> </p>
+      <h4>TEACHER</h4>
+      <p>강사는 강사 아이디로 로그인합니다.</p></a>
+    </div>
+    <div class="columns">
+     <a href="student/stLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_03.jpg" alt="" class="thumbnail"/> </p>
+      <h4>STUDENT</h4>
+      <p>학생은 학생으로 로그인합니다.</p></a>
+    </div>
+  </div>
+  <footer class="secondary_header footer">
+    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+  </footer>
+</div>
+>>>>>>> branch 'master' of https://github.com/nicole7809/management.git
 </body>
 </html>
