@@ -98,6 +98,94 @@ public class ControlDAO {
 			}
 		}
 	
+		//Q&A DB 전송
+		public void insert(QNADTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into qna values(?,?,?,?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getQna_seqno());
+				pstmt.setString(2, dto.getUser_id());
+				pstmt.setString(3, dto.getTitle());
+				pstmt.setString(4, dto.getContents());
+				pstmt.setInt(5, dto.getRead_count());
+				pstmt.setString(6, dto.getReg_ip());
+				pstmt.setString(7, dto.getReg_id());
+				
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			}
+		}
+	
+		//Notice DB 전송
+		public void insert(NoticeDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into qna values(?,?,?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getNotice_seqno());
+				pstmt.setString(2, dto.getTitle());
+				pstmt.setString(3, dto.getContents());
+				pstmt.setInt(4, dto.getRead_count());
+				pstmt.setString(5, dto.getReg_ip());
+				pstmt.setString(6, dto.getReg_id());
+						
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			}
+		}
+		
+		//Note DB 전송
+		public void insert(NoteDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into qna values(?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getSeqno());
+				pstmt.setString(2, dto.getWriter());
+				pstmt.setString(3, dto.getSubject());
+				pstmt.setString(4, dto.getContents());
+								
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			}
+		}
+
+		//Note DB 전송
+		public void insert(Lecture_InformationDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into qna values(?,?,sysdate,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getInfo_seqno());
+				pstmt.setString(2, dto.getReg_id());
+				pstmt.setString(3, dto.getLecture());
+								
+				pstmt.executeUpdate();		//DB 에 업에이트
+			}catch(Exception e )  {
+				e.printStackTrace();
+			}finally {
+				if (rs != null) try {rs.close(); } catch(SQLException e) {}
+				if (pstmt != null) try {pstmt.close(); } catch(SQLException e) {}
+				if (conn != null) try {conn.close(); } catch(SQLException e) {}	
+			}
+		}		
+		
 	
 	
 	// 학생 로그인 db와 맞는지 확인하는 메서드.

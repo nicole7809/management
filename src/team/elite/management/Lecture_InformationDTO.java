@@ -3,15 +3,25 @@ package team.elite.management;
 import com.sun.jmx.snmp.Timestamp;
 
 public class Lecture_InformationDTO {
-	private String info_seqno;
+	private int info_seqno;
 	private String reg_id;
 	private Timestamp reg_date;
+	private String lecture;
 
-	public String getInfo_seqno() {
+	
+	public String getLecture() {
+		return lecture;
+	}
+
+	public void setLecture(String lecture) {
+		this.lecture = lecture;
+	}
+
+	public int getInfo_seqno() {
 		return info_seqno;
 	}
 
-	public void setInfo_seqno(String info_seqno) {
+	public void setInfo_seqno(int info_seqno) {
 		this.info_seqno = info_seqno;
 	}
 
