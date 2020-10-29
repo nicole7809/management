@@ -33,7 +33,7 @@
     <div class="columns2">
       
       <h4>메모불러오기</h4>
-      <p>메모 불러오기.</p>
+      <p>메모불러오기.</p>
     </div>
   </div>
   <footer class="secondary_header footer">
