@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import team.elite.db.DataBaseConnection;	// 1,2 단계 로그인
 
@@ -318,7 +319,107 @@ public class ControlDAO {
 		}
 		return list;
 	}
-	
+/*	public List getArticles(int start, int end)
+		    throws Exception {
+		        Connection conn = null;
+		        PreparedStatement pstmt = null;
+		        ResultSet rs = null;
+		        List articleList=null;
+		        try {
+		            conn = DataBaseConnection.getConnection();
+		            
+		            pstmt = conn.prepareStatement(
+		            		"select notice_seqno,title,contents, read_count, reg_ip, reg_id, reg_date,readcount,r "+
+		        			"from (select notice_seqno,title,contents, read_count, reg_ip, reg_id, reg_date,rownum r " +
+		        			"from (select *from notice order by ref desc, re_step asc) order by ref desc, re_step asc ) where r >= ? and r <= ? ");
+		            pstmt.setInt(1, start-1);
+					pstmt.setInt(2, end);
+		            rs = pstmt.executeQuery();
+
+		            if (rs.next()) {
+		                articleList = new ArrayList(end);
+		                do{
+		                  NoticeDTO article= new NoticeDTO();
+						  article.setNotice_seqno(rs.getInt("notice_seqno"));
+						  article.setTitle(rs.getString("title"));
+		                  article.setContents(rs.getString("contents"));
+		                  article.setRead_count(rs.getInt("read_count"));
+		                  article.setReg_ip(rs.getString("preg_ip"));					     
+						  article.setReg_id(rs.getString("reg_id"));
+		                  article.setReg_date(rs.getTimestamp("reg_date"));
+		                 						  
+		                  articleList.add(article);
+					    }while(rs.next());
+					}
+		        } catch(Exception ex) {
+		            ex.printStackTrace();
+		        } finally {
+		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		        }
+				return articleList;
+		    }
+	public void insertArticle(NoticeDTO article) 
+		    throws Exception {
+		        Connection conn = null;
+		        PreparedStatement pstmt = null;
+				ResultSet rs = null;
+
+				int num=article.getNotice_seqno();
+				int ref=article.getFr();
+				int re_step=article.getRe_step();
+				int re_level=article.getRe_level();
+				int number=0;
+		        String sql="";
+
+		        try {
+		            conn = DataBaseConnection.getConnection();
+
+		            pstmt = conn.prepareStatement("select max(num) from board");
+					rs = pstmt.executeQuery();
+					
+					if (rs.next())
+				      number=rs.getInt(1)+1;
+				    else
+				      number=1; 
+				   
+				    if (num!=0)   //
+				    {  
+				      sql="update board set re_step=re_step+1 where ref= ? and re_step> ?";
+		              pstmt = conn.prepareStatement(sql);
+		              pstmt.setInt(1, ref);
+					  pstmt.setInt(2, re_step);
+					  pstmt.executeUpdate();
+					  re_step=re_step+1;
+					  re_level=re_level+1;
+				     }else{
+				  	  ref=number;
+					  re_step=0;
+					  re_level=0;
+				     }	 
+		            // 쿼리를 작성
+		            sql = "insert into board(num,writer,email,subject,passwd,reg_date,";
+				    sql+="ref,re_step,re_level,content,ip) values(board_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+
+		            pstmt = conn.prepareStatement(sql);		            
+		            pstmt.setInt(1, article.getNotice_seqno());
+					pstmt.setString(2, article.getTitle());
+					pstmt.setString(3, article.getContents());
+					pstmt.setInt(4, article.getRead_count());
+					pstmt.setString(5, article.getReg_ip());
+					pstmt.setString(6, article.getReg_id());
+					
+		            pstmt.executeUpdate();
+		        } catch(Exception ex) {
+		            ex.printStackTrace();
+		        } finally {
+					if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		        }
+		    }
+*/	
 	
 	/*
 	 * //SQL close 메서드 private void closeAll() { if(rs != null) { try { rs.close();
