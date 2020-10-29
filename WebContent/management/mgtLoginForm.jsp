@@ -9,19 +9,25 @@
 	<body>
 	
 		<h2> 로그인 페이지 </h2>
-<%--		<%
+		<%
 			//자동로그인상태라면 login되야하기에 먼저 쿠키확인하기 -> 조건 맞으면 pro로 이동.
 			
-			String id = null, pw= null, auto= null;		// 기본값
+			String admin_id = null, password= null, auto= null;		// 기본값
 			Cookie [] cookies = request.getCookies();
 			if(cookies != null) { 						// 자동 로그인 안된 상태면 null이라 form(로그인) 화면 뜸.
 				for(Cookie c : cookies) {
-					
+					if(c.getName().equals("cid"))
+						admin_id = c.getValue();				// 하나의 명령만 있을땐 {} 생략 가능
+					if(c.getName().equals("cpw"))
+	    				password = c.getValue();
+	    			if(c.getName().equals("cauto"))
+	    				auto = c.getValue();
 				}
 			}
-		%>
-		
- --%>		
+			if(auto != null && admin_id != null && password != null) {
+				response.sendRedirect("mgtLoginPro.jsp");
+			}
+		%>	
  	
 		<form action= "mgtLoginPro.jsp" method="post" > 
 				<h3 align="center"> 행정 </h3>
