@@ -126,7 +126,7 @@ public class ControlDAO {
 		public void insert(NoticeDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into notice values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getNotice_seqno());
 				pstmt.setString(2, dto.getTitle());
@@ -149,7 +149,7 @@ public class ControlDAO {
 		public void insert(NoteDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,?,?,sysdate)";
+				String sql = "insert into note values(?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getSeqno());
 				pstmt.setString(2, dto.getWriter());
@@ -166,11 +166,11 @@ public class ControlDAO {
 			}
 		}
 
-		//Note DB 전송
+		//Lecture_Information DB 전송
 		public void insert(Lecture_InformationDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,sysdate,?)";
+				String sql = "insert into lecture_information values(?,?,sysdate,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getInfo_seqno());
 				pstmt.setString(2, dto.getReg_id());
