@@ -1,12 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>notic페이지~!!</h1>
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import = "team.elite.management.ControlDAO" %>
+<%@ page import = "java.sql.Timestamp" %>
+
+<% request.setCharacterEncoding("UTF-8");%>
+
+<jsp:useBean id="article" scope="page" class="team.elite.management.NoticeDTO">
+   <jsp:setProperty name="article" property="*"/>
+</jsp:useBean>
+ 
+<%
+    article.setReg_date(new Timestamp(System.currentTimeMillis()) );
+	article.setReg_ip(request.getRemoteAddr());
+
+	ControlDAO dbPro = ControlDAO.getInstance();
+    dbPro.insertArticle(article);
+
+    response.sendRedirect("notice.jsp");
+%>
