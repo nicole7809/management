@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ page import = "team.elite.management.NoticeDTO" %>
+=======
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<
+=======
+<%@ page contentType="text/html;charset=UTF-8" %>
+>>>>>>> branch 'master' of https://github.com/nicole7809/management
 <%@ page import = "team.elite.management.ControlDAO" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
@@ -36,6 +45,7 @@
 	   
 	%>
 
+<<<<<<< HEAD
 <html>
 <head>
 <title>게시판</title>
@@ -130,3 +140,4 @@
 %>
 </center>
 </body>
+
