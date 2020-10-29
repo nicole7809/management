@@ -7,6 +7,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import team.elite.db.DataBaseConnection;	// 1,2 단계 로그인
 
@@ -58,7 +59,7 @@ public class ControlDAO {
 		public void insert(Teacher_MembersDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into teacher_members values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getTeacher_id());
 				pstmt.setString(2, dto.getTeacher_name());
@@ -80,7 +81,7 @@ public class ControlDAO {
 		public void insert(Admin_MembersDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into admin_members values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getAdmin_id());
 				pstmt.setString(2, dto.getAdmin_name());
@@ -126,7 +127,7 @@ public class ControlDAO {
 		public void insert(NoticeDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into notice values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getNotice_seqno());
 				pstmt.setString(2, dto.getTitle());
@@ -149,7 +150,7 @@ public class ControlDAO {
 		public void insert(NoteDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,?,?,sysdate)";
+				String sql = "insert into note values(?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getSeqno());
 				pstmt.setString(2, dto.getWriter());
@@ -166,11 +167,11 @@ public class ControlDAO {
 			}
 		}
 
-		//Note DB 전송
+		//Lecture_Information DB 전송
 		public void insert(Lecture_InformationDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into qna values(?,?,sysdate,?)";
+				String sql = "insert into lecture_information values(?,?,sysdate,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, dto.getInfo_seqno());
 				pstmt.setString(2, dto.getReg_id());
@@ -290,6 +291,33 @@ public class ControlDAO {
 		}
 		return x;
 	}
+	
+	// 학생리스트를 만드는? 메서드 studentList에서 사용됩니다.  미완성임.
+	public ArrayList studentAll() {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from student_members");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Student_MembersDTO sdto = new Student_MembersDTO();
+				sdto.setStudent_id(rs.getString("student_id"));
+				sdto.setStudent_name(rs.getString("student_name"));
+				sdto.setPassword(rs.getString("password"));
+				sdto.setEmail(rs.getString("email"));
+				sdto.setStudent_pic(rs.getString("student_pic"));
+				sdto.setReg_date(rs.getTimestamp("reg_date"));
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if (rs != null) try {rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try {conn.close(); } catch(SQLException ex) {}	
+		}
+		return list;
+	}
+	
 	
 	/*
 	 * //SQL close 메서드 private void closeAll() { if(rs != null) { try { rs.close();
