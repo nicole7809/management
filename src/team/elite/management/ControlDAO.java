@@ -58,7 +58,7 @@ public class ControlDAO {
 		public void insert(Teacher_MembersDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into teacher_members values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getTeacher_id());
 				pstmt.setString(2, dto.getTeacher_name());
@@ -80,7 +80,7 @@ public class ControlDAO {
 		public void insert(Admin_MembersDTO dto) {
 			try {
 				conn = DataBaseConnection.getConnection();
-				String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+				String sql = "insert into admin_members values(?,?,?,?,?,?,sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getAdmin_id());
 				pstmt.setString(2, dto.getAdmin_name());
