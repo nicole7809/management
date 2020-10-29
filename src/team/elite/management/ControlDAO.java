@@ -319,7 +319,32 @@ public class ControlDAO {
 		}
 		return list;
 	}
-/*	public List getArticles(int start, int end)
+	// board의 갯수를 세고 목록 번호를 1부터 시작하고자 하는 것.
+		public int getArticleCount() 			// 예외 경고도 해놓고 예외처리도 하는게 좋은코드.   추가 입력하기
+			throws Exception {
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				int x = 0;
+				try {	
+					conn = DataBaseConnection.getConnection();
+					pstmt = conn.prepareStatement("select count(*) from Board");		// 레코드의 수를 확인.
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						x = rs.getInt(1);	//검색된 내용의 첫 컬럼..
+					}
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}finally {
+//					closeAll();
+					if(rs != null)	try { rs.close();}catch(SQLException ex) {}
+					if(pstmt != null)	try { pstmt.close();}catch(SQLException ex) {}
+					if(conn != null)	try { conn.close();}catch(SQLException ex) {}
+				}
+				return x;
+			}
+	
+	public List getArticles(int start, int end)
 		    throws Exception {
 		        Connection conn = null;
 		        PreparedStatement pstmt = null;
@@ -330,8 +355,8 @@ public class ControlDAO {
 		            
 		            pstmt = conn.prepareStatement(
 		            		"select notice_seqno,title,contents, read_count, reg_ip, reg_id, reg_date,readcount,r "+
-		        			"from (select notice_seqno,title,contents, read_count, reg_ip, reg_id, reg_date,rownum r " +
-		        			"from (select *from notice order by ref desc, re_step asc) order by ref desc, re_step asc ) where r >= ? and r <= ? ");
+		        			"from (select notice_seqno,title,contents, read_count, reg_ip, reg_id, reg_date,rownum r"
+		        			+ " order by notice_seqno asc ) where r >= ? and r <= ? ");
 		            pstmt.setInt(1, start-1);
 					pstmt.setInt(2, end);
 		            rs = pstmt.executeQuery();
@@ -344,7 +369,7 @@ public class ControlDAO {
 						  article.setTitle(rs.getString("title"));
 		                  article.setContents(rs.getString("contents"));
 		                  article.setRead_count(rs.getInt("read_count"));
-		                  article.setReg_ip(rs.getString("preg_ip"));					     
+		                  article.setReg_ip(rs.getString("reg_ip"));					     
 						  article.setReg_id(rs.getString("reg_id"));
 		                  article.setReg_date(rs.getTimestamp("reg_date"));
 		                 						  
@@ -367,9 +392,6 @@ public class ControlDAO {
 				ResultSet rs = null;
 
 				int num=article.getNotice_seqno();
-				int ref=article.getFr();
-				int re_step=article.getRe_step();
-				int re_level=article.getRe_level();
 				int number=0;
 		        String sql="";
 
@@ -384,33 +406,20 @@ public class ControlDAO {
 				    else
 				      number=1; 
 				   
-				    if (num!=0)   //
-				    {  
-				      sql="update board set re_step=re_step+1 where ref= ? and re_step> ?";
-		              pstmt = conn.prepareStatement(sql);
-		              pstmt.setInt(1, ref);
-					  pstmt.setInt(2, re_step);
-					  pstmt.executeUpdate();
-					  re_step=re_step+1;
-					  re_level=re_level+1;
-				     }else{
-				  	  ref=number;
-					  re_step=0;
-					  re_level=0;
-				     }	 
+				    
 		            // 쿼리를 작성
-		            sql = "insert into board(num,writer,email,subject,passwd,reg_date,";
-				    sql+="ref,re_step,re_level,content,ip) values(board_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+		            sql = "insert into board(notice_seqno,title,reg_id,reg_date,";
+				    sql+="contents,reg_ip) values(board_seq.nextval,?,?,?,?,?,?)";
 
 		            pstmt = conn.prepareStatement(sql);		            
 		            pstmt.setInt(1, article.getNotice_seqno());
 					pstmt.setString(2, article.getTitle());
-					pstmt.setString(3, article.getContents());
-					pstmt.setInt(4, article.getRead_count());
-					pstmt.setString(5, article.getReg_ip());
-					pstmt.setString(6, article.getReg_id());
-					
+					pstmt.setString(3, article.getReg_id());
+					pstmt.setTimestamp(4, article.getReg_date());
+					pstmt.setString(5, article.getContents());
+					pstmt.setString(6, article.getReg_ip());
 		            pstmt.executeUpdate();
+		            
 		        } catch(Exception ex) {
 		            ex.printStackTrace();
 		        } finally {
@@ -419,7 +428,7 @@ public class ControlDAO {
 		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		        }
 		    }
-*/	
+	
 	
 	/*
 	 * //SQL close 메서드 private void closeAll() { if(rs != null) { try { rs.close();

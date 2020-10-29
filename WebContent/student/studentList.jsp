@@ -37,7 +37,7 @@
 				<td class="menu"><a href ="/Total.Management.System/board/message.jsp"> Q & A </a> </td>
 			</tr>
 		</table>
-		<table border="1" cellpadding="0" cellspacing="0" width="80%" align="center">
+		<table border="1">
 			<tr>
 				<td align= "center" colspan="4"  bgcolor="#EAF6FF"> <h5> 학생리스트</h5> </td>
 			<tr>
@@ -47,7 +47,7 @@
 				<td> 과정명과 동일 </td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center" bgcolor="#EAF6FF" > 학생 리스트 </td>
+				<td colspan="4" align="center" > 학생 리스트 </td>
 			</tr>
 			<tr>
 			<%
@@ -58,11 +58,11 @@
 					for(int i = 0; i <list.size(); i++) { 
 						Student_MembersDTO sdto = (Student_MembersDTO)list.get(i);  %>
 				<td>
-						<a href="/Total.Management.System/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>		 
-				</td>
+						<a href="/Total.Management.System/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>
+						 
 					<%}						// 페이지 값을 학생 아이디로 넘겨준다. 이게 되는 건가??%>													
 				<%} 		// 이렇게 하면 리스트만큼 테이블생성되는거 맞나?		%>
-				
+				</td>
 			</tr>
 		</table>
 	</body>

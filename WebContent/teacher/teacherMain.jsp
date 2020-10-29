@@ -14,6 +14,7 @@
 		</style>
 	</head>
 	<%
+
 		// 로그인 유효성 검사	( sessionId에 student_id 가 있을때 실행 아니면 메인페이지로 이동.)
 		String sessionId = (String)session.getAttribute("teacher_id");
 		if(sessionId == null) {
@@ -43,6 +44,9 @@
 			</tr>
 			<tr>
 				<td class="menu"><a href ="/Total.Management.System/massage.jsp"> Q & A </a> </td>
+			</tr>
+			<tr>
+				<td class="menu"><a href ="/Total.Management.System/logout.jsp"> 로그아웃 </a> </td>
 			</tr>
 
 		</table>
