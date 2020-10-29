@@ -45,6 +45,9 @@
 			cid.setMaxAge(60*60);
 			cpw.setMaxAge(60*60);
 			cauto.setMaxAge(60*60);
+			response.addCookie(cid);
+			response.addCookie(cpw);
+			response.addCookie(cauto);
 		}
 		response.sendRedirect("teacherMain.jsp");	//---------- 쿠키로 로그인 되어 teacherMain.으로 이동
 	}else if (check == 1) {							//---------- 아이디,비번 일치.
