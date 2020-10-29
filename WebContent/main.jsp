@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
@@ -8,42 +8,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>5조 프로젝트 사이트</title>
 <link href="css/mainTemplate.css" rel="stylesheet" type="text/css">
+<div class="wrapper">
+
+    <div id="web_bg" style="background-image: url(img/MainDesktop.png);"></div>
+  
+</div>
 
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="primary_header">
-      <h1 class="title">학사관리시스템</h1>
-    </div>
-    <nav class="secondary_header" id="menu">
+	<div class="container">
+		<header>
+			<div class="primary_header">
+				<h1 class="title">학사관리시스템</h1>
+			</div>
+			<!--  <nav class="secondary_header" id="menu">
       <ul class="title">
         <li><a href="management/mgtLoginForm.jsp">STAFF</a></li>
         <li><a href="teacher/tcLoginForm.jsp">TEACHER</a></li>
         <li><a href="student/stLoginForm.jsp">STUDENT</a></li>
       </ul>
-    </nav>
-  </header>
-  <div class="row">
-    <div class="columns">
-      <a href="management/mgtLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_01.jpg" alt="" class="thumbnail"/> </p>
-      <h4>STAFF</h4>
-      <p>학원스텝은 학원스텝아이디로 로그인합니다.</p></a>
-    </div>
-    <div class="columns">
-      <a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_02.jpg" alt="" class="thumbnail"/> </p>
-      <h4>TEACHER</h4>
-      <p>강사는 강사 아이디로 로그인합니다.</p></a>
-    </div>
-    <div class="columns">
-     <a href="student/stLoginForm.jsp"><p class="thumbnail_align"> <img src="img/bkg_03.jpg" alt="" class="thumbnail"/> </p>
-      <h4>STUDENT</h4>
-      <p>학생은 학생으로 로그인합니다.</p></a>
-    </div>
-  </div>
-  <footer class="secondary_header footer">
-    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-  </footer>
-</div>
+    </nav> -->
+		</header>
+		
+		<br/><br/><br/><br/><br/><br/><br/>
+		<div class="row">
+			<div class="columns">
+				<a href="management/mgtLoginForm.jsp"><p class="thumbnail_align">
+						<img src="img/management.png" alt="" class="thumbnail" />
+					</p></a>
+					<h2 class="title"> 행정 모드</h2>
+					<!-- <p>학원스텝은 학원스텝아이디로 로그인합니다.</p> -->
+			</div>
+			<div class="columns">
+				<a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align">
+						<img src="img/teacher.png" alt="" class="thumbnail" />
+					</p></a>
+					<h2 class="title">강사모드</h2>
+					<!-- <p>강사는 강사 아이디로 로그인합니다.</p> -->
+			</div>
+			<div class="columns">
+				<a href="student/stLoginForm.jsp"><p class="thumbnail_align">
+						<img src="img/student.png" alt="" class="thumbnail" />
+					</p></a>
+					<h2 class="title">학생 모드</h2>
+					<!-- <p>학생은 학생으로 로그인합니다.</p> -->
+			</div>
+		</div>
+		<br/><br/><br/><br/><br/><br/>
+		
+		<footer class="secondary_header footer">
+			<div class="copyright">
+				&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong>
+			</div>
+		</footer>
+	</div>
 </body>
 </html>
