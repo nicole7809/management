@@ -17,6 +17,7 @@
 </head>
 <body>
 	<div class="container">
+	
 		<header>
 			<div class="primary_header">
 				<h1 class="title">학사관리시스템</h1>
