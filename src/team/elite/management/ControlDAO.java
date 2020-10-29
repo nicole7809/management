@@ -307,6 +307,7 @@ public class ControlDAO {
 				sdto.setEmail(rs.getString("email"));
 				sdto.setStudent_pic(rs.getString("student_pic"));
 				sdto.setReg_date(rs.getTimestamp("reg_date"));
+				list.add(sdto);
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
