@@ -7,6 +7,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import team.elite.db.DataBaseConnection;	// 1,2 단계 로그인
 
@@ -290,6 +291,33 @@ public class ControlDAO {
 		}
 		return x;
 	}
+	
+	// 학생리스트를 만드는? 메서드 studentList에서 사용됩니다.  미완성임.
+	public ArrayList studentAll() {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from student_members");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Student_MembersDTO sdto = new Student_MembersDTO();
+				sdto.setStudent_id(rs.getString("student_id"));
+				sdto.setStudent_name(rs.getString("student_name"));
+				sdto.setPassword(rs.getString("password"));
+				sdto.setEmail(rs.getString("email"));
+				sdto.setStudent_pic(rs.getString("student_pic"));
+				sdto.setReg_date(rs.getTimestamp("reg_date"));
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if (rs != null) try {rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try {pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try {conn.close(); } catch(SQLException ex) {}	
+		}
+		return list;
+	}
+	
 	
 	/*
 	 * //SQL close 메서드 private void closeAll() { if(rs != null) { try { rs.close();
