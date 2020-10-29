@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="team.elite.management.Admin_MembersDTO" %>
-<%@ page import="" %>
+<%@ page import="team.elite.management.*" %>
+
     <h1>managementInfo</H1>
     
    	<% //세션꺼내기 /확인!!! 
@@ -10,7 +10,7 @@
 			response.sendRedirect("/Total.Management.System/main.jsp");
 			
 		}
-		Testdao dao = new Testdao();
+		ControlDAO dao = new ControlDAO();
 		Admin_MembersDTO dto = dao.managementInfo(sessionId);
 	%>
 	<form action="updatePro.jsp" method="post">
