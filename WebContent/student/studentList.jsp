@@ -20,7 +20,7 @@
 		ControlDAO dao = ControlDAO.getInstance();
 
 	%>
-		<table border ="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+		<table border ="1" cellpadding="0" cellspacing="0" width="20%" align="left">
 			<tr>
 				<td class="menu"> <a href ="/Total.Management.System/adminInfo.jsp"> dd </a></td>
 			</tr>
@@ -35,34 +35,35 @@
 			</tr>
 			<tr>
 				<td class="menu"><a href ="/Total.Management.System/board/message.jsp"> Q & A </a> </td>
-				<td align= "center" rowspan="6" bgcolor="#EAF6FF">
-					<table>
-						<h5> 학생리스트</h5>
-						<tr>
-							<td> 과정 명 (전 페이지에서 정보 받아야함.) </td>
-							<td> 전 페이지에서 넘어오는 정보로.자동 해당되게</td>
-							<td> 강사 </td>
-							<td> 과정명과 동일 </td>
-						</tr>
-						<tr>
-							<td colspan="4"> 학생 리스트 </td>
-						</tr>
-						<%
-							//for문으로 학생리스트 반복
-							// list로  학생리스트를 만들어 게시판처럼 꺼내면 됨.
-							ArrayList list = dao.studentAll();		// 아직 메서드 없음
-							if(list.size() > 0 ) {		//학생리스트에 아무것도 없을 수 있기에 먼저 0하고 비교.
-								for(int i = 0; i <list.size(); i++) { 
-								Student_MembersDTO sdto = (Student_MembersDTO)list.get(i);  %>
-								<td> <a href="/Total.Management.System/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a> 
-								<%} 						// 페이지 값을 학생 아이디로 넘겨준다. 이게 되는 건가??%>
-								</td>													
-							<%} %>
-					</table>
-				</td>
 			</tr>
-
 		</table>
-	
+		<table border="1" cellpadding="0" cellspacing="0" width="80%" align="center">
+			<tr>
+				<td align= "center" colspan="4"  bgcolor="#EAF6FF"> <h5> 학생리스트</h5> </td>
+			<tr>
+				<td> 과정 명 (전 페이지에서 정보 받아야함.) </td>
+				<td> 전 페이지에서 넘어오는 정보로.자동 해당되게</td>
+				<td> 강사 </td>
+				<td> 과정명과 동일 </td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center" bgcolor="#EAF6FF" > 학생 리스트 </td>
+			</tr>
+			<tr>
+			<%
+				//for문으로 학생리스트 반복
+				// list로  학생리스트를 만들어 게시판처럼 꺼내면 됨.
+				ArrayList list = dao.studentAll();		// 아직 메서드 없음
+				if(list.size() > 0 ) {		//학생리스트에 아무것도 없을 수 있기에 먼저 0하고 비교.
+					for(int i = 0; i <list.size(); i++) { 
+						Student_MembersDTO sdto = (Student_MembersDTO)list.get(i);  %>
+				<td>
+						<a href="/Total.Management.System/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>		 
+				</td>
+					<%}						// 페이지 값을 학생 아이디로 넘겨준다. 이게 되는 건가??%>													
+				<%} 		// 이렇게 하면 리스트만큼 테이블생성되는거 맞나?		%>
+				
+			</tr>
+		</table>
 	</body>
 </html>
