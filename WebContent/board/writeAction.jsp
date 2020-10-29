@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="/view/color.jsp"%> 
+
 <html> 
 <head>
 <title>게시판</title>
@@ -14,15 +14,12 @@
 		
 	</script>
 	
-	<%}%>
+	<%}%> 
 <% 
-  int num=0,ref=1,re_step=0,re_level=0;
+  int num=0;
   try{  
     if(request.getParameter("num")!=null){
 	num=Integer.parseInt(request.getParameter("num"));
-	ref=Integer.parseInt(request.getParameter("ref"));
-	re_step=Integer.parseInt(request.getParameter("re_step"));
-	re_level=Integer.parseInt(request.getParameter("re_level"));
 	}
 %>
    
@@ -31,14 +28,12 @@
 <br>
 <form method="post" name="writeform" action="writePro.jsp" onsubmit="return writeSave()">
 <input type="hidden" name="num" value="<%=num%>">
-<input type="hidden" name="ref" value="<%=ref%>">
-<input type="hidden" name="re_step" value="<%=re_step%>">
-<input type="hidden" name="re_level" value="<%=re_level%>">
+
 
 <table width="400" border="1" cellspacing="0" cellpadding="0"  bgcolor="" align="center">
    <tr>
     <td align="right" colspan="2" bgcolor="">
-	    <a href="list.jsp"> 글목록</a> 
+	    <a href="notice.jsp"> 글목록</a> 
    </td>
    </tr>
    <tr>
