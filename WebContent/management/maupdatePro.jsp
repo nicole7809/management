@@ -24,5 +24,5 @@
     	alert("수정되었당!!!");
     	window.location="managementInfo.jsp";
     </script>
-    
+       
     
