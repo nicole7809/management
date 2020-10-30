@@ -5,9 +5,9 @@
     
     <%
 		request.setCharacterEncoding("UTF-8");
-		String sessionId = (String) session.getAttribute("id");
+		String sessionId = (String) session.getAttribute("student_id");
 		if (sessionId == null) {
-			response.sendRedirect("stLoginForm.jsp");
+			response.sendRedirect("studentInfo.jsp");
 		}
 	%>
 	<jsp:useBean id="dto" class="team.elite.management.Student_MembersDTO" />
@@ -18,7 +18,7 @@
 	%>
 	<script>
 		alert("수정되었습니다.");
-		window.location = "studentMain.jsp";
+		window.location = "studentInfo.jsp";
 	</script>
 
 

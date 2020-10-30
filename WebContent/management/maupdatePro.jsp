@@ -7,7 +7,7 @@
     request.setCharacterEncoding("UTF-8");
     String sessionId = (String)session.getAttribute("admin_id");
 	if(sessionId==null){ 
-		response.sendRedirect("mgLoginFrom.jsp");
+		response.sendRedirect("managementInfo.jsp");
 	}
     
   %>
@@ -22,7 +22,7 @@
  %>  
     <script>
     	alert("수정되었당!!!");
-    	window.location="managementMain.jsp";
+    	window.location="managementInfo.jsp";
     </script>
     
     

@@ -4,10 +4,12 @@
 <%@ page import="team.elite.management.ControlDAO" %>
     <h1>studentInfo</H1>
     
-   	<% //세션꺼내기 /확인!!! 
+    <%request.setCharacterEncoding("UTF-8"); %>
+    
+   	<% //세션꺼내기 확인!!! 
 		String sessionId = (String)session.getAttribute("student_id");
 		if(sessionId==null){ 
-			response.sendRedirect("studentForm.jsp");
+			response.sendRedirect("studentInfo.jsp");
 			
 		}
 		ControlDAO dao = ControlDAO.getInstance();
@@ -15,7 +17,7 @@
 	%>
 	<form action="studentUpdate.jsp" method="post">
 		학생 ID : <%=dto.getStudent_id() %> <br />
-		<input type="hidden" name="id" value="<%=dto.getStudent_id() %>" />
+		<input type="hidden" name="student_id" value="<%=dto.getStudent_id() %>" />
 		학생 이름 : <input type="text" name="student_name" value="<%=dto.getStudent_name()%>" /> <br />
 		학생 PW : <input type="password" name="password" value="<%=dto.getPassword()%>" /> <br />
 		Email : <input type="text" name="email" value="<%=dto.getEmail()%>" /> <br />
@@ -24,6 +26,7 @@
 		가입날짜 : <%=dto.getReg_date() %> <br />
 		
 		<input type="submit" value ="정보수정" />
+		<input type="button" value="취소" onclick="window.location='studentMain.jsp'"/>
 		
 	</form>
 	
