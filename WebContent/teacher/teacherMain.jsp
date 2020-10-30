@@ -26,7 +26,7 @@
 	<body>
 		<table border ="0" cellpadding="0" cellspacing="0" width="100%" align="center">
 			<tr>
-				<td class="menu"> <a href ="/Total.Management.System/teacherInfo.jsp"> <%=sessionId %> </a></td>
+				<td class="menu"> <a href ="teacherInfo.jsp"> <%=sessionId %> </a></td>
 				<td align= "center" rowspan="6" bgcolor="#ECEBFF">
 					강의리스트에서 여러 반이 나와서 클릭하면 해당 반 학생리스트가 나오고 거기서 학생정보가 나오는거 아닌가요?<br>
 					아. 강의리스트 에서 반 클릭시 맨 위 강사     다음 학생리스트가 나와서 거기서 클릭시 해당 정보가 나오는것???<br>
@@ -46,7 +46,7 @@
 				<td class="menu"><a href ="/Total.Management.System/massage.jsp"> Q & A </a> </td>
 			</tr>
 			<tr>
-				<td class="menu"><a href ="/Total.Management.System/logout.jsp"> 로그아웃 </a> </td>
+				<td class="menu"><a href ="/Total.Management.System/teacher/logout.jsp"> 로그아웃 </a> </td>
 			</tr>
 
 		</table>

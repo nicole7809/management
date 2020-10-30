@@ -54,9 +54,6 @@
 				response.addCookie(cauto);
 			}
 			response.sendRedirect("studentMain.jsp");	//---------- 쿠키로 로그인 되어 teacherMain.으로 이동
-		}else if (check == 1) {							//---------- 아이디,비번 일치.
-			session.setAttribute("student_id", student_id);
-			response.sendRedirect("studentMain.jsp");
 		}else if( check == 0) {							//----------  비밀번호 불일치	%>
 		<script>
 			alert("비밀번호가 맞지 않습니다.");

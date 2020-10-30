@@ -14,6 +14,7 @@
 			
 			String admin_id = null, password= null, auto= null;		// 기본값
 			Cookie [] cookies = request.getCookies();
+			System.out.println("login 쿠키 =="+cookies.length);
 			if(cookies != null) { 						// 자동 로그인 안된 상태면 null이라 form(로그인) 화면 뜸.
 				for(Cookie c : cookies) {
 					if(c.getName().equals("cid"))
@@ -45,7 +46,7 @@
 						<td colspan="2" align="center">
 							<input type="checkbox" name="auto" value="1" /> 자동로그인  <br><br>
 							<input type="submit" value="로그인" />
-							<input type="button" value="메인" onclik="window.location='메인으로 가게하면 됨'" />
+							<input type="button" value="메인" onclik="window.location='main.jsp'" />
 						</td>
 					</tr>
 				</table>

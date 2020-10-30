@@ -24,7 +24,7 @@
 	<body>
 		<table border ="0" cellpadding="0" cellspacing="0" width="100%" align="center">
 			<tr>
-				<td class="menu"> <a href ="/Total.Management.System/studentInfo.jsp"> <%=sessionId %> </a></td>
+				<td class="menu"> <a href ="studentInfo.jsp"> <%=sessionId %> </a></td>
 				<td align= "center" rowspan="6" bgcolor="#E4F7BA">
 					페이지 선택 시 실행 될 곳... 어떻게 하지?<br>
 					이렇게 include하면 되는 거아닌가 왜 안되지? jsp:include page="/Total.Management.System/board/notice.jsp"/>
@@ -44,6 +44,9 @@
 			</tr>
 			<tr>
 				<td class="menu"><a href ="/Total.Management.System/board/message.jsp"> Q & A </a> </td>
+			</tr>
+			<tr>
+				<td class="menu"><a href ="/Total.Management.System/board/student/logout.jsp"> 로그아웃 </a> </td>
 			</tr>
 
 		</table>
