@@ -526,5 +526,138 @@ public class ControlDAO {
 		// TODO Auto-generated method stub
 
 	}
+	
+	//관리자 adminID 학인후 개인정보
+	public Admin_MembersDTO managementInfo(String sessionId) {
+		Admin_MembersDTO dto = new Admin_MembersDTO();
+		try {
+			conn = DataBaseConnection.getConnection();
+			String sql = "select * from Admin_members where Admin_id=? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sessionId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto.setAdmin_id(rs.getString("Admin_id"));
+				dto.setAdmin_name(rs.getString("Admin_name"));
+				dto.setPassword(rs.getString("password"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setAdmin_pic(rs.getString("Admin_pic"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException s) {
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException s) {
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException s) {
+				}
+			}
+		}
+		return dto;
+	}
+	
+	// 관리자 정보 수정
+		public void maupdatePro(Admin_MembersDTO dto) {
 
+			try {
+				conn = DataBaseConnection.getConnection(); // 클래스 메서드를 호출하여 연결객체를 받는다.
+				String sql = "update Admin_members set admin_name=?, password=?, email=?, phone=?, admin_pic=? where admin_id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getAdmin_name());
+				pstmt.setString(2, dto.getPassword());
+				pstmt.setString(3, dto.getEmail());
+				pstmt.setString(4, dto.getPhone());
+				pstmt.setString(5, dto.getAdmin_pic());
+				pstmt.setString(6, dto.getAdmin_id());
+				pstmt.executeUpdate();
+				System.out.println(dto.getAdmin_name());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) {try {rs.close();}catch(SQLException s) {}}
+				if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+				if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+			}
+		}
+
+		//학생ID 학인후 개인정보
+		public Student_MembersDTO studentInfo(String sessionId) {
+			Student_MembersDTO dto = new Student_MembersDTO();
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "select * from Student_members where Student_id=? ";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, sessionId);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					dto.setStudent_id(rs.getString("Student_id"));
+					dto.setStudent_name(rs.getString("Student_name"));
+					dto.setPassword(rs.getString("password"));
+					dto.setEmail(rs.getString("email"));
+					dto.setPhone(rs.getString("phone"));
+					dto.setStudent_pic(rs.getString("Student_pic"));
+					dto.setReg_date(rs.getTimestamp("reg_date"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException s) {
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException s) {
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException s) {
+					}
+				}
+			}
+			return dto;
+		}
+		
+		// 학생 정보 수정
+			public void studentUpdate(Student_MembersDTO dto) {
+
+				try {
+					conn = DataBaseConnection.getConnection(); // 클래스 메서드를 호출하여 연결객체를 받는다.
+					String sql = "update Student_members set Student_name=?, password=?, email=?, phone=?, Student_pic=? where Student_id=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, dto.getStudent_name());
+					pstmt.setString(2, dto.getPassword());
+					pstmt.setString(3, dto.getEmail());
+					pstmt.setString(4, dto.getPhone());
+					pstmt.setString(5, dto.getStudent_pic());
+					pstmt.setString(6, dto.getStudent_id());
+					pstmt.executeUpdate();
+					System.out.println(dto.getStudent_name());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					if(rs != null) {try {rs.close();}catch(SQLException s) {}}
+					if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+					if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+				}
+			}
 }
