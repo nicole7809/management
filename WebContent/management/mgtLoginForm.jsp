@@ -14,7 +14,6 @@
 			
 			String admin_id = null, password= null, auto= null;		// 기본값
 			Cookie [] cookies = request.getCookies();
-			System.out.println("login 쿠키 =="+cookies.length);
 			if(cookies != null) { 						// 자동 로그인 안된 상태면 null이라 form(로그인) 화면 뜸.
 				for(Cookie c : cookies) {
 					if(c.getName().equals("cid"))

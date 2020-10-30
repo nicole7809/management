@@ -13,7 +13,6 @@
 			session.invalidate();
 			//쿠키도 삭제
 			Cookie [] cookies = request.getCookies();
-			System.out.println("쿠키 =="+cookies.length);
 			if(cookies != null) {
 				 for(Cookie c : cookies) {
 					if(c.getName().equals("cid")) {

@@ -28,10 +28,7 @@
 						response.addCookie(c);
 					}
 				}
-			} // 쿠키 확인 {
-		
-			response.sendRedirect("/Total.Management.System/main.jsp");
-		%>
+			} // 쿠키 확인 {	%>
 		<script>
 			alert("로그아웃 되었습니다.");
 			window.location="/Total.Management.System/main.jsp";

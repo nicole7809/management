@@ -38,7 +38,7 @@
 	int check = dao.teacherCheck(dto);
 	if(check == 1) {	// 아이디 있다면
 		session.setAttribute("teacher_id", dto.getTeacher_id()); 	//세션 생성
-		if(dto.getAuto() != null && dto.getAuto().equals("a")) {	//자동로그인에 체크되어있다면.
+		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.
 			Cookie cid = new Cookie("cid", dto.getTeacher_id());
 			Cookie cpw = new Cookie("cpw", dto.getPassword());
 			Cookie cauto = new Cookie("cauto", dto.getAuto());
