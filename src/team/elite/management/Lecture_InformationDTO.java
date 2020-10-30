@@ -1,6 +1,6 @@
 package team.elite.management;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class Lecture_InformationDTO {
 	private int info_seqno;

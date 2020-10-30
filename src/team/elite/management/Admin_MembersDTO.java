@@ -1,6 +1,6 @@
 package team.elite.management;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class Admin_MembersDTO {
 	private String admin_id;

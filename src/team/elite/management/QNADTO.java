@@ -1,7 +1,6 @@
 package team.elite.management;
 
-import com.sun.jmx.snmp.Timestamp;
-
+import java.sql.Timestamp;
 public class QNADTO {
 	private int qna_seqno;
 	private String user_id;
