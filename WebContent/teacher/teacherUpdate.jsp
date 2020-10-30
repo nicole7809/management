@@ -18,7 +18,7 @@
 		request.setCharacterEncoding("UTF-8");
 		String sessionId = (String) session.getAttribute("id");
 		if (sessionId == null) {
-			response.sendRedirect("tcLoginForm.jsp");
+			response.sendRedirect("teacherInfo.jsp");
 		}
 	%>
 	<jsp:useBean id="dto" class="team.elite.management.Teacher_MembersDTO" />
@@ -29,7 +29,7 @@
 	%>
 	<script>
 		alert("수정되었습니다.");
-		window.location = "teacherMain.jsp";
+		window.location = "teacherInfo.jsp";
 	</script>
 
 

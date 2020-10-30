@@ -456,13 +456,13 @@ public class ControlDAO {
 	 */
 
 	// 강사 sessionID 확인 후 개인 정보 뜨기
-	public Teacher_MembersDTO teacherInfo(String sessionId) {
+	public Teacher_MembersDTO teacherInfo(String teacher_id) {
 		Teacher_MembersDTO dto = new Teacher_MembersDTO();
 		try {
 			conn = DataBaseConnection.getConnection();
 			String sql = "select * from teacher_members where Teacher_id=? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, sessionId);
+			pstmt.setString(1, teacher_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dto.setTeacher_id(rs.getString("teacher_id"));
@@ -503,7 +503,7 @@ public class ControlDAO {
 
 		try {
 			conn = DataBaseConnection.getConnection(); // 클래스 메서드를 호출하여 연결객체를 받는다.
-			String sql = "update teacher_members set teacher_name=?, password=?, email=?, phone=?, teacher_pic=? where Teacher_id=?";
+			String sql = "update teacher_members set teacher_name=?, password=?, email=?, phone=?, teacher_pic=? , reg_date=sysdate where Teacher_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTeacher_name());
 			pstmt.setString(2, dto.getPassword());
@@ -512,7 +512,6 @@ public class ControlDAO {
 			pstmt.setString(5, dto.getTeacher_pic());
 			pstmt.setString(6, dto.getTeacher_id());
 			pstmt.executeUpdate();
-			System.out.println(dto.getTeacher_name());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -584,7 +583,6 @@ public class ControlDAO {
 				pstmt.setString(5, dto.getAdmin_pic());
 				pstmt.setString(6, dto.getAdmin_id());
 				pstmt.executeUpdate();
-				System.out.println(dto.getAdmin_name());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -642,7 +640,7 @@ public class ControlDAO {
 
 				try {
 					conn = DataBaseConnection.getConnection(); // 클래스 메서드를 호출하여 연결객체를 받는다.
-					String sql = "update Student_members set Student_name=?, password=?, email=?, phone=?, Student_pic=? where Student_id=?";
+					String sql = "update student_members set student_name=?, password=?, email=?, phone=?, student_pic=? where student_id=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, dto.getStudent_name());
 					pstmt.setString(2, dto.getPassword());
@@ -651,7 +649,7 @@ public class ControlDAO {
 					pstmt.setString(5, dto.getStudent_pic());
 					pstmt.setString(6, dto.getStudent_id());
 					pstmt.executeUpdate();
-					System.out.println(dto.getStudent_name());
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}finally {
