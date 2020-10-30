@@ -16,7 +16,7 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-		String sessionId = (String) session.getAttribute("id");
+		String sessionId = (String) session.getAttribute("teacher_id");
 		if (sessionId == null) {
 			response.sendRedirect("teacherInfo.jsp");
 		}

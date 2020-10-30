@@ -27,6 +27,7 @@
 		가입날짜 : <%=dto.getReg_date() %> <br />
 		
 		<input type="submit" value ="정보수정" />
+		<input type="button" value="취소" onclick="window.location='teacherMain.jsp'" />
 		
 	</form>
 	
