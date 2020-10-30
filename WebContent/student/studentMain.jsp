@@ -45,6 +45,9 @@
 			<tr>
 				<td class="menu"><a href ="/Total.Management.System/board/message.jsp"> Q & A </a> </td>
 			</tr>
+			<tr>
+				<td class="menu"><a href ="/Total.Management.System/student/logout.jsp"> 로그아웃 </a> </td>
+			</tr>
 
 		</table>
 		<%-- 	얜 모르겟음

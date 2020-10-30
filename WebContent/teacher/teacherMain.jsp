@@ -46,7 +46,7 @@
 				<td class="menu"><a href ="/Total.Management.System/massage.jsp"> Q & A </a> </td>
 			</tr>
 			<tr>
-				<td class="menu"><a href ="/Total.Management.System/logout.jsp"> 로그아웃 </a> </td>
+				<td class="menu"><a href ="/Total.Management.System/teacher/logout.jsp"> 로그아웃 </a> </td>
 			</tr>
 
 		</table>

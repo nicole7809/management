@@ -38,7 +38,7 @@
 	int check = dao.teacherCheck(dto);
 	if(check == 1) {	// 아이디 있다면
 		session.setAttribute("teacher_id", dto.getTeacher_id()); 	//세션 생성
-		if(dto.getAuto() != null && dto.getAuto().equals("a")) {	//자동로그인에 체크되어있다면.
+		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.
 			Cookie cid = new Cookie("cid", dto.getTeacher_id());
 			Cookie cpw = new Cookie("cpw", dto.getPassword());
 			Cookie cauto = new Cookie("cauto", dto.getAuto());
@@ -50,9 +50,6 @@
 			response.addCookie(cauto);
 		}
 		response.sendRedirect("teacherMain.jsp");	//---------- 쿠키로 로그인 되어 teacherMain.으로 이동
-	}else if (check == 1) {							//---------- 아이디,비번 일치.
-		session.setAttribute("teacher_id", teacher_id);
-		response.sendRedirect("teacherMain.jsp");
 	}else if( check == 0) {							//----------  비밀번호 불일치	%>
 	<script>
 		alert("비밀번호가 맞지 않습니다.");

@@ -27,7 +27,7 @@
 				}
 				if(c.getName().equals("cpw")) {
 					password = c.getValue();
-					dto.setStudent_id(password);
+					dto.setPassword(password);
 				}
 				if(c.getName().equals("cauto")) {
 					auto = c.getValue();
@@ -54,15 +54,12 @@
 				response.addCookie(cauto);
 			}
 			response.sendRedirect("studentMain.jsp");	//---------- 쿠키로 로그인 되어 teacherMain.으로 이동
-		}else if (check == 1) {							//---------- 아이디,비번 일치.
-			session.setAttribute("student_id", student_id);
-			response.sendRedirect("studentMain.jsp");
-		}else if( check == 0) {							//----------  비밀번호 불일치	%>
-		<script>
+		}else if( check == 0) {								//---------- 비밀번호 불일치	%>
+			<script>
 			alert("비밀번호가 맞지 않습니다.");
-			history.go(-1);								//----------전 페이지로 이동.
+			history.go(-1);									//---------- 전 페이지로 이동.
 		</script>	
-		<%}else {										//----------아이디 검색 안됨. %>
+		<%}else {											//---------- 아이디 검색 안됨. %>
 		<script>
 			alert("아이디가 맞지 않습니다.");
 			history.go(-1);
