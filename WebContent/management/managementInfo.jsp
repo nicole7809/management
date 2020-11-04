@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="team.elite.management.Admin_MembersDTO" %>
 <%@ page import="team.elite.management.ControlDAO" %>
-    <h1>managementInfo</H1>
-    
-    <%request.setCharacterEncoding("UTF-8"); %>
+    <h1>managementInfo</H1>managementInfo.jsp
     
    	<% //세션꺼내기 /확인!!! 
 		String sessionId = (String)session.getAttribute("admin_id");
@@ -26,8 +24,7 @@
 		가입날짜 : <%=dto.getReg_date() %> <br />
 		
 		<input type="submit" value ="정보수정" />
-		<input type="button" value="취소" onclick="window.location='managementMain.jsp'" />
 		
 	</form>
 	
-	     
+	   

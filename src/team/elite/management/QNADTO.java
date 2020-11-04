@@ -1,78 +1,93 @@
 package team.elite.management;
 
 import java.sql.Timestamp;
+
 public class QNADTO {
-	private int qna_seqno;
-	private String user_id;
-	private String title;
-	private String contents;
-	private int read_count;
-	private String reg_ip;
-	private String reg_id;
+	private int num;
+	private String writer;
+	private String subject;
+	private String email;
+	private String content;
+	private String password;
 	private Timestamp reg_date;
-
-	public int getQna_seqno() {
-		return qna_seqno;
+	private int readcount;
+	private String ip;
+	private int ref;
+	private int re_step;
+	private int re_level;
+	
+	public int getNum() {
+		return num;
 	}
-
-	public void setQna_seqno(int qna_seqno) {
-		this.qna_seqno = qna_seqno;
+	public void setNum(int num) {
+		this.num = num;
 	}
-
-	public String getUser_id() {
-		return user_id;
+	public String getWriter() {
+		return writer;
 	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-
-	public String getTitle() {
-		return title;
+	public String getSubject() {
+		return subject;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
-
-	public String getContents() {
-		return contents;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public int getRead_count() {
-		return read_count;
+	public String getContent() {
+		return content;
 	}
-
-	public void setRead_count(int read_count) {
-		this.read_count = read_count;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public String getReg_ip() {
-		return reg_ip;
+	public String getPassword() {
+		return password;
 	}
-
-	public void setReg_ip(String reg_ip) {
-		this.reg_ip = reg_ip;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public String getReg_id() {
-		return reg_id;
-	}
-
-	public void setReg_id(String reg_id) {
-		this.reg_id = reg_id;
-	}
-
 	public Timestamp getReg_date() {
 		return reg_date;
 	}
-
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	public int getRe_step() {
+		return re_step;
+	}
+	public void setRe_step(int re_step) {
+		this.re_step = re_step;
+	}
+	public int getRe_level() {
+		return re_level;
+	}
+	public void setRe_level(int re_level) {
+		this.re_level = re_level;
+	}
 
+	
 }
