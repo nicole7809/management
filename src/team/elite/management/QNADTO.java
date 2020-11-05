@@ -15,7 +15,6 @@ public class QNADTO {
 	private int ref;
 	private int re_step;
 	private int re_level;
-	
 	public int getNum() {
 		return num;
 	}
@@ -88,6 +87,8 @@ public class QNADTO {
 	public void setRe_level(int re_level) {
 		this.re_level = re_level;
 	}
+	
+	
 
 	
 }

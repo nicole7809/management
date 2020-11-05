@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="team.elite.management.ControlDAO"%>
 <%@ page import="java.sql.Timestamp"%>
 
 
 <%
-	request.setCharacterEncoding("euc-kr");
+	request.setCharacterEncoding("UTF-8");
 %>
 
 <jsp:useBean id="article" scope="page"
@@ -27,7 +27,7 @@
 %>
 <script language="JavaScript">
 <!--
-	alert("ºñ¹Ð¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù");
+	alert("ë¹„ë°€ë²ˆí˜¸ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤");
 	history.go(-1);
 	-->
 </script>

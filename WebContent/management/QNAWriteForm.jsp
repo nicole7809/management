@@ -64,7 +64,7 @@
 						href="QNAList.jsp"> 글목록</a></td>
 				</tr>
 				<tr>
-					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td><%=adminId%>
+					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td>
 					<td width="330" value="로그인한 아이디로 하고 싶다" > <input type="hidden" name="writer"></td>
 				</tr>
 				<tr>

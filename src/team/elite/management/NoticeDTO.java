@@ -3,62 +3,43 @@ package team.elite.management;
 import java.sql.Timestamp;
 
 public class NoticeDTO {
-	private int notice_seqno;
-	private String title;
-	private String contents;
-	private int read_count;
-	private String reg_ip;
-	private String reg_id;
+	private int num;
+	private String writer;
+	private String subject;
+	private String content;
 	private Timestamp reg_date;
-
-	public int getNotice_seqno() {
-		return notice_seqno;
+	private int readcount;
+	private String ip;
+	
+	public int getNum() {
+		return num;
 	}
 
-	public void setNotice_seqno(int notice_seqno) {
-		this.notice_seqno = notice_seqno;
+	public void setNum(int num) {
+		this.num = num;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	public String getContent() {
+		return content;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public String getContents() {
-		return contents;
-	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
-	public int getRead_count() {
-		return read_count;
-	}
-
-	public void setRead_count(int read_count) {
-		this.read_count = read_count;
-	}
-
-	public String getReg_ip() {
-		return reg_ip;
-	}
-
-	public void setReg_ip(String reg_ip) {
-		this.reg_ip = reg_ip;
-	}
-
-	public String getReg_id() {
-		return reg_id;
-	}
-
-	public void setReg_id(String reg_id) {
-		this.reg_id = reg_id;
-	}
-
+	
 	public Timestamp getReg_date() {
 		return reg_date;
 	}
@@ -66,5 +47,22 @@ public class NoticeDTO {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+
+	public int getReadcount() {
+		return readcount;
+	}
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
 
 }

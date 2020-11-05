@@ -45,7 +45,7 @@
 						<td colspan="2" align="center">
 							<input type="checkbox" name="auto" value="1" /> 자동로그인  <br><br>
 							<input type="submit" value="로그인" />
-							<input type="button" value="메인" onclik="window.location='main.jsp'" />
+							<input type="button" value="메인" onclick="window.location='../main.jsp'" />
 						</td>
 					</tr>
 				</table>
