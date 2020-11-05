@@ -15,12 +15,13 @@
 
 <%
 	//색깔보임
-	String bodyback_c = "#CEECF5";
-	String back_c = "#BDBDBD";
-	String title_c = "#E6E6E6";
-	String value_c = "#848484";
-	String bar_c = "#F7819F";
+	String bodyback_c="#FFFFFF";//배경화이트<글내용볼때배경>
+	String back_c="#F6F6F6";//화이트
+	String title_c="#5CD1E5";//제목 파란색
+	String value_c="#D5D5D5";//연한그레이
+	String bar_c="#5D5D5D";//연한그레이
 %>
+
 <script type="text/javascript">
 	function writeSave() {
 

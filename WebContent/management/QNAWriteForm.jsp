@@ -9,11 +9,12 @@
 </head>
 
 <%
-	String bodyback_c = "#e0ffff";
-	String back_c = "#8fbc8f";
-	String title_c = "#5f9ea0";
-	String value_c = "#b0e0e6";
-	String bar = "#778899";
+	//색깔보임
+	String bodyback_c="#FFFFFF";//배경화이트<글내용볼때배경>
+	String back_c="#F6F6F6";//화이트
+	String title_c="#5CD1E5";//제목 파란색
+	String value_c="#D5D5D5";//연한그레이
+	String bar_c="#5D5D5D";//연한그레이
 %>
 
 
