@@ -6,7 +6,7 @@ public class NoteDTO {
 	private int seqno;
 	private String writer;
 	private String subject;
-	private String contents;
+	private String content;
 	private Timestamp reg_date;
 
 	public int getSeqno() {
@@ -33,12 +33,12 @@ public class NoteDTO {
 		this.subject = subject;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Timestamp getReg_date() {
@@ -48,5 +48,7 @@ public class NoteDTO {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+
+	
 
 }

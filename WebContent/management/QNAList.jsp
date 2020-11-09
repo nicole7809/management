@@ -41,7 +41,7 @@
 
 	number=count-(currentPage-1)*pageSize; //  11-(1-1)*10
 	
-	String memId = (String)session.getAttribute("memId");
+	String adminId = (String)session.getAttribute("admin_id");
 %>
 <html>
 <head>
@@ -53,13 +53,13 @@
 <center><b>글목록(전체 글:<%=count%>)</b>
 <table width="700">
 <tr>
-    <a href="QNAWriteForm.jsp">글쓰기</a>
-  <%--   <td align="right" bgcolor="<%=value_c%>">
-    <%if(memId != null){ %>
-    	<a href="writeForm.jsp">글쓰기</a>
+<!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->
+     <td align="right" bgcolor="<%=value_c%>">
+    <%if(adminId != null){ %>
+    	<a href="QNAWriteForm.jsp">글쓰기</a>
     <%}else{%>
-    	<a href="/web/member/main.jsp">로그인</a>
-    <%}%> --%>
+    	<a href="mgtLoginForm.jsp">로그인</a>
+    <%}%> 
     </td>
 </table>
 

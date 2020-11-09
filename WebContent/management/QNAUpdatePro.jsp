@@ -5,13 +5,11 @@
 
 
 <%
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("euc-kr");
 %>
 
-<jsp:useBean id="article" scope="page"
-	class="team.elite.management.QNADTO">
-	<jsp:setProperty name="article" property="*" />
-</jsp:useBean>
+	<jsp:useBean id="article" scope="page" class="team.elite.management.QNADTO">
+	<jsp:setProperty name="article" property="*" /></jsp:useBean>
 <%
 	String pageNum = request.getParameter("pageNum");
 
@@ -20,8 +18,7 @@
 
 	if (check == 1) {
 %>
-<meta http-equiv="Refresh"
-	content="0;url=QNAList.jsp?pageNum=<%=pageNum%>">
+<meta http-equiv="Refresh" content="0;url=QNAList.jsp?pageNum=<%=pageNum%>">
 <%
 	} else {
 %>

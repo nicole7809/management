@@ -77,7 +77,7 @@
  %> --%> <input type="button" value="관리자 글삭제"
 						onclick="document.location.href='QNADeleteAdminPro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
 						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="답글쓰기"
-						onclick="document.location.href='QNAWriteForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>'">
+						onclick="document.location.href='QNAWriteForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'"/>
 						&nbsp;&nbsp;&nbsp;&nbsp;<%--  <%
  	}
  		}

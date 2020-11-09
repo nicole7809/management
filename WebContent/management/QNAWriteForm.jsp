@@ -10,29 +10,28 @@
 
 <%
 	//색깔보임
-	String bodyback_c="#FFFFFF";//배경화이트<글내용볼때배경>
-	String back_c="#F6F6F6";//화이트
-	String title_c="#5CD1E5";//제목 파란색
-	String value_c="#D5D5D5";//연한그레이
-	String bar_c="#5D5D5D";//연한그레이
+	String bodyback_c = "#FFFFFF";//배경화이트<글내용볼때배경>
+	String back_c = "#F6F6F6";//화이트
+	String title_c = "#5CD1E5";//제목 파란색
+	String value_c = "#D5D5D5";//연한그레이
+	String bar_c = "#5D5D5D";//연한그레이
 %>
 
 
 
 
 <%
-	String adminId = (String)session.getAttribute("admin_id");
-	String teacherId = (String)session.getAttribute("teacher_id");
-	String studentId = (String)session.getAttribute("student_id");
-	if(adminId ==null && teacherId ==null && studentId == null) {	// 로그인 유효성검사
+	String adminId = (String) session.getAttribute("admin_id");
+
+	if (adminId == null) { // 로그인 유효성검사
 		response.sendRedirect("/Total.Management.System/main.jsp");
 	}
-	if (adminId == null && teacherId == null && studentId ==null) {
+	if (adminId == null) {
 %>
-	<script>
-		alert("로그인후 글쓰기 가능합니다..!!");
-		window.location = 'mgtLoginForm.jsp';
-	</script>
+<script>
+	alert("로그인후 글쓰기 가능합니다..!!");
+	window.location = 'mgtLoginForm.jsp';
+</script>
 
 <%
 	}
@@ -66,25 +65,18 @@
 				</tr>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td>
-					<td width="330" value="로그인한 아이디로 하고 싶다" > <input type="hidden" name="writer"></td>
+					<td width="330"><%=adminId%> <input type="hidden"
+						name="writer" value="<%=adminId%>"></td>
 				</tr>
-				<tr>
-					<td width="70" bgcolor="<%=value_c%>" align="center">제 목</td>
-					<td width="330">
-						<%
-							if (request.getParameter("num") == null) {
-						%> <input type="text" size="40" maxlength="50" name="subject">
-					</td>
-					<%
-						} else {
-					%>
-					<input type="text" size="40" maxlength="50" name="subject"
-						value="[답변]">
-					</td>
-					<%
-						}
-					%>
-				</tr>
+			  <tr>
+			    <td  width="70"  bgcolor="<%=value_c%>" align="center" >제 목</td>
+			    <td  width="330">
+			    <%if(request.getParameter("num")==null){%>
+			       <input type="text" size="40" maxlength="50" name="subject"></td>
+				<%}else{%>
+				   <input type="text" size="40" maxlength="50" name="subject" value="[답변]"></td>
+				<%}%>
+			  </tr>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">Email</td>
 					<td width="330"><input type="text" size="40" maxlength="30"

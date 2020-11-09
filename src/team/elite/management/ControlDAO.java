@@ -178,73 +178,44 @@ public class ControlDAO {
 	}
 
 	// Notice DB 전송
-		public void insert(NoticeDTO dto) {
-			try {
-				conn = DataBaseConnection.getConnection();
-				String sql = "insert into notice values(?,?,?,?,?,?,sysdate)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, dto.getNum());
-				pstmt.setString(2, dto.getWriter());
-				pstmt.setString(3, dto.getSubject());
-				pstmt.setString(4, dto.getContent());
-				pstmt.setTimestamp(5, dto.getReg_date());
-				pstmt.setInt(6, dto.getReadcount());
-				pstmt.setString(7, dto.getIp());
+	public void insertNotice(NoticeDTO notice) {
+		int num = notice.getNum();
+		String sql = "";
 
-				pstmt.executeUpdate(); // DB 에 업에이트
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException e) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
-			}
-		}
-		// Note DB 전송
-		public void insert(NoteDTO dto) {
-			try {
-				conn = DataBaseConnection.getConnection();
-				String sql = "insert into note values(?,?,?,?,sysdate)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, dto.getSeqno());
-				pstmt.setString(2, dto.getWriter());
-				pstmt.setString(3, dto.getSubject());
-				pstmt.setString(4, dto.getContents());
+		try {
+			conn = DataBaseConnection.getConnection();
+			sql = "insert into notice(num,writer,subject,reg_date,";
+			sql += "content,ip) values(notice_seq.nextval,?,?,?,?,?)";
 
-				pstmt.executeUpdate(); // DB 에 업에이트
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException e) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
-			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getWriter());
+			pstmt.setString(2, notice.getSubject());
+			pstmt.setTimestamp(3, notice.getReg_date());
+			pstmt.setString(4, notice.getContent());
+			pstmt.setString(5, notice.getIp());
+
+			pstmt.executeUpdate(); // DB 에 업에이트
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
 		}
-		
+	}
+
 	// notice 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
 	public int getNoticeCount() throws Exception {
 		int x = 0;
@@ -544,6 +515,149 @@ public class ControlDAO {
 	 * pstmt.close(); } catch(SQLException ex) {} if (conn != null) try {
 	 * conn.close(); } catch(SQLException ex) {} } return x; }
 	 */
+
+	
+	// Note DB 전송
+		public void insert(NoteDTO note) {
+			int seqno = note.getSeqno();
+			String sql = "";
+			try {
+				conn = DataBaseConnection.getConnection();
+				sql = "insert into note(seqno,writer,subject,content,reg_date) values(note_seq.nextval,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, note.getWriter());
+				pstmt.setString(2, note.getSubject());
+				pstmt.setString(3, note.getContent());
+				pstmt.setTimestamp(4, note.getReg_date());
+				pstmt.executeUpdate(); // DB 에 업에이트
+			} catch(Exception ex) {
+	            ex.printStackTrace();
+	        } finally {
+	            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	        }
+	    }
+	//note 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
+			public int getNoteCount()
+				throws Exception {
+					int x =0;
+					try {
+						conn = DataBaseConnection.getConnection();
+						pstmt = conn.prepareStatement("select count(*) from note");
+						rs = pstmt.executeQuery();
+						if(rs.next() ) {
+							x = rs.getInt(1);
+						}
+					}catch(Exception ex) {
+			            ex.printStackTrace();
+			        } finally {
+			            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			        }
+					return x;
+			    }
+		// 노트 목록을 보는 것.
+			public ArrayList getNote(int start, int end)
+				throws Exception {
+				ArrayList noteList = new ArrayList();
+				try {
+					conn = DataBaseConnection.getConnection();
+					pstmt= conn.prepareStatement("select * from (select seqno,writer,subject,content,reg_date,rownum r "+
+													"from(select * from note order by reg_date)) where r >= ? and r <=?");
+					pstmt.setInt(1, start);
+					pstmt.setInt(2, end);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next() ) {
+						noteList = new ArrayList(end);
+						do {
+							NoteDTO note = new NoteDTO();
+							note.setSeqno(rs.getInt("seqno"));
+							note.setWriter(rs.getString("writer"));
+							note.setSubject(rs.getString("subject"));
+							note.setContent(rs.getString("content"));
+							note.setReg_date(rs.getTimestamp("reg_date"));
+							noteList.add(note);
+						}while (rs.next());	
+					}
+				}catch(Exception ex) {
+		            ex.printStackTrace();
+		        } finally {
+		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		        }
+				return noteList;
+		    }
+			
+			// note 내용 확인 메서드.
+			public NoteDTO getNote(int seqno)
+				throws Exception {
+				NoteDTO note = null;
+				try {
+					conn = DataBaseConnection.getConnection();
+
+					// 선택한 seqno의 모든 정보 읽기 가능하게함.
+					pstmt = conn.prepareStatement("select * from note where seqno=?");
+					pstmt.setInt(1, seqno);
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						note = new NoteDTO();
+						note.setSeqno(rs.getInt("seqno"));
+						note.setWriter(rs.getString("writer"));
+						note.setSubject(rs.getString("subject"));
+						note.setContent(rs.getString("content"));
+						note.setReg_date(rs.getTimestamp("reg_date"));
+					}	
+				}catch(Exception ex) {
+		            ex.printStackTrace();
+		        } finally {
+		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		        }
+				return note;
+		    }
+			//note 글 수정 메서드
+			public void updateArticle(NoteDTO note)
+				throws Exception {
+					try {
+						conn = DataBaseConnection.getConnection();
+						pstmt = conn.prepareStatement("update note set subject=?,content=? where seqno=?");
+						pstmt.setString(1, note.getSubject());
+						pstmt.setString(2, note.getContent());
+						pstmt.setInt(3, note.getSeqno());	
+						pstmt.executeUpdate();
+					}catch(Exception ex) {
+			            ex.printStackTrace();
+			        } finally {
+			            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			        }
+			    }
+			
+			//note 글 삭제 메서드
+			public int deleteNote(int seqno)
+				throws Exception {
+				int x = -1;
+				try {
+					conn = DataBaseConnection.getConnection();
+					pstmt = conn.prepareStatement("delete from note where seqno=?");
+					pstmt.setInt(1, seqno);
+					pstmt.executeUpdate();
+					x = 1;	//------------------- 글 삭제 성공.
+				}catch(Exception ex) {
+		            ex.printStackTrace();
+		        } finally {
+		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		        }
+				return x;
+		    }
 
 	// Lecture_Information DB 전송
 	public void insert(Lecture_InformationDTO dto) {
