@@ -178,44 +178,73 @@ public class ControlDAO {
 	}
 
 	// Notice DB 전송
-	public void insertNotice(NoticeDTO notice) {
-		int num = notice.getNum();
-		String sql = "";
+		public void insert(NoticeDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into notice values(?,?,?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getNum());
+				pstmt.setString(2, dto.getWriter());
+				pstmt.setString(3, dto.getSubject());
+				pstmt.setString(4, dto.getContent());
+				pstmt.setTimestamp(5, dto.getReg_date());
+				pstmt.setInt(6, dto.getReadcount());
+				pstmt.setString(7, dto.getIp());
 
-		try {
-			conn = DataBaseConnection.getConnection();
-			sql = "insert into notice(num,writer,subject,reg_date,";
-			sql += "content,ip) values(notice_seq.nextval,?,?,?,?,?)";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, notice.getWriter());
-			pstmt.setString(2, notice.getSubject());
-			pstmt.setTimestamp(3, notice.getReg_date());
-			pstmt.setString(4, notice.getContent());
-			pstmt.setString(5, notice.getIp());
-
-			pstmt.executeUpdate(); // DB 에 업에이트
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException ex) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException ex) {
-				}
+				pstmt.executeUpdate(); // DB 에 업에이트
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (SQLException e) {
+					}
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+					}
+				if (conn != null)
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+			}
 		}
-	}
+		// Note DB 전송
+		public void insert(NoteDTO dto) {
+			try {
+				conn = DataBaseConnection.getConnection();
+				String sql = "insert into note values(?,?,?,?,sysdate)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getSeqno());
+				pstmt.setString(2, dto.getWriter());
+				pstmt.setString(3, dto.getSubject());
+				pstmt.setString(4, dto.getContents());
 
+				pstmt.executeUpdate(); // DB 에 업에이트
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (SQLException e) {
+					}
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+					}
+				if (conn != null)
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+			}
+		}
+		
 	// notice 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
 	public int getNoticeCount() throws Exception {
 		int x = 0;
