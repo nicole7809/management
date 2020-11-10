@@ -7,8 +7,7 @@
 	//post타입 인코딩하기
 	request.setCharacterEncoding("UTF-8");
 
-//	String id = request.getParameter("STUDENT_ID");
-//	String pw = request.getParameter("PASSWORD");
+
 %>									
 	<jsp:useBean id="dto" class="team.elite.management.Student_MembersDTO" />
 	<jsp:setProperty property= "*" name = "dto" />

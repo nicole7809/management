@@ -929,7 +929,7 @@ public class ControlDAO {
 			pstmt.setString(5, dto.getTeacher_pic());
 			pstmt.setString(6, dto.getTeacher_id());
 			pstmt.executeUpdate();
-			System.out.println(dto.getTeacher_name());
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -1016,7 +1016,6 @@ public class ControlDAO {
 			pstmt.setString(5, dto.getAdmin_pic());
 			pstmt.setString(6, dto.getAdmin_id());
 			pstmt.executeUpdate();
-			System.out.println(dto.getAdmin_name());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -1098,7 +1097,6 @@ public class ControlDAO {
 			pstmt.setString(5, dto.getStudent_pic());
 			pstmt.setString(6, dto.getStudent_id());
 			pstmt.executeUpdate();
-			System.out.println(dto.getStudent_name());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

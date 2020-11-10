@@ -25,7 +25,7 @@
 
    try{
       ControlDAO dbPro = ControlDAO.getInstance(); 
-      notioeDTO article =  dbPro.getArticle(num);
+      noticeDTO article =  dbPro.getArticle(num);
   
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();

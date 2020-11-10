@@ -43,7 +43,7 @@
 				<td class="menu"> <a href ="/Total.Management.System/board/notice.jsp"> 공지사항 </a> </td>
 			</tr>
 			<tr>
-				<td class="menu"><a href ="/Total.Management.System/massage.jsp"> Q & A </a> </td>
+				<td class="menu"><a href ="/Total.Management.System/teacher/tQNAList.jsp"> Q & A </a> </td>
 			</tr>
 			<tr>
 				<td class="menu"><a href ="/Total.Management.System/teacher/logout.jsp"> 로그아웃 </a> </td>

@@ -8,6 +8,13 @@
 	a{text-decoration:none;}
 </style>
 
+
+<head>
+	<link href="../css/left.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
 <%!
 	int pageSize = 10;
 	SimpleDateFormat sdf =

@@ -5,6 +5,11 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <% request.setCharacterEncoding("UTF-8");%>
 
+<head>
+	<link href="../css/left.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
 <%
 	//색깔보임
 	String bodyback_c="#FFFFFF";//배경화이트<글내용볼때배경>
@@ -43,6 +48,11 @@
 	
 	String adminId = (String)session.getAttribute("admin_id");
 %>
+
+<jsp:include page="adminLeft.jsp"/>
+	<div class="content">
+<form action="maupdatePro.jsp" method="post" >
+
 <html>
 <head>
 <title>게시판</title>
@@ -137,6 +147,12 @@
         }
     }
 %>
-</center>
+
+<!-- 	<div>
+	<footer class="secondary_header footer">
+		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+	 </footer>
+	</div> -->
+
 </body>
 </html>

@@ -41,7 +41,7 @@
 					<!-- <p>학원스텝은 학원스텝아이디로 로그인합니다.</p> -->
 			</div>
 			<div class="columns">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 				<a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align">
+				<a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align">
 						<img src="img/teacher.png" alt="" class="thumbnail" />
 					</p></a>
 					<h2 class="title">강사모드</h2>
@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		<br/><br/><br/><br/><br/><br/>
-		 nn ,
+		
 		<footer class="secondary_header footer">
 			<div class="copyright">
 				&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong>
