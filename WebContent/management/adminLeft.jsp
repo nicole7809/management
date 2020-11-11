@@ -21,7 +21,7 @@
   <a href ="managementInfo.jsp"><%=sessionId %> [님]</a>
   <a href="/Total.Management.System/management/courseList.jsp">강의리스트</a>
   <a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
-  <a href="/Total.Management.System/board/notice.jsp">공지사항</a>
+  <a href="/Total.Management.System/board/adminnotice.jsp">공지사항</a>
   <a href="/Total.Management.System/management/QNAList.jsp">Q&A게시판</a>
   <a href="/Total.Management.System/management/logout.jsp">로그아웃</a>
 </div>

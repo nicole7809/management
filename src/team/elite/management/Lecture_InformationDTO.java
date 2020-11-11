@@ -3,42 +3,42 @@ package team.elite.management;
 import java.sql.Timestamp;
 
 public class Lecture_InformationDTO {
-	private int info_seqno;
-	private String reg_id;
-	private Timestamp reg_date;
-	private String lecture;
-
+	private String lecture_name; 
+	private String lecture_course;
+	private String lecture_room;
+	private String teacher;
+	public String getLecture_name() {
+		return lecture_name;
+	}
+	public void setLecture_name(String lecture_name) {
+		this.lecture_name = lecture_name;
+	}
+	public String getLecture_course() {
+		return lecture_course;
+	}
+	public void setLecture_course(String lecture_course) {
+		this.lecture_course = lecture_course;
+	}
+	public String getLecture_room() {
+		return lecture_room;
+	}
+	public void setLecture_room(String lecture_room) {
+		this.lecture_room = lecture_room;
+	}
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
 	
-	public String getLecture() {
-		return lecture;
-	}
-
-	public void setLecture(String lecture) {
-		this.lecture = lecture;
-	}
-
-	public int getInfo_seqno() {
-		return info_seqno;
-	}
-
-	public void setInfo_seqno(int info_seqno) {
-		this.info_seqno = info_seqno;
-	}
-
-	public String getReg_id() {
-		return reg_id;
-	}
-
-	public void setReg_id(String reg_id) {
-		this.reg_id = reg_id;
-	}
-
-	public Timestamp getReg_date() {
-		return reg_date;
-	}
-
-	public void setReg_date(Timestamp reg_date) {
-		this.reg_date = reg_date;
-	}
-
+	
+	
+	
+	
+	
+	
+	
 }
+	
+	

@@ -20,7 +20,7 @@
 		
 	%>
 	<body>
-		<jsp:include page="adminLeft.jsp"/>
+		<jsp:include page="../left.jsp"/>
 		
 		<div class="content">
 		<h2>게시판 불러오는곳</h2>

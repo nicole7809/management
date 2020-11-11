@@ -17,7 +17,7 @@
 		
 %>
 <div class="sidebar">
-  <a class="active" href="/Total.Management.System/teacher/teacherMain.jsp">Home</a>
+  <a class="active" href="/Total.Management.System/main.jsp">Home</a>
   <a href ="teacherInfo.jsp"><%=sessionId %> [님]</a>
   <a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
   <a href="/Total.Management.System/board/notice.jsp">공지사항</a>

@@ -7,6 +7,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>공지사항 글 수정</title>
+		<link href="../css/left.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 	
@@ -17,6 +18,8 @@
 				ControlDAO dao = ControlDAO.getInstance();
 				NoticeDTO notice = dao.updateGetNotice(num);
 		%>
+		<jsp:include page="../left.jsp"/>
+		<div class="content">
 			<form action = "noticeUpdatePro.jsp" name = "noticeWriteForm" method="post" onsubmit="return writeSave()">
 			<input type="hidden" name="num" value="<%=num%>" />
 			<table border="1" cellpadding="0" cellspacing="0" widht="500" align="center">
@@ -46,7 +49,12 @@
 				</tr>
 			</table>
 		</form>
-		
+		</div>
+		<div>
+		<footer class="secondary_header footer">
+			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		 </footer>
+		</div>
 			<%}catch(Exception e) {}	%>
 	
 	</body>

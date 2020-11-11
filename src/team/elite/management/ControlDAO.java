@@ -663,12 +663,13 @@ public class ControlDAO {
 	public void insert(Lecture_InformationDTO dto) {
 		try {
 			conn = DataBaseConnection.getConnection();
-			String sql = "insert into lecture_information values(?,?,sysdate,?)";
+			String sql = "insert into lecture_information values(?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getInfo_seqno());
-			pstmt.setString(2, dto.getReg_id());
-			pstmt.setString(3, dto.getLecture());
-
+			pstmt.setString(1, dto.getLecture_name());
+			pstmt.setString(2, dto.getLecture_course());
+			pstmt.setString(3, dto.getLecture_room());
+			pstmt.setString(4, dto.getTeacher());
+			
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1659,5 +1660,46 @@ public class ControlDAO {
 			}
 		}
 	}
+	
+	// 강의리스트를 
+		public ArrayList lectureAll() {
+			ArrayList list = new ArrayList();
+			try {
+				conn = DataBaseConnection.getConnection();
+				pstmt = conn.prepareStatement("select * from lecture_information");
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					Lecture_InformationDTO dto = new Lecture_InformationDTO();
+					dto.setLecture_name(rs.getString("lecture_name"));
+					dto.setLecture_course(rs.getString("lecture_course"));
+					dto.setLecture_room(rs.getString("lecture_room"));
+					dto.setTeacher(rs.getString("teacher"));
+				
+					list.add(dto);
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (SQLException ex) {
+					}
+				if (pstmt != null)
+					try {
+						pstmt.close();
+					} catch (SQLException ex) {
+					}
+				if (conn != null)
+					try {
+						conn.close();
+					} catch (SQLException ex) {
+					}
+			}
+			return list;
+		}
+	
+	
+	
 
 }

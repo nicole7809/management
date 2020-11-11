@@ -19,7 +19,7 @@
 	Admin_MembersDTO dto = dao.managementInfo(sessionId);
 %>
 
-<jsp:include page="adminLeft.jsp"/>
+<jsp:include page="../left.jsp"/>
 	<div class="content">
 <form action="maupdatePro.jsp" method="post" >
 <center>
