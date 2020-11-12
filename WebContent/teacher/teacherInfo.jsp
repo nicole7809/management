@@ -20,7 +20,7 @@
 		
 		Teacher_MembersDTO dto = dao.teacherInfo(sessionId);
 	%>
-	<jsp:include page="teacherLeft.jsp"/>
+	<jsp:include page="../left.jsp"/>
 	<div class="content">
 		<form action="teacherUpdate.jsp" method="post"  enctype="multipart/form-data">
 		
@@ -57,7 +57,7 @@
 				<input type="file" name="teacher_pic" /> 
 				<input type="hidden" name="sysImg" value="<%=dto.getTeacher_pic()%>" />
 				<input type="hidden" name="teacher_id" value="<%=dto.getTeacher_id()%>" />
-			  	<img src="/Total.Management.System/save/<%=dto.getTeacher_pic()%>" />
+			  	<img src="/Total.Management.System/img/<%=dto.getTeacher_pic()%>" />
 				
 				
 				

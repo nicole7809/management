@@ -15,10 +15,11 @@
 	<body>
 	<%
 		// 로그인 유효성 검사	( sessionId에 student_id 가 있을때 실행 아니면 메인페이지로 이동.)
-//		String sessionId = (String)session.getAttribute("admin_id");
-//		if(sessionId == null) {
-//			response.sendRedirect("/Total.Management.System/main.jsp");		
-//		}
+		String adminId = (String)session.getAttribute("admin_id");
+		String teacherId = (String)session.getAttribute("teacher_id");
+		if(adminId == null && teacherId == null) {
+			response.sendRedirect("/Total.Management.System/main.jsp");		
+		}
 		
 //		행정정보를 꺼낼수 있는 메서드를 DAO 에 생성하고 목록이름부분에 행정이 올수 있게 하자.<%=dto.get ..로	
 		ControlDAO dao = ControlDAO.getInstance();
@@ -44,10 +45,11 @@
 							Student_MembersDTO sdto = (Student_MembersDTO)list.get(i);  %>
 				<tr>	
 					<td colspan="3" align="center" height="20">	
-							<a href="/Total.Management.System/student/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a> <br>
+							<a href="/Total.Management.System/student/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>
+							<button onclick="window.location='stDelete.jsp?student_id=<%=sdto.getStudent_id()%>&state=5'">탈퇴</button><br>
 					</td>	
-						<%}						// 페이지 값을 학생 아이디로 넘겨준다. 이게 되는 건가??%>													
-					<%} 		// 이렇게 하면 리스트만큼 테이블생성되는거 맞나?		%>
+						<%}						// 페이지 값을 학생 아이디로 넘겨줌.%>													
+					<%} 						// 이렇게 하면 DB에 저장된 학생 수 만큼 반복.		%>
 				</tr>
 			</table>
 		</div>

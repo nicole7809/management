@@ -49,7 +49,7 @@
 	String adminId = (String)session.getAttribute("admin_id");
 %>
 
-<jsp:include page="adminLeft.jsp"/>
+<jsp:include page="../left.jsp"/>
 	<div class="content">
 <form action="maupdatePro.jsp" method="post" >
 

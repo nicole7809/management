@@ -32,7 +32,7 @@ a {
 		ControlDAO dao = ControlDAO.getInstance();
 	%> 
 
-	<jsp:include page="adminLeft.jsp" />
+	<jsp:include page="../left.jsp" />
 		<form action="/Total.Management.System/lecture/lecturePro.jsp"
 			method="post">
 			<div class="content">

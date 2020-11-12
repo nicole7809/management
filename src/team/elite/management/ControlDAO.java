@@ -896,7 +896,7 @@ public class ControlDAO {
 		return x;
 	}
 
-	// 학생리스트를 만드는? 메서드 studentList에서 사용됩니다.
+	// 학생리스트를 만드는 메서드 studentList에서 사용됩니다.
 	public ArrayList studentAll() {
 		ArrayList list = new ArrayList();
 		try {
@@ -985,7 +985,7 @@ public class ControlDAO {
 		return dto;
 	}
 
-	// 강사 정보 수정내
+	// 강사 정보 수정내용
 	public void teacherUpdate(Teacher_MembersDTO dto) {
 
 		try {
@@ -1049,7 +1049,7 @@ public class ControlDAO {
 
 	}
 
-	// 관리자 adminID 학인후 개인정보
+	// 관리자 adminID 확인후 개인정보
 	public Admin_MembersDTO managementInfo(String sessionId) {
 		Admin_MembersDTO dto = new Admin_MembersDTO();
 		try {
@@ -1872,5 +1872,24 @@ public class ControlDAO {
 		}
 		return list;
 	}
+	
+	//학생의 상태(수강,수료,취업,탈퇴,중도포기 )설정메서드
+			public void studentState(String student_id, String state)
+				throws Exception {
+					try {
+						conn = DataBaseConnection.getConnection();
+						pstmt = conn.prepareStatement("update student_members set state=? where student_id=?");
+						int s = Integer.parseInt(state);
+						pstmt.setInt(1, s);
+						pstmt.setString(2, student_id);
+						pstmt.executeUpdate();
+					}catch(Exception ex) {
+				           ex.printStackTrace();
+				    } finally {
+				    	if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+						if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+						if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					}
+			 }
 
 }
