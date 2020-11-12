@@ -30,13 +30,20 @@
   <%} %>
   <%
   	// 행정일때 강의리스트, 학생리스트보이게
-  	if(studentId ==null && teacherId == null && adminId != null) { // 행정로그인일 경우	%>
+  	if(studentId ==null && teacherId == null && adminId != null) {  	%>
   		<a href="/Total.Management.System/management/courseList.jsp">강의리스트</a>
   		<a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
   	<%}%>
   <a href="/Total.Management.System/board/notice.jsp">공지사항</a>
-  <a href="/Total.Management.System/management/QNAList.jsp">Q&A게시판</a>
   <%
+  	//QNA 리스트
+  	if(studentId !=null && teacherId == null && adminId == null) {	// 학생로그인일 경우 %>
+  		<a href ="/Total.Management.System/student/sQNAList.jsp">Q&A게시판 </a>
+  <%}else if(studentId ==null && teacherId != null && adminId == null) { // 강사로그인일 경우%>
+  		<a href ="/Total.Management.System/teacher/tQNAList.jsp">Q&A게시판 </a>
+  <%}else if (studentId ==null && teacherId == null && adminId != null) { // 행정로그인일 경우	%>
+  		<a href ="/Total.Management.System/management/QNAList.jsp">Q&A게시판 </a>
+  <%}
   	if(studentId !=null && teacherId == null && adminId == null) { %>
   		<a href="/Total.Management.System/note/note.jsp">메모하기</a>
   <%}%>

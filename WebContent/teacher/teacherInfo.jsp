@@ -10,20 +10,22 @@
 <body>
     
    	<% //세션꺼내기 /확인!!! 
-		String sessionId = (String)session.getAttribute("teacher_id");
+		 String sessionId = (String)session.getAttribute("teacher_id");
 		if(sessionId==null){ 
 			response.sendRedirect("tcLoginForm.jsp");
 			
 		}
+		String teacher_id = request.getParameter("teacher_id");
 		ControlDAO dao = ControlDAO.getInstance();
+		
 		Teacher_MembersDTO dto = dao.teacherInfo(sessionId);
 	%>
 	<jsp:include page="teacherLeft.jsp"/>
 	<div class="content">
-		<form action="teacherUpdate.jsp" method="post">
+		<form action="teacherUpdate.jsp" method="post"  enctype="multipart/form-data">
 		
 		<center>
-	<table border=2 width="400" height="70" bordercolor="skyblue">
+	<table border=4 width="500" height="100" bordercolor="skyblue">
 			<!-- <caption>강사 개인 정보 수정</caption> -->
 			</br>
 			</br>
@@ -51,9 +53,18 @@
 			</tr>
 			<tr>
 				<td>사진 :</td>
-				<td><input type="text" name="admin_pic" value="<%=dto.getTeacher_pic()%>" /></td>
+				<td>
+				<input type="file" name="teacher_pic" /> 
+				<input type="hidden" name="sysImg" value="<%=dto.getTeacher_pic()%>" />
+				<input type="hidden" name="teacher_id" value="<%=dto.getTeacher_id()%>" />
+			  	<img src="/Total.Management.System/save/<%=dto.getTeacher_pic()%>" />
+				
+				
+				
+				</td>
 			</tr>
-			<tr>
+		
+				</tr>
 				<td>가입날짜 :</td>
 				<td><%=dto.getReg_date()%></td>
 			</tr>

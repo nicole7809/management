@@ -9,6 +9,7 @@
 <head>
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
+<link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
 
 <%
@@ -36,6 +37,8 @@
 		int re_level = article.getRe_level();
 %>
 <body bgcolor="<%=bodyback_c%>">
+	<jsp:include page="../left.jsp"/>
+	<div class="content">
 	<center>
 		<b>글내용 보기</b> <br>
 		<form>
@@ -63,11 +66,26 @@
 				</tr>
 			<tr height="30">
 					<td colspan="4" bgcolor="<%=value_c%>" align="right">
-			 <input type="button" value="관리자 글삭제" onclick="document.location.href='QNADeleteAdminPro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+						<%-- <%
+							String adminId = (String) session.getAttribute("adminId");
+								if (adminId != null) {
+									if (adminId.equals(article.getWriter())) {
+						%> --%>
+						 <%-- <input type="button" value="글수정"onclick="document.location.href='QNAUpdateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
 						&nbsp;&nbsp;&nbsp;&nbsp; 
-			<input type="button" value="답글쓰기"	 onclick="document.location.href='QNAWriteForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'"/>
-						&nbsp;&nbsp;&nbsp;&nbsp; 
-			<input type="button" value="글목록" 	onclick="document.location.href='QNAList.jsp?pageNum=<%=pageNum%>'">
+						<input type="button" value="글삭제" onclick="document.location.href='QNADeleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+						&nbsp;&nbsp;&nbsp;&nbsp; --%> <%-- <%
+ 	}
+ 			if (adminId.equals("admin")) {
+ %> --%> <input type="button" value="관리자 글삭제"
+						onclick="document.location.href='QNADeleteAdminPro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="답글쓰기"
+						onclick="document.location.href='QNAWriteForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'"/>
+						&nbsp;&nbsp;&nbsp;&nbsp;<%--  <%
+ 	}
+ 		}
+ %> --%> <input type="button" value="글목록"
+						onclick="document.location.href='QNAList.jsp?pageNum=<%=pageNum%>'">
 					</td>
 				</tr> 
 			
@@ -77,6 +95,14 @@
 				}
 			%>
 		</form>
+<!-- 		 <input type="button" value="답글" onclick="goJoinForm()" />
 
+		<input type="button" value="삭제" onclick="window.location.href='QNADeleteAdminPro.jsp';" />  -->
+	</div>
+	<div>
+	<footer class="secondary_header footer">
+		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+	 </footer>
+	</div>
 </body>
 </html>

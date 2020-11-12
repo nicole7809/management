@@ -3,156 +3,88 @@
 <%@ page import = "team.elite.management.NoticeDTO" %>
 <%@ page import = "team.elite.management.ControlDAO" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<% request.setCharacterEncoding("UTF-8");%>
-
-<head>
-	<link href="../css/left.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<%
-	//색깔보임
-	String bodyback_c="#FFFFFF";//배경화이트<글내용볼때배경>
-	String back_c="#F6F6F6";//화이트
-	String title_c="#5CD1E5";//제목 파란색
-	String value_c="#D5D5D5";//연한그레이
-	String bar_c="#5D5D5D";//연한그레이
-%>
-
-<%!
-    int pageSize = 10;
-    SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
-
-<%
-    String pageNum = request.getParameter("pageNum");
-    if (pageNum == null) {
-        pageNum = "1";
-    }
-
-    int currentPage = Integer.parseInt(pageNum);  // 2
-    int startRow = (currentPage - 1) * pageSize + 1; // (2-1)*10+1
-    int endRow = currentPage * pageSize;
-    int count = 0;
-    int number=0;
-
-    List articleList = null;
-    ControlDAO dbPro = ControlDAO.getInstance();
-    count = dbPro.getArticleCount();
-    if (count > 0) {
-        articleList = dbPro.getArticles(startRow, endRow);
-    }
-
-	number=count-(currentPage-1)*pageSize; //  11-(1-1)*10
-	
-	String adminId = (String)session.getAttribute("admin_id");
-%>
-
-<jsp:include page="adminLeft.jsp"/>
-	<div class="content">
-<form action="maupdatePro.jsp" method="post" >
-
 <html>
 <head>
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
+<link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
 
-<body bgcolor="<%=bodyback_c%>">
-<center><b>글목록(전체 글:<%=count%>)</b>
-<table width="700">
-<tr>
-<!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->
-     <td align="right" bgcolor="<%=value_c%>">
-    <%if(adminId != null){ %>
-    	<a href="QNAWriteForm.jsp">글쓰기</a>
-    <%}else{%>
-    	<a href="mgtLoginForm.jsp">로그인</a>
-    <%}%> 
-    </td>
-</table>
-
 <%
-    if (count == 0) {
+	String adminId = (String)session.getAttribute("admin_id");
+	String teacherId = (String)session.getAttribute("teacher_id");
+	String studentId = (String)session.getAttribute("student_id");
+	if(adminId ==null && teacherId ==null && studentId == null) {	// 로그인 유효성검사
+		response.sendRedirect("/Total.Management.System/main.jsp");
+	}
+	int num = Integer.parseInt(request.getParameter("num"));
+	String pageNum = request.getParameter("pageNum");
+	
+	SimpleDateFormat sdf  = 
+		new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+	try{
+		ControlDAO dbPro = ControlDAO.getInstance();
+		NoticeDTO article = dbPro.getNotice(num);    
+		
+		
 %>
-<table width="700" border="1" cellpadding="0" cellspacing="0">
-<tr>
-    <td align="center">
-    게시판에 저장된 글이 없습니다.
-    </td>
-</table>
-
-<%  } else {    %>
-<table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
-    <tr height="30" bgcolor="<%=value_c%>"> 
-      <td align="center"  width="50"  >번 호</td> 
-      <td align="center"  width="250" >제   목</td> 
-      <td align="center"  width="100" >작성자</td>
-      <td align="center"  width="150" >작성일</td> 
-      <td align="center"  width="50" >조 회</td> 
-      <td align="center"  width="100" >IP</td>    
-    </tr>
-<%  
-        for (int i = 0 ; i < articleList.size() ; i++) {
-        	Lecture_InformationDTO article = (Lecture_InformationDTO)articleList.get(i);
-%>
-   <tr height="30">
-    <td align="center"  width="50" > <%=number--%></td>
-    <td  width="250" >
+<body>
+<jsp:include page="../left.jsp"/>
+<div class="content">
+	<center><b>글내용 보기</b>
+	<br>
+	<form>
+	<table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="" align="center">  
+	  <tr height="30">
+	    <td align="center" width="125" bgcolor="">글번호</td>
+	    <td align="center" width="125" align="center">
+		     <%=article.getNum()%></td>
+	    <td align="center" width="125" bgcolor="">조회수</td>
+	    <td align="center" width="125" align="center">
+		     <%=article.getReadcount()%></td>
+	  </tr>
+	  <tr height="30">
+	    <td align="center" width="125" bgcolor="">작성자</td>
+	    <td align="center" width="125" align="center">
+		     <%=article.getWriter()%></td>
+	    <td align="center" width="125" bgcolor="" >작성일</td>
+	    <td align="center" width="125" align="center">
+		     <%= sdf.format(article.getReg_date())%></td>
+	  </tr>
+	  <tr height="30">
+	    <td align="center" width="125" bgcolor="">글제목</td>
+	    <td align="center" width="375" align="center" colspan="3">
+		     <%=article.getSubject()%></td>
+	  </tr>
+	  <tr>
+	    <td align="center" width="125" bgcolor="">글내용</td>
+	    <td align="left" width="375" colspan="3"><pre><%=article.getContent()%></pre></td>
+	  </tr>
+	  <tr height="30">      
+	    <td colspan="4" bgcolor="" align="right" > 
+	    <% if(adminId != null) {	%>
+		  <input type="button" value="글수정" 
+	       onclick="document.location.href='noticeUpdate.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+		   &nbsp;&nbsp;&nbsp;&nbsp;
+		  <input type="button" value="글삭제" 
+	       onclick="document.location.href='noticeDeletePro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+		   &nbsp;&nbsp;&nbsp;&nbsp; 
+		<%} %>
+	       <input type="button" value="글목록" 
+	       onclick="document.location.href='notice.jsp?pageNum=<%=pageNum%>'">
+	    </td>
+	  </tr>
+	</table>    
 	<%
-	      int wid=0; 
-	      if(article.getRe_level()>0){
-	        wid=5*(article.getRe_level());
-	%>
-	  <img src="images/level.gif" width="<%=wid%>" height="16">
-	  <img src="images/re.gif">
-	<%}else{%>
-	  <img src="images/level.gif" width="<%=wid%>" height="16">
-	<%}%> 
-           
-      <a href="content.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>">
-           <%=article.getSubject()%></a> 
-          <% if(article.getReadcount()>=20){%>
-         <img src="images/hot.gif" border="0"  height="16"><%}%> </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:<%=article.getEmail()%>"><%=article.getWriter()%></a></td>
-    <td align="center"  width="150"><%= sdf.format(article.getReg_date())%></td>
-    <td align="center"  width="50"><%=article.getReadcount()%></td>
-    <td align="center" width="100" ><%=article.getIp()%></td>
-  </tr>
-     <%}%>
-</table>
-<%}%>
-
-<%
-    if (count > 0) {
-        int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
-		 
-        int startPage = (int)(currentPage/10)*10+1;
-		int pageBlock=10;
-        int endPage = startPage + pageBlock-1;
-        if (endPage > pageCount) endPage = pageCount;
-        
-        if (startPage > 10) {    %>
-        <a href="QNAList.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
-<%      }
-        for (int i = startPage ; i <= endPage ; i++) {  %>
-        <a href="QNAList.jsp?pageNum=<%= i %>">[<%= i %>]</a>
-<%
-        }
-        if (endPage < pageCount) {  %>
-        <a href="QNAList.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
-<%
-        }
-    }
-%>
-
-<!-- 	<div>
+	 }catch(Exception e){} 
+	 %>
+	</form> 
+	</div>
+	<div>
 	<footer class="secondary_header footer">
 		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
 	 </footer>
-	</div> -->
-
+	</div>     
 </body>
-</html>
+</html>      

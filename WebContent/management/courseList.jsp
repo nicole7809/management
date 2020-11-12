@@ -30,10 +30,9 @@ a {
 
 		//		행정정보를 꺼낼수 있는 메서드를 DAO 에 생성하고 목록이름부분에 행정이 올수 있게 하자.<%=dto.get ..로	
 		ControlDAO dao = ControlDAO.getInstance();
-	%>
+	%> 
 
-	<jsp:include page="../left.jsp" />
-	<div class="content">
+	<jsp:include page="adminLeft.jsp" />
 		<form action="/Total.Management.System/lecture/lecturePro.jsp"
 			method="post">
 			<div class="content">
@@ -49,14 +48,14 @@ a {
 						ArrayList list = dao.lectureAll(); 
 						if (list.size() > 0) { 
 							for (int i = 0; i < list.size(); i++) {
-								Lecture_InformationDTO sdto = (Lecture_InformationDTO) list.get(i);
+								Lecture_InformationDTO dto = (Lecture_InformationDTO) list.get(i);
 					%>
 					
 					<tr>
-						<td><%=sdto.getLecture_name()%></td>
-						<td><%=sdto.getLecture_course()%></td>
-						<td><%=sdto.getLecture_room()%></td>
-						<td><%=sdto.getTeacher()%></td>
+						<td><%=dto.getLecture_name()%></td>
+						<td><%=dto.getLecture_course()%></td>
+						<td><%=dto.getLecture_room()%></td>
+						<td><%=dto.getTeacher()%></td>
 					</tr>
 			
 					<%-- href="/Total.Management.System/lecture/lecturePro.jsp?lecture_name=<%=sdto.getLecture_name()%>"> --%>

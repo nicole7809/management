@@ -516,148 +516,217 @@ public class ControlDAO {
 	 * conn.close(); } catch(SQLException ex) {} } return x; }
 	 */
 
-	
 	// Note DB 전송
-		public void insert(NoteDTO note) {
-			int seqno = note.getSeqno();
-			String sql = "";
-			try {
-				conn = DataBaseConnection.getConnection();
-				sql = "insert into note(seqno,writer,subject,content,reg_date) values(note_seq.nextval,?,?,?,?)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, note.getWriter());
-				pstmt.setString(2, note.getSubject());
-				pstmt.setString(3, note.getContent());
-				pstmt.setTimestamp(4, note.getReg_date());
-				pstmt.executeUpdate(); // DB 에 업에이트
-			} catch(Exception ex) {
-	            ex.printStackTrace();
-	        } finally {
-	            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-	            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-	        }
-	    }
-	//note 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
-			public int getNoteCount()
-				throws Exception {
-					int x =0;
-					try {
-						conn = DataBaseConnection.getConnection();
-						pstmt = conn.prepareStatement("select count(*) from note");
-						rs = pstmt.executeQuery();
-						if(rs.next() ) {
-							x = rs.getInt(1);
-						}
-					}catch(Exception ex) {
-			            ex.printStackTrace();
-			        } finally {
-			            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-			            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-			        }
-					return x;
-			    }
-		// 노트 목록을 보는 것.
-			public ArrayList getNote(int start, int end)
-				throws Exception {
-				ArrayList noteList = new ArrayList();
+	public void insert(NoteDTO note) {
+		int seqno = note.getSeqno();
+		String sql = "";
+		try {
+			conn = DataBaseConnection.getConnection();
+			sql = "insert into note(seqno,writer,subject,content,reg_date) values(note_seq.nextval,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, note.getWriter());
+			pstmt.setString(2, note.getSubject());
+			pstmt.setString(3, note.getContent());
+			pstmt.setTimestamp(4, note.getReg_date());
+			pstmt.executeUpdate(); // DB 에 업에이트
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
 				try {
-					conn = DataBaseConnection.getConnection();
-					pstmt= conn.prepareStatement("select * from (select seqno,writer,subject,content,reg_date,rownum r "+
-													"from(select * from note order by reg_date)) where r >= ? and r <=?");
-					pstmt.setInt(1, start);
-					pstmt.setInt(2, end);
-					rs = pstmt.executeQuery();
-					
-					if(rs.next() ) {
-						noteList = new ArrayList(end);
-						do {
-							NoteDTO note = new NoteDTO();
-							note.setSeqno(rs.getInt("seqno"));
-							note.setWriter(rs.getString("writer"));
-							note.setSubject(rs.getString("subject"));
-							note.setContent(rs.getString("content"));
-							note.setReg_date(rs.getTimestamp("reg_date"));
-							noteList.add(note);
-						}while (rs.next());	
-					}
-				}catch(Exception ex) {
-		            ex.printStackTrace();
-		        } finally {
-		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		        }
-				return noteList;
-		    }
-			
-			// note 내용 확인 메서드.
-			public NoteDTO getNote(int seqno)
-				throws Exception {
-				NoteDTO note = null;
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
 				try {
-					conn = DataBaseConnection.getConnection();
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+	}
 
-					// 선택한 seqno의 모든 정보 읽기 가능하게함.
-					pstmt = conn.prepareStatement("select * from note where seqno=?");
-					pstmt.setInt(1, seqno);
-					rs = pstmt.executeQuery();
-					if(rs.next()) {
-						note = new NoteDTO();
-						note.setSeqno(rs.getInt("seqno"));
-						note.setWriter(rs.getString("writer"));
-						note.setSubject(rs.getString("subject"));
-						note.setContent(rs.getString("content"));
-						note.setReg_date(rs.getTimestamp("reg_date"));
-					}	
-				}catch(Exception ex) {
-		            ex.printStackTrace();
-		        } finally {
-		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		        }
-				return note;
-		    }
-			//note 글 수정 메서드
-			public void updateArticle(NoteDTO note)
-				throws Exception {
-					try {
-						conn = DataBaseConnection.getConnection();
-						pstmt = conn.prepareStatement("update note set subject=?,content=? where seqno=?");
-						pstmt.setString(1, note.getSubject());
-						pstmt.setString(2, note.getContent());
-						pstmt.setInt(3, note.getSeqno());	
-						pstmt.executeUpdate();
-					}catch(Exception ex) {
-			            ex.printStackTrace();
-			        } finally {
-			            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-			            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-			        }
-			    }
-			
-			//note 글 삭제 메서드
-			public int deleteNote(int seqno)
-				throws Exception {
-				int x = -1;
+	// note 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
+	public int getNoteCount() throws Exception {
+		int x = 0;
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from note");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
 				try {
-					conn = DataBaseConnection.getConnection();
-					pstmt = conn.prepareStatement("delete from note where seqno=?");
-					pstmt.setInt(1, seqno);
-					pstmt.executeUpdate();
-					x = 1;	//------------------- 글 삭제 성공.
-				}catch(Exception ex) {
-		            ex.printStackTrace();
-		        } finally {
-		            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-		            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-		            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		        }
-				return x;
-		    }
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
+
+	// 노트 목록을 보는 것.
+	public ArrayList getNote(int start, int end) throws Exception {
+		ArrayList noteList = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from (select seqno,writer,subject,content,reg_date,rownum r "
+					+ "from(select * from note order by reg_date desc)) where r >= ? and r <=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				noteList = new ArrayList(end);
+				do {
+					NoteDTO note = new NoteDTO();
+					note.setSeqno(rs.getInt("seqno"));
+					note.setWriter(rs.getString("writer"));
+					note.setSubject(rs.getString("subject"));
+					note.setContent(rs.getString("content"));
+					note.setReg_date(rs.getTimestamp("reg_date"));
+					noteList.add(note);
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return noteList;
+	}
+
+	// note 내용 확인 메서드.
+	public NoteDTO getNote(int seqno) throws Exception {
+		NoteDTO note = null;
+		try {
+			conn = DataBaseConnection.getConnection();
+
+			// 선택한 seqno의 모든 정보 읽기 가능하게함.
+			pstmt = conn.prepareStatement("select * from note where seqno=?");
+			pstmt.setInt(1, seqno);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				note = new NoteDTO();
+				note.setSeqno(rs.getInt("seqno"));
+				note.setWriter(rs.getString("writer"));
+				note.setSubject(rs.getString("subject"));
+				note.setContent(rs.getString("content"));
+				note.setReg_date(rs.getTimestamp("reg_date"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return note;
+	}
+
+	// note 글 수정 메서드
+	public void updateArticle(NoteDTO note) throws Exception {
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("update note set subject=?,content=? where seqno=?");
+			pstmt.setString(1, note.getSubject());
+			pstmt.setString(2, note.getContent());
+			pstmt.setInt(3, note.getSeqno());
+			pstmt.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+	}
+
+	// note 글 삭제 메서드
+	public int deleteNote(int seqno) throws Exception {
+		int x = -1;
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("delete from note where seqno=?");
+			pstmt.setInt(1, seqno);
+			pstmt.executeUpdate();
+			x = 1; // ------------------- 글 삭제 성공.
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
 
 	// Lecture_Information DB 전송
 	public void insert(Lecture_InformationDTO dto) {
@@ -669,7 +738,7 @@ public class ControlDAO {
 			pstmt.setString(2, dto.getLecture_course());
 			pstmt.setString(3, dto.getLecture_room());
 			pstmt.setString(4, dto.getTeacher());
-			
+
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -930,7 +999,7 @@ public class ControlDAO {
 			pstmt.setString(5, dto.getTeacher_pic());
 			pstmt.setString(6, dto.getTeacher_id());
 			pstmt.executeUpdate();
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -953,6 +1022,26 @@ public class ControlDAO {
 				}
 			}
 		}
+	}
+
+	// 강사 이미지
+	public String selectImg(String teacher_id) {
+		String img = null;
+		try {
+			conn = DataBaseConnection.getConnection();
+			String sql = "select Teacher_pic from Teacher_Members where teacher_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, teacher_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				img = rs.getString("img");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return img;
 	}
 
 	private void closeAll() {
@@ -1041,22 +1130,65 @@ public class ControlDAO {
 		}
 	}
 
-	// 학생ID 학인후 개인정보
-	public Student_MembersDTO studentInfo(String sessionId) {
+	// 관리자가 학생ID 확인후 개인정보
+	public Student_MembersDTO studentInfo(String studentId) {
 		Student_MembersDTO dto = new Student_MembersDTO();
 		try {
 			conn = DataBaseConnection.getConnection();
-			String sql = "select * from Student_members where Student_id=? ";
+			String sql = "select * from student_members where Student_id=? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, sessionId);
+			pstmt.setString(1, studentId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dto.setStudent_id(rs.getString("Student_id"));
-				dto.setStudent_name(rs.getString("Student_name"));
+				dto.setStudent_id(rs.getString("student_id"));
+				dto.setStudent_name(rs.getString("student_name"));
 				dto.setPassword(rs.getString("password"));
 				dto.setEmail(rs.getString("email"));
 				dto.setPhone(rs.getString("phone"));
-				dto.setStudent_pic(rs.getString("Student_pic"));
+				dto.setStudent_pic(rs.getString("student_pic"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException s) {
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException s) {
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException s) {
+				}
+			}
+		}
+		return dto;
+	}
+
+	// 학생ID 확인후 개인정보
+	public Student_MembersDTO studentInfoList(String student_id) {
+		Student_MembersDTO dto = new Student_MembersDTO();
+		try {
+			conn = DataBaseConnection.getConnection();
+			String sql = "select * from student_members where Student_id=? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto.setStudent_id(rs.getString("student_id"));
+				dto.setStudent_name(rs.getString("student_name"));
+				dto.setPassword(rs.getString("password"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setStudent_pic(rs.getString("student_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 			}
 		} catch (Exception e) {
@@ -1660,46 +1792,85 @@ public class ControlDAO {
 			}
 		}
 	}
-	
-	// 강의리스트를 
-		public ArrayList lectureAll() {
-			ArrayList list = new ArrayList();
-			try {
-				conn = DataBaseConnection.getConnection();
-				pstmt = conn.prepareStatement("select * from lecture_information");
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					Lecture_InformationDTO dto = new Lecture_InformationDTO();
-					dto.setLecture_name(rs.getString("lecture_name"));
-					dto.setLecture_course(rs.getString("lecture_course"));
-					dto.setLecture_room(rs.getString("lecture_room"));
-					dto.setTeacher(rs.getString("teacher"));
-				
-					list.add(dto);
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			} finally {
-				if (rs != null)
-					try {
-						rs.close();
-					} catch (SQLException ex) {
-					}
-				if (pstmt != null)
-					try {
-						pstmt.close();
-					} catch (SQLException ex) {
-					}
-				if (conn != null)
-					try {
-						conn.close();
-					} catch (SQLException ex) {
-					}
+
+	// 강의 리스트
+	public ArrayList lectureAll() {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from lecture_information");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+
+				list.add(dto);
 			}
-			return list;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
 		}
-	
-	
-	
+		return list;
+	}
+
+	// 강사 리스트
+	public ArrayList teacherAll() {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from teacher_members");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+
+				Teacher_MembersDTO dto = new Teacher_MembersDTO();
+				dto.setTeacher_id(rs.getString("teacher_id"));
+				dto.setTeacher_name(rs.getString("teacher_name"));
+				dto.setPassword(rs.getString("password"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setTeacher_pic(rs.getString("teacher_pic"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
 
 }

@@ -5,6 +5,7 @@
 <head>
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
+<link href="../css/left.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="script.js"></script>
 </head>
 
@@ -48,6 +49,8 @@
 %>
 
 <body bgcolor="<%=bodyback_c%>">
+	<jsp:include page="../left.jsp"/>
+	<div class="content">
 	<center>
 		<b>글쓰기</b> <br>
 		<form method="post" name="QNAWriteForm" action="QNAWritePro.jsp"
@@ -104,5 +107,11 @@
 				}
 			%>
 		</form>
+	</div>
+	<div>
+		<footer class="secondary_header footer">
+			<div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		</footer>
+	</div>
 </body>
 </html>

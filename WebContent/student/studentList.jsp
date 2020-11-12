@@ -10,6 +10,7 @@
 		<style>
 			a{text-decoration:none;}
 		</style>
+		<link href="../css/left.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 	<%
@@ -23,7 +24,7 @@
 		ControlDAO dao = ControlDAO.getInstance();
 
 	%>
-		
+		<jsp:include page="../left.jsp"/>
 		<div class="content">
 			<table border="1" cellpadding="0" cellspacing="0" align="center">
 				<tr align="center" height="50">
@@ -43,12 +44,17 @@
 							Student_MembersDTO sdto = (Student_MembersDTO)list.get(i);  %>
 				<tr>	
 					<td colspan="3" align="center" height="20">	
-							<a href="/Total.Management.System/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a> <br>
+							<a href="/Total.Management.System/student/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a> <br>
 					</td>	
 						<%}						// 페이지 값을 학생 아이디로 넘겨준다. 이게 되는 건가??%>													
 					<%} 		// 이렇게 하면 리스트만큼 테이블생성되는거 맞나?		%>
 				</tr>
 			</table>
+		</div>
+		<div>
+			<footer class="secondary_header footer">
+				<div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+			</footer>
 		</div>
 		
 	</body>

@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="team.elite.management.Admin_MembersDTO"%>
 <%@ page import="team.elite.management.ControlDAO"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 
 <head>
 	<link href="../css/left.css" rel="stylesheet" type="text/css">
@@ -21,7 +23,7 @@
 
 <jsp:include page="../left.jsp"/>
 	<div class="content">
-<form action="maupdatePro.jsp" method="post" >
+<form action="maupdatePro.jsp" method="post" enctype="multipart/form-data">
 <center>
 	<body>
 		<table border=2 width="400" height="70" bordercolor="skyblue">
@@ -60,8 +62,14 @@
 
 			<tr>
 				<td>사진 :</td>
-				<td><input type="text" name="admin_pic"
-					value="<%=dto.getAdmin_pic()%>" /></td>
+				<td>
+				<input type="file" name="Admin_pic" /><br />
+	    		<input type="hidden" name="sysImg" value="<%=dto.getAdmin_pic() %>" />
+	    		<img src="/Total.Management.System/img/<%=dto.getAdmin_pic() %>" />
+				
+				
+				</td>
+				
 			</tr>
 
 			<tr>
@@ -78,9 +86,9 @@
 
 </form>
 </div>
-<!-- 	<div>
+	<div>
 	<footer class="secondary_header footer">
 		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
 	 </footer>
-	</div> -->
+	</div>
 </body>

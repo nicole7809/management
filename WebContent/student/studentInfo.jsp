@@ -16,7 +16,7 @@
 		ControlDAO dao = ControlDAO.getInstance();
 		Student_MembersDTO dto = dao.studentInfo(sessionId);
 	%>
-	<jsp:include page="studentLeft.jsp"/>
+	<jsp:include page="../left.jsp"/>
 	<div class="content">
 	<form action="studentUpdate.jsp" method="post">
 	
