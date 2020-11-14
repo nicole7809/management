@@ -34,7 +34,7 @@ a {
 
 	<jsp:include page="../left.jsp" />
 	<div class="content">
-		<form action="/Total.Management.System/lecture/lecturePro.jsp"method="post">
+		
 <!-- 			<div class="content"> -->
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
 					<tr align="center" height="50">
@@ -52,11 +52,9 @@ a {
 					<tr>
 						
 						
-						<a href="/Total.Management.System/lecture/teacherInfo.jsp?teacher_id=<%=dto.getTeacher_id()%>"></a>
+					<a href="/Total.Management.System/lecture/teacherInfo.jsp?teacher_name=<%=dto.getTeacher_name()%>"></a>
 						<td><%=dto.getTeacher_name()%></td> 
-						
-						
-					
+
 					</tr>
 			
 					<%-- href="/Total.Management.System/lecture/lecturePro.jsp?lecture_name=<%=sdto.getLecture_name()%>"> --%>

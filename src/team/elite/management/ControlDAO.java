@@ -16,6 +16,7 @@ public class ControlDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
+	private String name;
 
 	/*
 	 * public static Connection getConnection() throws Exception { Context ctx = new
@@ -39,7 +40,7 @@ public class ControlDAO {
 	public void insert(Student_MembersDTO dto) {
 		try {
 			conn = DataBaseConnection.getConnection();
-			String sql = "insert into student_members values(?,?,?,?,?,?,sysdate)";
+			String sql = "insert into student_members values(?,?,?,?,?,?,sysdate,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getStudent_id());
 			pstmt.setString(2, dto.getStudent_name());
@@ -47,6 +48,7 @@ public class ControlDAO {
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getPhone());
 			pstmt.setString(6, dto.getStudent_pic());
+			pstmt.setString(6, dto.getLecture_code());
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -732,12 +734,14 @@ public class ControlDAO {
 	public void insert(Lecture_InformationDTO dto) {
 		try {
 			conn = DataBaseConnection.getConnection();
-			String sql = "insert into lecture_information values(?,?,?,?)";
+			String sql = "insert into lecture_information values(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getLecture_name());
 			pstmt.setString(2, dto.getLecture_course());
 			pstmt.setString(3, dto.getLecture_room());
 			pstmt.setString(4, dto.getTeacher());
+			pstmt.setString(5, dto.getStudent());
+			pstmt.setString(6, dto.getLecture_code());
 
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
@@ -1806,7 +1810,8 @@ public class ControlDAO {
 				dto.setLecture_course(rs.getString("lecture_course"));
 				dto.setLecture_room(rs.getString("lecture_room"));
 				dto.setTeacher(rs.getString("teacher"));
-
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
 				list.add(dto);
 			}
 		} catch (Exception ex) {
@@ -1872,24 +1877,139 @@ public class ControlDAO {
 		}
 		return list;
 	}
-	
-	//학생의 상태(수강,수료,취업,탈퇴,중도포기 )설정메서드
-			public void studentState(String student_id, String state)
-				throws Exception {
-					try {
-						conn = DataBaseConnection.getConnection();
-						pstmt = conn.prepareStatement("update student_members set state=? where student_id=?");
-						int s = Integer.parseInt(state);
-						pstmt.setInt(1, s);
-						pstmt.setString(2, student_id);
-						pstmt.executeUpdate();
-					}catch(Exception ex) {
-				           ex.printStackTrace();
-				    } finally {
-				    	if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-						if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-						if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+
+	/*
+	 * // 강사별 담당 반 리스트 public ArrayList teacher (String name) { ArrayList list = new
+	 * ArrayList(); try { conn = DataBaseConnection.getConnection(); pstmt =
+	 * conn.prepareStatement("select * from lecture_information where teacher = ?");
+	 * pstmt.setString(1, name ); dto.setTeacher(rs.getString("teacher")); rs =
+	 * pstmt.executeQuery(); }catch(Exception ex) { ex.printStackTrace(); } finally
+	 * { if (rs != null) try { rs.close(); } catch(SQLException ex) {} if (pstmt !=
+	 * null) try { pstmt.close(); } catch(SQLException ex) {} if (conn != null) try
+	 * { conn.close(); } catch(SQLException ex) {} } return list; }
+	 */
+	// 강사별 담당 반 리스트
+		public ArrayList teacher(String name) {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from lecture_information where teacher = ?");
+			pstmt.setString(1,name);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
+		
+		
+		// 강사별 담당 반 리스트
+				public ArrayList lectureDetail(String name) {
+				ArrayList list = new ArrayList();
+				try {
+					conn = DataBaseConnection.getConnection();
+					pstmt = conn.prepareStatement("select * from lecture_information where lecture_name = ?");
+					pstmt.setString(1,name);
+					rs = pstmt.executeQuery();
+					while (rs.next()) {
+						Lecture_InformationDTO dto = new Lecture_InformationDTO();
+						dto.setLecture_name(rs.getString("lecture_name"));
+						dto.setLecture_course(rs.getString("lecture_course"));
+						dto.setLecture_room(rs.getString("lecture_room"));
+						dto.setTeacher(rs.getString("teacher"));
+						dto.setStudent(rs.getString("student"));
+						dto.setLecture_code(rs.getString("lecture_code"));
+						list.add(dto);
 					}
-			 }
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				} finally {
+					if (rs != null)
+						try {
+							rs.close();
+						} catch (SQLException ex) {
+						}
+					if (pstmt != null)
+						try {
+							pstmt.close();
+						} catch (SQLException ex) {
+						}
+					if (conn != null)
+						try {
+							conn.close();
+						} catch (SQLException ex) {
+						}
+				}
+				return list;
+			}
+		
+		
+		
+
+		
+		
+
+	// 학생의 상태(수강,수료,취업,탈퇴,중도포기 )설정메서드
+	public void studentState(String student_id, String state) throws Exception {
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("update student_members set state=? where student_id=?");
+			int s = Integer.parseInt(state);
+			pstmt.setInt(1, s);
+			pstmt.setString(2, student_id);
+			pstmt.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+	}
+
+
+
+
+
+
+
 
 }

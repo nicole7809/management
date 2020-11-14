@@ -18,7 +18,7 @@
 	%>
 	<jsp:include page="../left.jsp"/>
 	<div class="content">
-	<form action="studentUpdate.jsp" method="post">
+	<form action="studentUpdate.jsp" method="post" enctype="multipart/form-data">
 	
 		<center>
 	<table border=2 width="400" height="70" bordercolor="skyblue">
@@ -49,11 +49,24 @@
 			</tr>
 			<tr>
 				<td>사진 :</td>
-				<td><input type="text" name="student_pic" value="<%=dto.getStudent_pic()%>" /> </td>
+				<td>
+				<input type="file" name="Student_pic" /><br />
+	    		<input type="hidden" name="sysImg" value="<%=dto.getStudent_pic() %>" />
+	    		<img src="/Total.Management.System/img/<%=dto.getStudent_pic() %>" />
+				
 			</tr>
 			<tr>
 				<td>가입날짜 :</td>
 				<td><%=dto.getReg_date()%></td>
+			</tr>
+			<tr>
+				<td>이미지 이름</td>
+				<td><%=dto.getStudent_pic()%></td>
+			</tr>
+			<tr>
+				<td>강의코드</td>
+			
+			<td><input type="text" name="code"/><%=dto.getLecture_code()%></td>
 			</tr>
 		</table>
 		<input type="submit" value ="정보수정" />

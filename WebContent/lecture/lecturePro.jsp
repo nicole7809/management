@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>회원가입 처리 JSP</title>
+<title>강의 등록</title>
 
 <!-- css 파일 분리 -->
 <link href='../../css/join_style.css' rel='stylesheet' style='text/css' />
@@ -30,8 +30,6 @@
 		d.insert(dto);
 	%>
 	<div id="wrap">
-
-
 		<%-- 자바빈에서 입력된 값을 추출한다. --%>
 		<table>
 			<tr>
@@ -53,14 +51,22 @@
 				<td id="title">강사</td>
 				<td><%=dto.getTeacher()%></td>
 			</tr>
-
+			
+			
+			<tr>
+				<td id="title">수강생 이름</td>
+				<td><%=dto.getStudent()%></td>
+			</tr>
+			
+			<tr>
+				<td id="title">강의 코드</td>
+				<td><%=dto.getLecture_code()%></td>
+			</tr>
 		</table>
-
 		<br>
-		<button onclick="window.location='myInfo.jsp'">회원 정보 수정</button>
-		<button onclick="window.location='deleteForm.jsp'">탈 퇴</button>
-		<button onclick="window.location='Logout.jsp'">로그아웃</button>
+		<button
+			onclick="window.location='/Total.Management.System/management/courseList.jsp'">
+			강의정보</button>
 	</div>
-
 </body>
 </html>

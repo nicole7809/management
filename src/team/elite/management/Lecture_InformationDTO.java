@@ -7,6 +7,10 @@ public class Lecture_InformationDTO {
 	private String lecture_course;
 	private String lecture_room;
 	private String teacher;
+	private String student;
+	private String lecture_code;
+	
+	
 	public String getLecture_name() {
 		return lecture_name;
 	}
@@ -31,10 +35,18 @@ public class Lecture_InformationDTO {
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
 	}
-	
-	
-	
-	
+	public String getStudent() {
+		return student;
+	}
+	public void setStudent(String student) {
+		this.student = student;
+	}
+	public String getLecture_code() {
+		return lecture_code;
+	}
+	public void setLecture_code(String lecture_code) {
+		this.lecture_code = lecture_code;
+	}
 	
 	
 	
