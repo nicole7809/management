@@ -2107,7 +2107,7 @@ public class ControlDAO {
 			ex.printStackTrace();
 		} finally {
 			if (rs != null)
-				try {
+				try {				
 					rs.close();
 				} catch (SQLException ex) {
 				}
