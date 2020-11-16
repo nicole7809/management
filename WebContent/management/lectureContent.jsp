@@ -4,7 +4,6 @@
 <%@ page import="team.elite.management.Lecture_InformationDTO"%>
 <%@ page import="java.util.ArrayList"%>
 
-
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
@@ -14,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 강사 강의 정보</title>
+<title>강사 강의 정보</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
@@ -46,7 +45,7 @@ a {
 				</tr>
 				<%
 					String name = request.getParameter("name");
-					
+
 					ArrayList list = dao.teacher(name);
 					ArrayList teacher = new ArrayList<Lecture_InformationDTO>();
 					if (list.size() > 0) {

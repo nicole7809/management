@@ -48,7 +48,7 @@ public class ControlDAO {
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getPhone());
 			pstmt.setString(6, dto.getStudent_pic());
-	
+
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -965,7 +965,6 @@ public class ControlDAO {
 				dto.setTeacher_pic(rs.getString("teacher_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1154,7 +1153,7 @@ public class ControlDAO {
 				dto.setPhone(rs.getString("phone"));
 				dto.setStudent_pic(rs.getString("student_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1848,16 +1847,13 @@ public class ControlDAO {
 			pstmt = conn.prepareStatement("select * from teacher_members");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-
 				Teacher_MembersDTO dto = new Teacher_MembersDTO();
 				dto.setTeacher_id(rs.getString("teacher_id"));
 				dto.setTeacher_name(rs.getString("teacher_name"));
 				dto.setPassword(rs.getString("password"));
 				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));
 				dto.setTeacher_pic(rs.getString("teacher_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
-
 				list.add(dto);
 			}
 		} catch (Exception ex) {
@@ -1882,16 +1878,6 @@ public class ControlDAO {
 		return list;
 	}
 
-	/*
-	 * // 강사별 담당 반 리스트 public ArrayList teacher (String name) { ArrayList list = new
-	 * ArrayList(); try { conn = DataBaseConnection.getConnection(); pstmt =
-	 * conn.prepareStatement("select * from lecture_information where teacher = ?");
-	 * pstmt.setString(1, name ); dto.setTeacher(rs.getString("teacher")); rs =
-	 * pstmt.executeQuery(); }catch(Exception ex) { ex.printStackTrace(); } finally
-	 * { if (rs != null) try { rs.close(); } catch(SQLException ex) {} if (pstmt !=
-	 * null) try { pstmt.close(); } catch(SQLException ex) {} if (conn != null) try
-	 * { conn.close(); } catch(SQLException ex) {} } return list; }
-	 */
 	// 강사별 담당 반 리스트
 	public ArrayList teacher(String name) {
 		ArrayList list = new ArrayList();
@@ -2018,7 +2004,7 @@ public class ControlDAO {
 		try {
 			conn = DataBaseConnection.getConnection();
 			pstmt = conn.prepareStatement(
-					"select * from (select * from teacher_members where TEACHER_ID=？) th,lecture_information le where th.TEACHER_NAME=le.TEACHER");
+					"select * from (select * from teacher_members where teacher_id =? ) th,lecture_information le where th.TEACHER_NAME=le.TEACHER");
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -2107,7 +2093,7 @@ public class ControlDAO {
 			ex.printStackTrace();
 		} finally {
 			if (rs != null)
-				try {				
+				try {
 					rs.close();
 				} catch (SQLException ex) {
 				}

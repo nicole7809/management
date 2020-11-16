@@ -49,22 +49,20 @@ a {
 						for (int i = 0; i < list.size(); i++) {
 							Lecture_InformationDTO dto = (Lecture_InformationDTO) list.get(i);
 				%>
-
 				<tr>
 					<td><%=dto.getLecture_name()%></td>
 					<td><%=dto.getLecture_course()%></td>
 					<td><%=dto.getLecture_room()%></td>
 					<td><%=dto.getTeacher()%></td>
 					<td><%=dto.getStudent()%></td>
+					<td><%=dto.getLecture_code()%></td>
 				</tr>
-
-
 				<%
 					}
 					}
 				%>
-
 			</table>
 		</div>
 </body>
 </html>
+	

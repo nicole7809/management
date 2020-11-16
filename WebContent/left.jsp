@@ -45,7 +45,8 @@
 		%>
 
 		<a href="/Total.Management.System/management/courseList.jsp">강의 정보</a>
-		<a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
+		<a href="/Total.Management.System/management/teacherList.jsp">강사 리스트</a>
+		<a href="/Total.Management.System/management/studentList.jsp">학생 리스트</a>
 		<%
 			}
 		%>

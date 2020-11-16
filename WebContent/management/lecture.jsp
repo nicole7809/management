@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>코드 강의정보 </title>
+<title>코드 강의정보</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
