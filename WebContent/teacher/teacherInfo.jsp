@@ -58,12 +58,12 @@
 				<input type="hidden" name="sysImg" value="<%=dto.getTeacher_pic()%>" />
 				<input type="hidden" name="teacher_id" value="<%=dto.getTeacher_id()%>" />
 			  	<img src="/Total.Management.System/img/<%=dto.getTeacher_pic()%>" />
-				
-				
-				
 				</td>
 			</tr>
-		
+			<tr>
+				<td>이미지 이름</td>
+				<td><%=dto.getTeacher_pic()%></td>
+			</tr>
 				</tr>
 				<td>가입날짜 :</td>
 				<td><%=dto.getReg_date()%></td>

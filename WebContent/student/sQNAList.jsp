@@ -45,7 +45,7 @@
 %>
 <html>
 <head>
-<title>게시판</title>
+<title>Q&A 게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
@@ -53,7 +53,7 @@
 <body bgcolor="<%=bodyback_c%>">
 	<jsp:include page="../left.jsp"/>
 	<div class="content">
-		<center><b>글목록(전체 글:<%=count%>)</b>
+		<center><b>Q&A 게시판(전체 글:<%=count%>)</b>
 		<table width="700">
 		<tr>
 		<!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->

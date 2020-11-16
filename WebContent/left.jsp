@@ -23,12 +23,14 @@
 			if (studentId != null && teacherId == null && adminId == null) { // 학생로그인일 경우
 		%>
 		<a href="/Total.Management.System/student/studentInfo.jsp"><%=studentId%>
-			[님]</a> <a href="/Total.Management.System/">내 강의 정보</a>
+			[님]</a> <a href="/Total.Management.System/student/stMyLecture.jsp">내 강의 정보</a>
 		<%
 			} else if (studentId == null && teacherId != null && adminId == null) { // 강사로그인일 경우
 		%>
 		<a href="/Total.Management.System/teacher/teacherInfo.jsp"><%=teacherId%>
-			[님]</a> <a href="/Total.Management.System/">내 강의 정보</a>
+			[님]</a> <a href="/Total.Management.System/teacher/tcMyLecture.jsp">내 강의 정보</a>
+			
+			
 		<%
 			} else if (studentId == null && teacherId == null && adminId != null) { // 행정로그인일 경우
 		%>
@@ -42,7 +44,7 @@
 			if (studentId == null && teacherId == null && adminId != null) {
 		%>
 
-		<a href="/Total.Management.System/management/courseList.jsp">강의리스트</a>
+		<a href="/Total.Management.System/management/courseList.jsp">강의 정보</a>
 		<a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
 		<%
 			}

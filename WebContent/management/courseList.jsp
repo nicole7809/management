@@ -3,7 +3,7 @@
 <%@ page import="team.elite.management.ControlDAO"%>
 <%@ page import="team.elite.management.Lecture_InformationDTO"%>
 <%@ page import="java.util.ArrayList"%>
-
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,6 @@ a {
 		request.setCharacterEncoding("UTF-8");
 		ControlDAO dao = ControlDAO.getInstance();
 	%>
-
 	<jsp:include page="../left.jsp" />
 	<form action="/Total.Management.System/lecture/lecturePro.jsp"
 		method="post">
@@ -43,26 +42,19 @@ a {
 					if (list.size() > 0) {
 						for (int i = 0; i < list.size(); i++) {
 							Lecture_InformationDTO dto = (Lecture_InformationDTO) list.get(i);
+							String en = URLEncoder.encode( dto.getLecture_name(),"UTF-8");
 				%>
-
 				<tr>
-					<td><a href="../management/lectureDetail.jsp?name=<%=dto.getLecture_name()%>"><%=dto.getLecture_name()%></a></td>
-
+					<td><a
+						href="../management/lectureDetail.jsp?name=<%=en%>"><%=dto.getLecture_name()%></a></td>
 					<td><%=dto.getLecture_course()%></td>
 					<td><%=dto.getLecture_room()%></td>
-					<td><a href="../management/lectureContent.jsp?name=<%=dto.getTeacher()%>"><%=dto.getTeacher()%></a>
-					</td>
-
+					<td><a
+						href="../management/lectureContent.jsp?name=<%=dto.getTeacher()%>"><%=dto.getTeacher()%></a></td>
 					<td><%=dto.getStudent()%></td>
-					<td><%=dto.getLecture_code()%></td>
-
-
+					<td><a
+						href="../management/lecture.jsp?name=<%=dto.getLecture_code()%>"><%=dto.getLecture_code()%></a></td>
 				</tr>
-				<%-- href="/Total.Management.System/lecture/lecturePro.jsp?lecture_name=<%=sdto.getLecture_name()%>"> --%>
-				<%-- 		<%=sdto.getLecture_name()%> 
-								<%=sdto.getLecture_course()%> 
-								<%=sdto.getLecture_room()%>
-								<%=sdto.getTeacher()%> --%>
 				<%
 					}
 					}

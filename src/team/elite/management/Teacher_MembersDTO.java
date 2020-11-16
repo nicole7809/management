@@ -12,6 +12,8 @@ public class Teacher_MembersDTO {
 	private Timestamp reg_date;
 	private String auto;
 
+
+
 	public String getTeacher_id() {
 		return teacher_id;
 	}

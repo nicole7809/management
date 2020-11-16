@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="team.elite.management.*"%>
+<%@ page import="team.elite.management.ControlDAO"%>
+<%@ page import="team.elite.management.Lecture_InformationDTO"%>
 <%@ page import="java.util.ArrayList"%>
 
 
@@ -13,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title> 강사 강의 정보</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
@@ -47,7 +48,6 @@ a {
 					String name = request.getParameter("name");
 					
 					ArrayList list = dao.teacher(name);
-					//ArrayList list = dao.teacher();
 					ArrayList teacher = new ArrayList<Lecture_InformationDTO>();
 					if (list.size() > 0) {
 						for (int i = 0; i < list.size(); i++) {

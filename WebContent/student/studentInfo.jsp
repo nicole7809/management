@@ -63,20 +63,16 @@
 				<td>이미지 이름</td>
 				<td><%=dto.getStudent_pic()%></td>
 			</tr>
-			<tr>
-				<td>강의코드</td>
 			
-			<td><input type="text" name="code"/><%=dto.getLecture_code()%></td>
-			</tr>
 		</table>
 		<input type="submit" value ="정보수정" />
 	</form>
-	</div>
+	<!-- </div>
 
 	<footer class="secondary_header footer">
 		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
 	 </footer>
-	</div>
+	</div> -->
 </body>
 	
 	

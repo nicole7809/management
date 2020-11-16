@@ -40,7 +40,7 @@ public class ControlDAO {
 	public void insert(Student_MembersDTO dto) {
 		try {
 			conn = DataBaseConnection.getConnection();
-			String sql = "insert into student_members values(?,?,?,?,?,?,sysdate,?)";
+			String sql = "insert into student_members values(?,?,?,?,?,?,sysdate )";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getStudent_id());
 			pstmt.setString(2, dto.getStudent_name());
@@ -48,7 +48,7 @@ public class ControlDAO {
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getPhone());
 			pstmt.setString(6, dto.getStudent_pic());
-			pstmt.setString(6, dto.getLecture_code());
+	
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,6 +83,7 @@ public class ControlDAO {
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getPhone());
 			pstmt.setString(6, dto.getTeacher_pic());
+
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -963,6 +964,8 @@ public class ControlDAO {
 				dto.setPhone(rs.getString("phone"));
 				dto.setTeacher_pic(rs.getString("teacher_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
+
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1151,6 +1154,7 @@ public class ControlDAO {
 				dto.setPhone(rs.getString("phone"));
 				dto.setStudent_pic(rs.getString("student_pic"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1371,7 +1375,7 @@ public class ControlDAO {
 		return x;
 	}
 
-	public int getArticleCount(String writer) throws Exception {
+	public int tacherId(String writer) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -1889,12 +1893,12 @@ public class ControlDAO {
 	 * { conn.close(); } catch(SQLException ex) {} } return list; }
 	 */
 	// 강사별 담당 반 리스트
-		public ArrayList teacher(String name) {
+	public ArrayList teacher(String name) {
 		ArrayList list = new ArrayList();
 		try {
 			conn = DataBaseConnection.getConnection();
 			pstmt = conn.prepareStatement("select * from lecture_information where teacher = ?");
-			pstmt.setString(1,name);
+			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Lecture_InformationDTO dto = new Lecture_InformationDTO();
@@ -1927,53 +1931,168 @@ public class ControlDAO {
 		}
 		return list;
 	}
-		
-		
-		// 강사별 담당 반 리스트
-				public ArrayList lectureDetail(String name) {
-				ArrayList list = new ArrayList();
-				try {
-					conn = DataBaseConnection.getConnection();
-					pstmt = conn.prepareStatement("select * from lecture_information where lecture_name = ?");
-					pstmt.setString(1,name);
-					rs = pstmt.executeQuery();
-					while (rs.next()) {
-						Lecture_InformationDTO dto = new Lecture_InformationDTO();
-						dto.setLecture_name(rs.getString("lecture_name"));
-						dto.setLecture_course(rs.getString("lecture_course"));
-						dto.setLecture_room(rs.getString("lecture_room"));
-						dto.setTeacher(rs.getString("teacher"));
-						dto.setStudent(rs.getString("student"));
-						dto.setLecture_code(rs.getString("lecture_code"));
-						list.add(dto);
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				} finally {
-					if (rs != null)
-						try {
-							rs.close();
-						} catch (SQLException ex) {
-						}
-					if (pstmt != null)
-						try {
-							pstmt.close();
-						} catch (SQLException ex) {
-						}
-					if (conn != null)
-						try {
-							conn.close();
-						} catch (SQLException ex) {
-						}
-				}
-				return list;
-			}
-		
-		
-		
 
-		
-		
+	// 같은 강의 명 전부 리스트.
+	public ArrayList lectureDetail(String name) {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from lecture_information where lecture_name = ?");
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
+
+	// 같은 강의 명 전부 리스트.
+	public ArrayList lecture(String name) {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from lecture_information where lecture_code = ?");
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
+
+	// 강사 계정별 해당 강의 리스트.
+	public ArrayList TeacherLecture(String name) {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from (select * from teacher_members where TEACHER_ID=？) th,lecture_information le where th.TEACHER_NAME=le.TEACHER");
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
+
+	// 학생 계정별 해당 강의 리스트.
+	public ArrayList StudentLecture(String name) {
+		ArrayList list = new ArrayList();
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from (select * from student_members where student_id =? ) th,lecture_information le where th.STUDENT_NAME=le.STUDENT");
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Lecture_InformationDTO dto = new Lecture_InformationDTO();
+				dto.setLecture_name(rs.getString("lecture_name"));
+				dto.setLecture_course(rs.getString("lecture_course"));
+				dto.setLecture_room(rs.getString("lecture_room"));
+				dto.setTeacher(rs.getString("teacher"));
+				dto.setStudent(rs.getString("student"));
+				dto.setLecture_code(rs.getString("lecture_code"));
+				list.add(dto);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return list;
+	}
 
 	// 학생의 상태(수강,수료,취업,탈퇴,중도포기 )설정메서드
 	public void studentState(String student_id, String state) throws Exception {
@@ -2004,12 +2123,5 @@ public class ControlDAO {
 				}
 		}
 	}
-
-
-
-
-
-
-
 
 }

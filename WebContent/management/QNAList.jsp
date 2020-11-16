@@ -60,7 +60,7 @@
 </head>
 
 <body bgcolor="<%=bodyback_c%>">
-<center><b>글목록(전체 글:<%=count%>)</b>
+<center><b>Q&A 게시판(전체 글:<%=count%>)</b>
 <table width="700">
 <tr>
 <!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->

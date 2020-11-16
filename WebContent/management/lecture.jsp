@@ -9,10 +9,12 @@
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+	<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"> 
-<title> 같은 강의면 정보</title>
+<meta charset="UTF-8">
+<title>코드 강의정보 </title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 </head>
@@ -44,16 +46,13 @@ a {
 				</tr>
 				<%
 					String name = request.getParameter("name");
-					
-					ArrayList list = dao.lectureDetail(name);
+					ArrayList list = dao.lecture(name);
 					//ArrayList list = dao.teacher();
-					ArrayList lecture_name = new ArrayList<Lecture_InformationDTO>();
+					ArrayList lecture_code = new ArrayList<Lecture_InformationDTO>();
 					if (list.size() > 0) {
 						for (int i = 0; i < list.size(); i++) {
 							Lecture_InformationDTO dto = (Lecture_InformationDTO) list.get(i);
 				%>
-
-
 				<tr>
 					<td><%=dto.getLecture_name()%></td>
 					<td><%=dto.getLecture_course()%></td>

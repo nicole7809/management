@@ -11,16 +11,7 @@ public class Student_MembersDTO {
 	private String student_pic;
 	private Timestamp reg_date;
 	private String auto;
-	private String lecture_code;
 
-	
-	public String getLecture_code() {
-		return lecture_code;
-	}
-
-	public void setLecture_code(String lecture_code) {
-		this.lecture_code = lecture_code;
-	}
 
 	public String getStudent_id() {
 		return student_id;
