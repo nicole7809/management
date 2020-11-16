@@ -31,8 +31,8 @@
 			<strong><p style="font-size:30;color:skyblue"  face="Times">강사 개인 정보 수정</p><strong>
 			<tr>
 				<td>강사 아이디 :</td>
-				<%-- <td><%=dto.getTeacher_id() %></td> --%>
-				<td><input type="tdacherid" name="teacher_id" value="<%=dto.getTeacher_id() %>" /></td>
+				<td><%=dto.getTeacher_id() %></td>
+				<td><input type="hidden" name="teacher_id" value="<%=dto.getTeacher_id() %>" /></td>
 			</tr>
 			<tr>
 				<td>강사 이름 :</td>

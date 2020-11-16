@@ -29,8 +29,8 @@
 			<strong><p style="font-size:30;color:skyblue"  face="Times">학생 개인 정보 수정</p><strong>
 			<tr>
 				<td>학생 ID :</td>
-				<%-- <td><%=dto.getStudent_id() %></td> --%>
-				<td><input type="studentid" name="student_id" value="<%=dto.getStudent_id() %>" /></td>
+				<td><%=dto.getStudent_id() %></td>
+				<td><input type="hidden" name="student_id" value="<%=dto.getStudent_id() %>" /></td>
 			</tr>
 			<tr>
 				<td>학생 이름 :</td>

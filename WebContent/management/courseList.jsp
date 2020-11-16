@@ -62,8 +62,8 @@ a {
 					}
 					}
 				%>
-
 			</table>
+		
 		</div>
 </body>
 </html>
