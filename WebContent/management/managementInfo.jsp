@@ -39,8 +39,8 @@
 			</tr>
 			<tr>
 				<td>관리자 이름 :</td>
-				<td><input type="text" name="admin_name"
-					value="<%=dto.getAdmin_name()%>" /></td>
+				<td><%=dto.getAdmin_name()%></td>
+				<input type="hidden" name="admin_name" value="<%=dto.getAdmin_name()%>" />
 			</tr>
 
 			<tr>

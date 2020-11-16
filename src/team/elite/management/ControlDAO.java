@@ -188,7 +188,7 @@ public class ControlDAO {
 		try {
 			conn = DataBaseConnection.getConnection();
 			sql = "insert into notice(num,writer,subject,reg_date,";
-			sql += "content,ip) values(notice_seq.nextval,?,?,?,?,?)";
+			sql += "content,ip,important) values(notice_seq.nextval,?,?,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, notice.getWriter());
@@ -196,6 +196,7 @@ public class ControlDAO {
 			pstmt.setTimestamp(3, notice.getReg_date());
 			pstmt.setString(4, notice.getContent());
 			pstmt.setString(5, notice.getIp());
+			pstmt.setInt(6, notice.getImportant());
 
 			pstmt.executeUpdate(); // DB 에 업에이트
 		} catch (Exception ex) {
@@ -252,15 +253,16 @@ public class ControlDAO {
 	}
 
 	// 공지사항 목록을 보는 것.
-	public List getNotice(int start, int end) throws Exception {
+	public List getNotice(int start, int end, int important) throws Exception {
 		List noticeList = null;
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn
-					.prepareStatement("select * from (select num,writer,subject,reg_date,content,ip,readcount,rownum r "
-							+ "from (select * from notice order by reg_date desc)) where r >= ? and r <= ? ");
+			pstmt = conn.prepareStatement(
+					"select * from (select num,writer,subject,reg_date,content,ip,readcount,important, rownum r "
+							+ "from (select * from notice order by reg_date desc)) where r >= ? and r <= ? and important=?");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			pstmt.setInt(3, important);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -274,10 +276,63 @@ public class ControlDAO {
 					notice.setContent(rs.getString("content"));
 					notice.setIp(rs.getString("ip"));
 					notice.setReadcount(rs.getInt("readcount"));
+					notice.setImportant(rs.getInt("important"));
 
 					noticeList.add(notice);
 				} while (rs.next());
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return noticeList;
+	}
+
+	// 중요 공지사항 목록을 보는 것.
+	public List getImportantNotice(int start, int end, int important) throws Exception {
+		List noticeList = null;
+		try {
+			conn = DataBaseConnection.getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from (select num,writer,subject,reg_date,content,ip,readcount,important, rownum r "
+							+ "from (select * from notice order by important desc, reg_date desc)) where r >= ? and r <= ? and important=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3, important);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				noticeList = new ArrayList(end);
+				do {
+					NoticeDTO notice = new NoticeDTO();
+					notice.setNum(rs.getInt("num"));
+					notice.setWriter(rs.getString("writer"));
+					notice.setSubject(rs.getString("subject"));
+					notice.setReg_date(rs.getTimestamp("reg_date"));
+					notice.setContent(rs.getString("content"));
+					notice.setIp(rs.getString("ip"));
+					notice.setReadcount(rs.getInt("readcount"));
+					notice.setImportant(rs.getInt("important"));
+
+					noticeList.add(notice);
+				} while (rs.next());
+			}
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -364,6 +419,7 @@ public class ControlDAO {
 				notice.setContent(rs.getString("content"));
 				notice.setIp(rs.getString("ip"));
 				notice.setReadcount(rs.getInt("readcount"));
+				notice.setImportant(rs.getInt("important"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -391,11 +447,12 @@ public class ControlDAO {
 	public void updateArticle(NoticeDTO notice) throws Exception {
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn.prepareStatement("update notice set writer=?,subject=?,content=? where num=?");
+			pstmt = conn.prepareStatement("update notice set writer=?,subject=?,content=?, important=? where num=?");
 			pstmt.setString(1, notice.getWriter());
 			pstmt.setString(2, notice.getSubject());
 			pstmt.setString(3, notice.getContent());
-			pstmt.setInt(4, notice.getNum());
+			pstmt.setInt(4, notice.getImportant());
+			pstmt.setInt(5, notice.getNum());
 
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
@@ -450,75 +507,6 @@ public class ControlDAO {
 		return x;
 	}
 
-	/*
-	 * // Note DB 전송 public void insert(NoteDTO note) { int seqno = note.getSeqno();
-	 * String sql = ""; try { conn = DataBaseConnection.getConnection(); sql =
-	 * "insert into note(seqno,writer,subject,content,reg_date) values(note_seq.nextval,?,?,?,?)"
-	 * ; pstmt = conn.prepareStatement(sql); pstmt.setString(1, note.getWriter());
-	 * pstmt.setString(2, note.getSubject()); pstmt.setString(3, note.getContent());
-	 * pstmt.setTimestamp(4, note.getReg_date()); pstmt.executeUpdate(); // DB 에
-	 * 업에이트 } catch(Exception ex) { ex.printStackTrace(); } finally { if (rs !=
-	 * null) try { rs.close(); } catch(SQLException ex) {} if (pstmt != null) try {
-	 * pstmt.close(); } catch(SQLException ex) {} if (conn != null) try {
-	 * conn.close(); } catch(SQLException ex) {} } } //note 전체글 갯수를 보고 목록 번호를 1부터
-	 * 시작하는 것. public int getNoteCount() throws Exception { int x =0; try { conn =
-	 * DataBaseConnection.getConnection(); pstmt =
-	 * conn.prepareStatement("select count(*) from note"); rs =
-	 * pstmt.executeQuery(); if(rs.next() ) { x = rs.getInt(1); } }catch(Exception
-	 * ex) { ex.printStackTrace(); } finally { if (rs != null) try { rs.close(); }
-	 * catch(SQLException ex) {} if (pstmt != null) try { pstmt.close(); }
-	 * catch(SQLException ex) {} if (conn != null) try { conn.close(); }
-	 * catch(SQLException ex) {} } return x; } // 노트 목록을 보는 것. public ArrayList
-	 * getNote() throws Exception { ArrayList noteList = new ArrayList(); try { conn
-	 * = DataBaseConnection.getConnection(); pstmt=
-	 * conn.prepareStatement("select * from note order by reg_date desc"); rs =
-	 * pstmt.executeQuery();
-	 * 
-	 * while (rs.next()){ NoteDTO note = new NoteDTO();
-	 * note.setSeqno(rs.getInt("seqno")); note.setWriter(rs.getString("writer"));
-	 * note.setSubject(rs.getString("subject"));
-	 * note.setContent(rs.getString("content"));
-	 * note.setReg_date(rs.getTimestamp("reg_date")); noteList.add(note); }
-	 * }catch(Exception ex) { ex.printStackTrace(); } finally { if (rs != null) try
-	 * { rs.close(); } catch(SQLException ex) {} if (pstmt != null) try {
-	 * pstmt.close(); } catch(SQLException ex) {} if (conn != null) try {
-	 * conn.close(); } catch(SQLException ex) {} } return noteList; }
-	 * 
-	 * // note 내용 확인 메서드. public NoteDTO getNote(int seqno) throws Exception {
-	 * NoteDTO note = null; try { conn = DataBaseConnection.getConnection();
-	 * 
-	 * // 선택한 seqno의 모든 정보 읽기 가능하게함. pstmt =
-	 * conn.prepareStatement("select * from note where seqno=?"); pstmt.setInt(1,
-	 * seqno); rs = pstmt.executeQuery(); if(rs.next()) { note = new NoteDTO();
-	 * note.setSeqno(rs.getInt("seqno")); note.setWriter(rs.getString("writer"));
-	 * note.setSubject(rs.getString("subject"));
-	 * note.setContent(rs.getString("content"));
-	 * note.setReg_date(rs.getTimestamp("reg_date")); } }catch(Exception ex) {
-	 * ex.printStackTrace(); } finally { if (rs != null) try { rs.close(); }
-	 * catch(SQLException ex) {} if (pstmt != null) try { pstmt.close(); }
-	 * catch(SQLException ex) {} if (conn != null) try { conn.close(); }
-	 * catch(SQLException ex) {} } return note; } //note 글 수정 메서드 public void
-	 * updateArticle(NoteDTO note) // 오버라이딩 throws Exception { try { conn =
-	 * DataBaseConnection.getConnection(); pstmt = conn.
-	 * prepareStatement("update note set writer=?,subject=?,content=? where seqno=?"
-	 * ); pstmt.setString(1, note.getWriter()); pstmt.setString(2,
-	 * note.getSubject()); pstmt.setString(3, note.getContent()); pstmt.setInt(4,
-	 * note.getSeqno()); pstmt.executeUpdate(); }catch(Exception ex) {
-	 * ex.printStackTrace(); } finally { if (rs != null) try { rs.close(); }
-	 * catch(SQLException ex) {} if (pstmt != null) try { pstmt.close(); }
-	 * catch(SQLException ex) {} if (conn != null) try { conn.close(); }
-	 * catch(SQLException ex) {} } }
-	 * 
-	 * //note 글 삭제 메서드 public int deleteNote(int seqno) throws Exception { int x =
-	 * -1; try { conn = DataBaseConnection.getConnection(); pstmt =
-	 * conn.prepareStatement("delete from note where seqno=?"); pstmt.setInt(1,
-	 * seqno); pstmt.executeUpdate(); x = 1; //------------------- 글 삭제 성공.
-	 * }catch(Exception ex) { ex.printStackTrace(); } finally { if (rs != null) try
-	 * { rs.close(); } catch(SQLException ex) {} if (pstmt != null) try {
-	 * pstmt.close(); } catch(SQLException ex) {} if (conn != null) try {
-	 * conn.close(); } catch(SQLException ex) {} } return x; }
-	 */
-
 	// Note DB 전송
 	public void insert(NoteDTO note) {
 		int seqno = note.getSeqno();
@@ -553,12 +541,13 @@ public class ControlDAO {
 		}
 	}
 
-	// note 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
-	public int getNoteCount() throws Exception {
+	// 본인이 note 전체글 갯수를 보고 목록 번호를 1부터 시작하는 것.
+	public int getNoteCount(String writer) throws Exception {
 		int x = 0;
 		try {
 			conn = DataBaseConnection.getConnection();
-			pstmt = conn.prepareStatement("select count(*) from note");
+			pstmt = conn.prepareStatement("select count(*) from note where writer=?");
+			pstmt.setString(1, writer);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				x = rs.getInt(1);
@@ -585,15 +574,16 @@ public class ControlDAO {
 		return x;
 	}
 
-	// 노트 목록을 보는 것.
-	public ArrayList getNote(int start, int end) throws Exception {
+	// 본인의 노트 목록을 보는 것.
+	public ArrayList getNote(int start, int end, String writer) throws Exception {
 		ArrayList noteList = new ArrayList();
 		try {
 			conn = DataBaseConnection.getConnection();
 			pstmt = conn.prepareStatement("select * from (select seqno,writer,subject,content,reg_date,rownum r "
-					+ "from(select * from note order by reg_date desc)) where r >= ? and r <=?");
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+					+ "from(select * from note where writer=? order by reg_date desc)) where r >= ? and r <=?");
+			pstmt.setString(1, writer);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {

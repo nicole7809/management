@@ -23,23 +23,21 @@
   <%
   	if(studentId !=null && teacherId == null && adminId == null) {	//------------------------ 학생로그인일 경우 %>
   		<a href ="/Total.Management.System/student/studentInfo.jsp"><%=studentId %> [님]</a>
-  		<a href="/Total.Management.System/student/stMyLecture.jsp">내 강의 정보</a>
   		<a href="/Total.Management.System/board/notice.jsp">공지사항</a>
   		<a href ="/Total.Management.System/student/sQNAList.jsp">Q&A게시판 </a>
   		<a href="/Total.Management.System/note/note.jsp">메모하기</a>
   		<a href="/Total.Management.System/student/logout.jsp">로그아웃</a>
   <%}else if(studentId ==null && teacherId != null && adminId == null) { 	//--------------- 강사로그인일 경우%>
   		<a href ="/Total.Management.System/teacher/teacherInfo.jsp"><%=teacherId %> [님]</a>
-  		<a href="/Total.Management.System/teacher/tcMyLecture.jsp">내 강의 정보</a>
+  		<a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
   		<a href="/Total.Management.System/board/notice.jsp">공지사항</a>
   		<a href ="/Total.Management.System/teacher/tQNAList.jsp">Q&A게시판 </a>
   		<a href="/Total.Management.System/teacher/logout.jsp">로그아웃</a>
   <%}else if (studentId ==null && teacherId == null && adminId != null) {	//--------------- 행정로그인일 경우	%>
   		<a href ="/Total.Management.System/management/managementInfo.jsp"><%=adminId %> [님]</a>
-  		<a href="../lecture/lectureForm.jsp">강의 등록</a>
   		<a href="/Total.Management.System/management/courseList.jsp">강의리스트</a>
-  		<a href="/Total.Management.System/management/teacherList.jsp">강사리스트</a>
-  		<a href="/Total.Management.System/management/studentList.jsp">학생리스트</a>
+  		<a href="/Total.Management.System/teacher/teacherList.jsp">강사리스트</a>
+  		<a href="/Total.Management.System/student/studentList.jsp">학생리스트</a>
   		<a href="/Total.Management.System/board/notice.jsp">공지사항</a>
   		<a href ="/Total.Management.System/management/QNAList.jsp">Q&A게시판 </a>
   		<a href="/Total.Management.System/management/logout.jsp">로그아웃</a>

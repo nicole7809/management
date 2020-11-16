@@ -10,6 +10,7 @@ public class NoticeDTO {
 	private Timestamp reg_date;
 	private int readcount;
 	private String ip;
+	private int important;
 	
 	public int getNum() {
 		return num;
@@ -64,5 +65,11 @@ public class NoticeDTO {
 		this.ip = ip;
 	}
 
+	public int getImportant() {
+		return important;
+	}
+	public void setImportant(int important) {
+		this.important = important;
+	}
 
 }

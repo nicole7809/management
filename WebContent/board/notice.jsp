@@ -32,12 +32,19 @@
 	int endRow = currentPage * pageSize;				// 		"	목록 마지막번호
 	int count = 0;
 	int number=0;
+	int important = 0;
 	
 	List noticeList = null; 
+	List importantNotice = null;
     ControlDAO dbPro = ControlDAO.getInstance();
     count = dbPro.getNoticeCount();  				// 전체목록 수 확인
     if (count > 0) {
-    	noticeList = dbPro.getNotice(startRow, endRow);
+    	important = 0;
+    	noticeList = dbPro.getNotice(startRow, endRow, important);
+    }
+    if (count > 0) {	
+    	important = 1;
+    	importantNotice = dbPro.getImportantNotice(startRow, endRow, important);	// 중요공지글리스트
     }
 
 	number=count-(currentPage-1)*pageSize;			// 제목의 번호.
@@ -83,28 +90,45 @@
 		      <td align="center"  width="150" >작성일</td> 
 		      <td align="center"  width="50" >조 회</td> 
 		      <td align="center"  width="100" >IP</td>    
-		    </tr>
-		    
-		<%  // if 로 null이 아닌경우 for문 실행하게 하자
-				if(noticeList != null){
-			        for (int i = 0 ; i < noticeList.size() ; i++) {
-			        NoticeDTO notice = (NoticeDTO)noticeList.get(i);
-			%>
-			   <tr height="30">
-			    <td align="center"  width="50" > <%=number--%></td>
-			    <td  width="250" align="center" >  
-			      <a href="content.jsp?num=<%=notice.getNum()%>&pageNum=<%=currentPage%>">
+		    </tr>   
+		<%  // 중요 공지글 맨위에 보여주는것...(고정하고 싶음..)
+			if(importantNotice != null) {
+				for (int im = 0; im <importantNotice.size() ; im++) {
+					NoticeDTO notice = (NoticeDTO)importantNotice.get(im);	%>
+					<tr height="30" bgcolor="#568247">
+					<td align="center"  width="50" > <%=number--%></td>
+					<td  width="250" align="center" >  
+						<a href="content.jsp?num=<%=notice.getNum()%>&pageNum=<%=currentPage%>">
 			          <%=notice.getSubject()%></a> 
-			    </td>
-			    <td align="center"  width="100"> 
+			    	</td>
+			    	<td align="center"  width="100"> 
 			       <%=notice.getWriter()%></td>
-			    <td align="center" width="150"><%=sdf.format(notice.getReg_date())%></td>
-			    <td align="center" width="150"><%=notice.getReadcount()%> </td>
-			    <td align="center" width="100" ><%=notice.getIp()%></td>
-			  </tr>
+				    <td align="center" width="150"><%=sdf.format(notice.getReg_date())%></td>
+				    <td align="center" width="150"><%=notice.getReadcount()%> </td>
+				    <td align="center" width="100" ><%=notice.getIp()%></td>
+			  	</tr>
+				<%}
+			}	
+			// if 로 null이 아닌경우 for문 실행하게 하자
+			if(noticeList != null){
+				for (int i = 0 ; i < noticeList.size() ; i++) {
+			    	NoticeDTO notice = (NoticeDTO)noticeList.get(i);
+			%>
+				<tr height="30">
+					<td align="center"  width="50" > <%=number--%></td>
+					<td  width="250" align="center" >  
+						<a href="content.jsp?num=<%=notice.getNum()%>&pageNum=<%=currentPage%>">
+			          <%=notice.getSubject()%></a> 
+			    	</td>
+			    	<td align="center"  width="100"> 
+			       <%=notice.getWriter()%></td>
+				    <td align="center" width="150"><%=sdf.format(notice.getReg_date())%></td>
+				    <td align="center" width="150"><%=notice.getReadcount()%> </td>
+				    <td align="center" width="100" ><%=notice.getIp()%></td>
+			  	</tr>
 			     <%}
-		    	}%>
-		</table>
+		    }%>
+			</table>
 		<%}%>
 		
 		<%

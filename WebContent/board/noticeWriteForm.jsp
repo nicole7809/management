@@ -34,7 +34,8 @@
 					</tr>
 					<tr>
 						<td> 제목 </td>
-						<td> <input type="text" name="subject" size="50" maxlength="50" /> </td>
+						<td> <input type="text" name="subject" size="50" maxlength="50" />
+							 <input type="checkbox" name="important" value="1"/> 중요 공지글 </td>
 					</tr>
 					<tr>
 						<td> 내용 </td>

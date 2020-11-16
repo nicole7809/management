@@ -29,15 +29,16 @@
 				</tr>
 				<tr>
 					<td align="center" > 작성자 </td>
-					<td> <input type="hidden" name = "writer" value="세션id"/> </td>
+					<td> <input type="text" name = "writer" value="<%=notice.getWriter()%>"/> </td>
 				</tr>
 				<tr>
 					<td> 제목 </td>
-					<td> <input type="text" name="subject" size="50" maxlength="50" value="<%=notice.getSubject()%>" /> </td>
+					<td> <input type="text" name="subject" size="50" maxlength="50" value="<%=notice.getSubject()%>" />
+						 <input type="checkbox" name="important" value="1" /> 중요공지글 </td>
 				</tr>
 				<tr>
 					<td> 내용 </td>
-					<td> <textarea name="content" rows="30" cols="60" <%=notice.getContent()%> > </textarea> </td>
+					<td> <textarea name="content" rows="30" cols="60"> <%=notice.getContent()%> </textarea> </td>
 				</tr>
 				<tr>
 					<td align="center" colspan="2">

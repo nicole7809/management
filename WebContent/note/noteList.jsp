@@ -36,9 +36,9 @@
 			
 			List noteList = null;
 			ControlDAO dao = ControlDAO.getInstance();
-			count = dao.getNoteCount(); 				// 메모 목록 수 확인
+			count = dao.getNoteCount(studentId); 				// 메모 목록 수 확인
 			if(count > 0)
-				noteList = dao.getNote(startRow, endRow); 
+				noteList = dao.getNote(startRow, endRow, studentId); 
 				
 			if(count == 0) {%>
 				<table border="1" cellpadding="0" cellspacing="0" align="center">
