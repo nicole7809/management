@@ -62,10 +62,10 @@
 
 			<table width="400" border="1" cellspacing="0" cellpadding="0"
 				bgcolor="<%=bodyback_c%>" align="center">
-				<tr>
+				<%-- <tr>
 					<td align="right" colspan="2" bgcolor="<%=value_c%>"><a
 						href="QNAList.jsp"> 글목록</a></td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td>
 					<td width="330"><%=adminId%> <input type="hidden"

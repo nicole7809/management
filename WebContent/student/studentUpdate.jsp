@@ -45,7 +45,7 @@
 		%>
 	<script>
 		alert("수정되었습니다.");
-		window.location = "studentMain.jsp";
+		window.location = "studentInfo.jsp";
 	</script>
 
 

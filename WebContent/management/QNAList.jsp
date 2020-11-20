@@ -90,7 +90,7 @@
       <td align="center"  width="250" >제   목</td> 
       <td align="center"  width="100" >작성자</td>
       <td align="center"  width="150" >작성일</td> 
-      <td align="center"  width="50" >조 회</td> 
+      <!-- <td align="center"  width="50" >조 회</td>  -->
       <td align="center"  width="100" >IP</td>    
     </tr>
 <%  
@@ -118,7 +118,7 @@
     <td align="center"  width="100"> 
        <a href="mailto:<%=article.getEmail()%>"><%=article.getWriter()%></a></td>
     <td align="center"  width="150"><%= sdf.format(article.getReg_date())%></td>
-    <td align="center"  width="50"><%=article.getReadcount()%></td>
+   <%--  <td align="center"  width="50"><%=article.getReadcount()%></td> --%>
     <td align="center" width="100" ><%=article.getIp()%></td>
   </tr>
      <%}%>

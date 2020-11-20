@@ -3,6 +3,9 @@
 <%@ page import= "team.elite.management.ControlDAO" %>
 <%@ page import="team.elite.management.Student_MembersDTO" %>
 
+<html>
+<body>
+
 <%
 	//post타입 인코딩하기
 	request.setCharacterEncoding("UTF-8");
@@ -38,7 +41,17 @@
 		
 		//dao 만들어서  = dao.getInstance();하고 id/pw확인하기
 		ControlDAO dao = ControlDAO.getInstance();	
+		int state = dao.studentState(dto);
 		int check = dao.studentCheck(dto);
+		if(state == 5){		// 탈퇴처리 된 상태라면 
+		System.out.println("dd");
+		%>
+		<script>ssss
+			alert("탈퇴아이디 입니다.");
+			history.go(-1);
+		</script>
+		<%return;		// 강제 탈출의미.
+		}
 		if(check == 1) {	// 아이디 있다면
 			session.setAttribute("student_id", dto.getStudent_id()); 	//세션 생성
 			if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.
@@ -58,9 +71,11 @@
 			alert("비밀번호가 맞지 않습니다.");
 			history.go(-1);									//---------- 전 페이지로 이동.
 		</script>	
-		<%}else {											//---------- 아이디 검색 안됨. %>
+		<%}else if( check == -1) {											//---------- 아이디 검색 안됨. %>
 		<script>
 			alert("아이디가 맞지 않습니다.");
 			history.go(-1);
 		</script>
 		<%}%>
+</body>
+</html>

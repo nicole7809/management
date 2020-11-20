@@ -51,7 +51,7 @@
 					for(int i = 0; i <noteList.size(); i++) {
 						NoteDTO dto = (NoteDTO)noteList.get(i); %>
 							<tr>
-								<td><a href="noteContent.jsp?seqno=<%=dto.getSeqno()%>&pageNum=<%=currentPage%>">
+								<td><a href="/Total.Management.System/note/noteContent.jsp?seqno=<%=dto.getSeqno()%>&pageNum=<%=currentPage%>">
 									<%=dto.getSubject()%></a>
 								</td>
 							</tr>

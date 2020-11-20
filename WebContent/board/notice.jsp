@@ -95,7 +95,7 @@
 			if(importantNotice != null) {
 				for (int im = 0; im <importantNotice.size() ; im++) {
 					NoticeDTO notice = (NoticeDTO)importantNotice.get(im);	%>
-					<tr height="30" bgcolor="#568247">
+					<tr height="30" bgcolor="958ac2">
 					<td align="center"  width="50" > <%=number--%></td>
 					<td  width="250" align="center" >  
 						<a href="content.jsp?num=<%=notice.getNum()%>&pageNum=<%=currentPage%>">

@@ -45,7 +45,6 @@ a {
 				</tr>
 				<%
 					String name = request.getParameter("name");
-
 					ArrayList list = dao.teacher(name);
 					ArrayList teacher = new ArrayList<Lecture_InformationDTO>();
 					if (list.size() > 0) {

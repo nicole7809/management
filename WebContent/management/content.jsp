@@ -46,9 +46,9 @@
 				bgcolor="<%=bodyback_c%>" align="center">
 				<tr height="30">
 					<td align="center" width="125" bgcolor="<%=value_c%>">글번호</td>
-					<td align="center" width="125" align="center"><%=article.getNum()%></td>
-					<td align="center" width="125" bgcolor="<%=value_c%>">조회수</td>
-					<td align="center" width="125" align="center"><%=article.getReadcount()%></td>
+					<td align="center" width="375" align="center" colspan="3"><%=article.getNum()%></td>
+					<%-- <td align="center" width="125" bgcolor="<%=value_c%>">조회수</td>
+					<td align="center" width="125" align="center"><%=article.getReadcount()%></td> --%>
 				</tr>
 				<tr height="30">
 					<td align="center" width="125" bgcolor="<%=value_c%>">작성자</td>

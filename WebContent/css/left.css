@@ -15,7 +15,7 @@ body {
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 .sidenav a {
@@ -68,7 +68,7 @@ body {
 div.content {
   margin-left: 200px;
   padding: 1px 16px;
-  height: 1000px;
+  /* height: 1000px; */
 }
 
 @media screen and (max-width: 700px) {

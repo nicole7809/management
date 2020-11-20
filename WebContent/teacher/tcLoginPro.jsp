@@ -35,7 +35,17 @@
 	
 	//id, pw 확인
 	ControlDAO dao = ControlDAO.getInstance();	
+	int state = dao.teacherState(dto);
 	int check = dao.teacherCheck(dto);
+	if(state == 1){		// 탈퇴처리 된 상태라면 
+		System.out.println("dd");
+		%>
+		<script>
+			alert("탈퇴아이디 입니다.");
+			history.go(-1);
+		</script>
+		<%return;		// 강제 탈출의미.
+	}
 	if(check == 1) {	// 아이디 있다면
 		session.setAttribute("teacher_id", dto.getTeacher_id()); 	//세션 생성
 		if(dto.getAuto() != null && dto.getAuto().equals("1")) {	//자동로그인에 체크되어있다면.

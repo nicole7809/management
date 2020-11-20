@@ -34,7 +34,14 @@
 				<tr>
 					<td> 제목 </td>
 					<td> <input type="text" name="subject" size="50" maxlength="50" value="<%=notice.getSubject()%>" />
-						 <input type="checkbox" name="important" value="1" /> 중요공지글 </td>
+						 <input type="checkbox" name="important" value="1" 
+						<%
+							if(notice.getImportant() == 1){
+								out.print("checked");
+							}
+						%> 
+						  />중요공지글 </td>
+						 
 				</tr>
 				<tr>
 					<td> 내용 </td>

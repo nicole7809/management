@@ -14,11 +14,7 @@
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="primary_header">
-      <h1 class="title">학사관리시스템</h1>
-    </div>
-  </header>
+
   <div class="row">
     <div class="columns1">
     <%
@@ -55,13 +51,10 @@
     </div>
     <div class="columns2">
       
-     <jsp:include page="noteList.jsp"></jsp:include>
+     <jsp:include page="/note/noteList.jsp"></jsp:include>
      
     </div>
   </div>
-  <footer class="secondary_header footer">
-    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-  </footer>
 </div>
 </body>
 </html>
