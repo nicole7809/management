@@ -48,6 +48,7 @@
 <title>Q&A 게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor="<%=bodyback_c%>">

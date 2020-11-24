@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>공지사항 글쓰기</title>
 		<link href="../css/left.css" rel="stylesheet" type="text/css">
+    <link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 
@@ -26,7 +27,7 @@
 				<table border="1" cellpadding="0" cellspacing="0" widht="500" align="center">
 					<tr>
 						<td align="right" colspan="2"> 
-							<a href="/Total.Management.System/board/notice.jsp" >목록</a></td>
+							<a href="/Total.Management.System/board/notice.jsp">목록</a></td>
 					</tr>
 					<tr>
 						<td align="center" > 작성자 </td>
@@ -43,18 +44,24 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="submit" value="글쓰기" />
-							<input type="reset" value="다시쓰기"/>
-							<input type="button" value="목록" onclick="window.location='notice.jsp'" />
+							<input type="submit" value="글쓰기" class="button" />
+							<input type="reset" value="다시쓰기" class="button"/>
+							<input type="button" value="목록" onclick="window.location='notice.jsp'" class="button"/>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 		<div>
-		<footer class="secondary_header footer">
-			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-		 </footer>
 		</div>
+<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 	</body>
 </html>

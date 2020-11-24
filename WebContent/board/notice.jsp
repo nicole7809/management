@@ -8,6 +8,7 @@
 	a{text-decoration:none;}
 </style>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 <%!
 	int pageSize = 10;
 	SimpleDateFormat sdf =
@@ -54,14 +55,14 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+<div>
 	<jsp:include page="../left.jsp"/>
 	<div class="content">
-		<center><b>글목록(전체 글:<%=count%>)</b> 
-		<table width="700">
+		<p class="primary_header">글목록(전체 글:<%=count%>)</p> 
+		<table width="80%">
 		<tr>
 			<% 
 			if(adminId != null ) {		// 세션 확인 후 행정인 경우만 글쓰기 가능. %>
@@ -74,7 +75,7 @@
 		<%
 		    if (count == 0) {
 		%>
-		<table width="700" border="1" cellpadding="0" cellspacing="0">
+		<table width="80%" border="1" cellpadding="0" cellspacing="0">
 		<tr>
 		    <td align="center">
 		    게시판에 저장된 글이 없습니다.
@@ -82,7 +83,7 @@
 		</table>
 		
 		<%  } else {    %>
-		<table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
+		<table border="1" width="80%" cellpadding="0" cellspacing="0" align="center"> 
 		    <tr height="30" bgcolor="#f1f1f1"> 
 		      <td align="center"  width="50"  >번 호</td> 
 		      <td align="center"  width="250" >제   목</td> 
@@ -95,7 +96,7 @@
 			if(importantNotice != null) {
 				for (int im = 0; im <importantNotice.size() ; im++) {
 					NoticeDTO notice = (NoticeDTO)importantNotice.get(im);	%>
-					<tr height="30" bgcolor="958ac2">
+					<tr height="30" bgcolor="#d3ff33">
 					<td align="center"  width="50" > <%=number--%></td>
 					<td  width="250" align="center" >  
 						<a href="content.jsp?num=<%=notice.getNum()%>&pageNum=<%=currentPage%>">
@@ -130,7 +131,7 @@
 		    }%>
 			</table>
 		<%}%>
-		
+		<div class="title">
 		<%
 		    if (count > 0) {
 		        int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
@@ -153,12 +154,18 @@
 		        }
 		    }
 		%>
+		</div>
 	</div>
-	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
+	<div></div>
 	</div>
-
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 

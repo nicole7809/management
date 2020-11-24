@@ -1,67 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>5조 프로젝트 사이트</title>
-<link href="css/mainTemplate.css" rel="stylesheet" type="text/css">
-<div class="wrapper">
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <meta charset="UTF-8">
+    <title>5조 학사관리사이트 인트로</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <div id="web_bg" style="background-image: url(img/MainDesktop.png);"></div>
-  
-</div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="5조 학사관리사이트 인트로"/>
 
+    <link rel="canonical" href="/rfgdbfd/" />
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/intro.css" />
 </head>
 <body>
-	<div class="container">
-	
-		<header>
-			<div class="primary_header">
-				<h1 class="title">학사관리시스템</h1>
-			</div>
-			<!--  <nav class="secondary_header" id="menu">
-      <ul class="title">
-        <li><a href="management/mgtLoginForm.jsp">STAFF</a></li>
-        <li><a href="teacher/tcLoginForm.jsp">TEACHER</a></li>
-        <li><a href="student/stLoginForm.jsp">STUDENT</a></li>
-      </ul>
-    </nav> -->
-		</header>
-		
-		<br/><br/><br/><br/><br/><br/><br/>
-		<div class="row">
-			<div class="columns">
-				<a href="management/mgtLoginForm.jsp"><p class="thumbnail_align">
-						<img src="img/management.png" alt="" class="thumbnail" />
-					</p></a>
-					<h2 class="title"> 행정 모드</h2>
-					<!-- <p>학원스텝은 학원스텝아이디로 로그인합니다.</p> -->
-			</div>
-			<div class="columns">
-				<a href="teacher/tcLoginForm.jsp"><p class="thumbnail_align">
-						<img src="img/teacher.png" alt="" class="thumbnail" />
-					</p></a>
-					<h2 class="title">강사모드</h2>
-					<!-- <p>강사는 강사 아이디로 로그인합니다.</p> -->
-			</div>
-			<div class="columns">
-				<a href="student/stLoginForm.jsp"><p class="thumbnail_align">
-						<img src="img/student.png" alt="" class="thumbnail" />
-					</p></a>
-					<h2 class="title">학생 모드</h2>
-					<!-- <p>학생은 학생으로 로그인합니다.</p> -->
-			</div>
-		</div>
-		<br/><br/><br/><br/><br/><br/>
-		
-		<footer class="secondary_header footer">
-			<div class="copyright">
-				&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong>
-			</div>
-		</footer>
-	</div>
+    <header>
+        <h1 class="logo"><a href="/Total.Management.System/">5조 학사관리사이트</a></h1>
+    </header>
+
+    <section>
+        <!-- <h2><span class="en">5조 프로젝트<br />학사관리사이트</span>인트로</h2>
+        <p class="sub_text">학생아이디 발급시스템은 "학생 및 강사용 포탈"에서 이용 가능합니다.</p> -->
+        
+        <h2><span class="en"> <br /><br /><br /></span> </h2>
+        <p class="sub_text"> </p>
+
+        <div class="button_wrap">
+            <div class="portal_link">
+                <a class="old" href="management/mgtLoginForm.jsp"><img src="img/old_icon.svg" alt>직원용로그인</a>
+            </div>
+
+            <div class="portal_link">
+                <a class="new" href="teacher/tcLoginForm.jsp"><img src="img/new_icon.svg" alt>강사로그인</a>
+            </div>
+            <div class="portal_link">
+                <a class="new" href="student/stLoginForm.jsp"><img src="img/new_icon.svg" alt>학생로그인</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Ⓒ 2020 EAGLE FIVE. All Rights Reserved.</p>
+    </footer>
+
+    <div class="wave-bg">
+        <div class="wave-wrapper bg-top"><div class="wave wave-top"></div></div>
+        <div class="wave-wrapper bg-mid"><div class="wave wave-mid"></div></div>
+        <div class="wave-wrapper bg-bt"><div class="wave wave-bt"></div></div>
+    </div>
 </body>
 </html>

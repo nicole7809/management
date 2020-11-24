@@ -21,6 +21,6 @@
     
     <script>
 		alert("수정 되었습니다.");
-		window.location="note.jsp";
+		window.location="../student/studentMain.jsp";
 	</script>
 	

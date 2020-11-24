@@ -46,7 +46,7 @@
 		if(state == 5){		// 탈퇴처리 된 상태라면 
 		System.out.println("dd");
 		%>
-		<script>ssss
+		<script>
 			alert("탈퇴아이디 입니다.");
 			history.go(-1);
 		</script>

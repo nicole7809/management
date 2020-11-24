@@ -6,12 +6,9 @@
 <title>강의 등록</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
-<!-- <style>
-div {
-	text-align: center
-}
-</style> -->
+
 <script type="text/javascript">
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -23,12 +20,11 @@ div {
 </script>
 </head>
 <jsp:include page="../left.jsp" />
-<center>
-<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-<div id="wrap"> 
+
+<div class="container"> 
 	<br> <br> <b><font size="6" color="gray">강의 정보 등록</font></b> <br>
 	<br> <br>
-	
+	<center>
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
@@ -60,8 +56,18 @@ div {
 					<td><input type="text" size="50" name="lecture_code" /></td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="등록" /> 
-				 <input type="reset" name="reset" value="다시입력" />
-		</form>
+			<div><input type="submit" value="등록" class="button"/> 
+				 <input type="reset" name="reset" value="다시입력" class="button"/>
+				 </div>
+		</form></center>
 </div>
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </html>

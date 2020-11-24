@@ -5,41 +5,29 @@
 <%@ page import="team.elite.management.Teacher_MembersDTO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="team.elite.management.Student_MembersDTO"%>
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>내 강의 정보</title>
-<head>
-<link href="../css/left.css" rel="stylesheet" type="text/css">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title> 학생 메인</title>
+		<link href="../css/left.css" rel="stylesheet" type="text/css">
+		<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
+	</head>
+	<jsp:include page="../left.jsp" />
 <body>
-	<style>
-a {
-	text-decoration: none;
-}
-</style>
-</head>
-<body>
-	<%
+<div class="container">
+ 
+	  <%
 		request.setCharacterEncoding("UTF-8");
 		ControlDAO dao = ControlDAO.getInstance();
 	%>
-	<jsp:include page="../left.jsp" />
-	<form action="/Total.Management.System/lecture/lecturePro.jsp"
-		method="post">
-		<div class="content">
-			<table border="1" cellpadding="0" cellspacing="0" align="center">
-				<tr align="center" height="50">
-					<td width="300">강의명</td>
-					<td width="300">강의 기간</td>
-					<td width="200">강의실</td>
-					<td width="100">강사</td>
-					<td width="100">수강생 이름</td>
-					<td width="100">강의 코드</td>
-				</tr>
-				<%
+	
+<section>
+	<div>
+	
+	<h2>Main Content</h2>
+    <article class="left_article">
+    <%
 					String sessionId = (String) session.getAttribute("student_id");
 					String name = request.getParameter("name");
 					ArrayList list = dao.StudentLecture(sessionId);
@@ -49,20 +37,27 @@ a {
 						for (int i = 0; i < list.size(); i++) {
 							Lecture_InformationDTO dto = (Lecture_InformationDTO) list.get(i);
 				%>
-				<tr>
-					<td><%=dto.getLecture_name()%></td>
-					<td><%=dto.getLecture_course()%></td>
-					<td><%=dto.getLecture_room()%></td>
-					<td><%=dto.getTeacher()%></td>
-					<td><%=dto.getStudent()%></td>
-					<td><%=dto.getLecture_code()%></td>
-				</tr>
-				<%
-					}
+      <h3>학생 정보 안내</h3>
+      <p><img src="/Total.Management.System/img/ahn.jpg" alt="" width="150" height="120"/></p> 
+      <p>강의명 - <%=dto.getLecture_name()%></p>
+      <p>강의 기간 - <%=dto.getLecture_course()%></p>
+      <p>강의실 : <%=dto.getLecture_room()%></p>
+      <p>강의 기간 : <%=dto.getTeacher()%></p>
+      <p>수강생 이름 : <%=dto.getStudent()%></p>
+      <p>강의 코드 : <%=dto.getLecture_code()%></p>
+    </article>
+    <aside class="right_article">내강의정보</aside>
+  </section>	
+		
+				<%}
 					}
 				%>
-			</table>
 		</div>
+	
+	<div>
+		<footer class="secondary_header footer">
+			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		 </footer>
+	</div>
 </body>
 </html>
-	

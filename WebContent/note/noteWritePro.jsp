@@ -15,5 +15,5 @@
 	ControlDAO dao = ControlDAO.getInstance();
 	dao.insert(note);
 	
-	response.sendRedirect("note.jsp");
+	response.sendRedirect("../student/studentMain.jsp");
 %>

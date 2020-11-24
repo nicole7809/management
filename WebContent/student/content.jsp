@@ -10,6 +10,7 @@
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
 <%
@@ -42,7 +43,7 @@
 	<center>
 		<b>글내용 보기</b> <br>
 		<form>
-			<table width="500" border="1" cellspacing="0" cellpadding="0"
+			<table width="80%" border="1" cellspacing="0" cellpadding="0"
 				bgcolor="<%=bodyback_c%>" align="center">
 				<tr height="30">
 					<td align="center" width="125" bgcolor="<%=value_c%>">글번호</td>

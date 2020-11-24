@@ -8,6 +8,7 @@
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
 <%
@@ -32,10 +33,10 @@
 <body>
 <jsp:include page="../left.jsp"/>
 <div class="content">
-	<center><b>글내용 보기</b>
+	<p class="primary_header">글내용 보기</p>
 	<br>
 	<form>
-	<table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="" align="center">  
+	<table width="80%" border="1" cellspacing="0" cellpadding="0"  bgcolor="" align="center">  
 	  <tr height="30">
 	    <td align="center" width="125" bgcolor="">글번호</td>
 	    <td align="center" width="125" align="center">
@@ -61,18 +62,18 @@
 	    <td align="center" width="125" bgcolor="">글내용</td>
 	    <td align="left" width="375" colspan="3"><pre><%=article.getContent()%></pre></td>
 	  </tr>
-	  <tr height="30">      
-	    <td colspan="4" bgcolor="" align="right" > 
+	  <tr>      
+	    <td colspan="4" bgcolor="" align="center" > 
 	    <% if(adminId != null) {	%>
 		  <input type="button" value="글수정" 
-	       onclick="document.location.href='noticeUpdate.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+	       onclick="document.location.href='noticeUpdate.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'" class="button">
 		   &nbsp;&nbsp;&nbsp;&nbsp;
 		  <input type="button" value="글삭제" 
-	       onclick="document.location.href='noticeDeletePro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+	       onclick="document.location.href='noticeDeletePro.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'" class="button">
 		   &nbsp;&nbsp;&nbsp;&nbsp; 
 		<%} %>
 	       <input type="button" value="글목록" 
-	       onclick="document.location.href='notice.jsp?pageNum=<%=pageNum%>'">
+	       onclick="document.location.href='notice.jsp?pageNum=<%=pageNum%>'" class="button">
 	    </td>
 	  </tr>
 	</table>    
@@ -82,9 +83,15 @@
 	</form> 
 	</div>
 	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
 	</div>     
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>      

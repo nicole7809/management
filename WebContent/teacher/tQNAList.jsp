@@ -48,6 +48,7 @@
 <title>Q&A 게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
 <body bgcolor="<%=bodyback_c%>">
@@ -59,9 +60,9 @@
 		<!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->
 		     <td align="right" bgcolor="<%=value_c%>">
 		    <%if(adminId != null){ %>
-		    	<a href="tQNAWriteForm.jsp">글쓰기</a>
+		    	<a href="tQNAWriteForm.jsp"><p class="button">글쓰기</p></a>
 		    <%}else{%>
-		    	<a href="tcLoginForm.jsp">로그인</a>
+		    	<a href="tcLoginForm.jsp"><p class="button">로그인</p></a>
 		    <%}%> 
 		    </td>
 		</table>
@@ -142,10 +143,15 @@
 		%>
 	</div>
 	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
 	</div>
-
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

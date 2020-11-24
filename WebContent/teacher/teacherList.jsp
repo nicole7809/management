@@ -6,19 +6,16 @@
 
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>강사 정보 리스트</title>
-<style>
-a {
-	text-decoration: none;
-}
-</style>
+
 </head>
 <body>
 	<%
@@ -37,7 +34,7 @@ a {
 	<div class="content">
 		<form action="/Total.Management.System/lecture/lecturePro.jsp"method="post">
 <!-- 			<div class="content"> -->
-				<table border="1" cellpadding="0" cellspacing="0" align="center">
+				<table width="60%" border="1" cellpadding="0" cellspacing="0" align="center">
 					<tr align="center" height="50">
 						<td width="300" colspan="2">강사 리스트</td>
 					
@@ -56,25 +53,24 @@ a {
 						</td>
 						<td width="50"><input type="button" value="탈퇴" onclick="window.location='tcDelete.jsp?teacher_id=<%=dto.getTeacher_id()%>&stateNum=1'" />
 						<input type="button" value="재직" onclick="window.location='tcStart.jsp?teacher_id=<%=dto.getTeacher_id()%>&stateNum=0'" />
-						
-						
-					
+											
 					</tr>
-			
-					<%-- href="/Total.Management.System/lecture/lecturePro.jsp?lecture_name=<%=sdto.getLecture_name()%>"> --%>
-					<%-- 		<%=sdto.getLecture_name()%> 
-								<%=sdto.getLecture_course()%> 
-								<%=sdto.getLecture_room()%>
-								<%=sdto.getTeacher()%> --%>
-
 					<%
 						} 
 					%>
 					<%
 						} 
 					%>
-					
-				</table>
+				</table></form>
 			</div>
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>			
 </body>
 </html>

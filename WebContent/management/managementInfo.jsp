@@ -7,6 +7,7 @@
 
 <head>
 	<link href="../css/left.css" rel="stylesheet" type="text/css">
+    <link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -26,12 +27,8 @@
 <form action="maupdatePro.jsp" method="post" enctype="multipart/form-data">
 <center>
 	<body>
-		<table border=2 width="400" height="70" bordercolor="skyblue">
-			<!-- <caption>관리자 개인 정보 수정</caption> -->
-			</br>
-			</br>
-		
-			<strong><p style="font-size:30;color:skyblue"  face="Times">관리자 개인 정보 수정</p><strong>
+		<table border=2 width="50%" height="70" bordercolor="skyblue">
+ 			<p class="primary_header">관리자 개인 정보 수정</p>
 			<tr>
 				<td>관리자 아이디 :</td>
 				<td><%=dto.getAdmin_id()%></td>
@@ -63,7 +60,7 @@
 			<tr>
 				<td>사진 :</td>
 				<td>
-				<input type="file" name="Admin_pic" /><br />
+				<input type="file" name="Admin_pic"/><br />
 	    		<input type="hidden" name="sysImg" value="<%=dto.getAdmin_pic() %>" />
 	    		<img src="/Total.Management.System/img/<%=dto.getAdmin_pic() %>" />
 				
@@ -80,15 +77,21 @@
 
 		</table>
 	</body>
-	<input type="submit" value="정보수정" />
+	<input type="submit" value="정보수정" class="button"/>
 
 <center/>
 
 </form>
 </div>
 	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
 	</div>
+		<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>

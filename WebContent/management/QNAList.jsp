@@ -7,6 +7,7 @@
 
 <head>
 	<link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -61,14 +62,14 @@
 
 <body bgcolor="<%=bodyback_c%>">
 <center><b>Q&A 게시판(전체 글:<%=count%>)</b>
-<table width="700">
+<table width="70%">
 <tr>
-<!--     <a href="QNAWriteForm.jsp">글쓰기</a> -->
+
      <td align="right" bgcolor="<%=value_c%>">
     <%if(adminId != null){ %>
-    	<a href="QNAWriteForm.jsp">글쓰기</a>
+    	<a href="QNAWriteForm.jsp" class="button">글쓰기</a>
     <%}else{%>
-    	<a href="mgtLoginForm.jsp">로그인</a>
+    	<a href="mgtLoginForm.jsp" class="button">로그인</a>
     <%}%> 
     </td>
 </table>
@@ -76,7 +77,7 @@
 <%
     if (count == 0) {
 %>
-<table width="700" border="1" cellpadding="0" cellspacing="0">
+<table width="70%" border="1" cellpadding="0" cellspacing="0">
 <tr>
     <td align="center">
     게시판에 저장된 글이 없습니다.
@@ -84,7 +85,7 @@
 </table>
 
 <%  } else {    %>
-<table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
+<table border="1" width="70%" cellpadding="0" cellspacing="0" align="center"> 
     <tr height="30" bgcolor="<%=value_c%>"> 
       <td align="center"  width="50"  >번 호</td> 
       <td align="center"  width="250" >제   목</td> 
@@ -147,12 +148,15 @@
         }
     }
 %>
-
-<!-- 	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
-	</div> -->
-
+<div></div></div>
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

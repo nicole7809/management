@@ -18,10 +18,12 @@
 <link href="../css/left.css" rel="stylesheet" type="text/css">
 
 </head>
+<jsp:include page="../left.jsp"/>
 <body>
 <div class="container">
-  <div class="row">
-    <div class="column">
+
+
+
 	<%
 		String studentId = (String)session.getAttribute("student_id");
 		if(studentId == null) {	// 로그인 유효성검사
@@ -36,12 +38,8 @@
 			NoteDTO note = dao.getNote(seqno);
 		
 	%>
-	<body>
-	<div class="sidenav">
-	<jsp:include page="../left.jsp"/>
-	</div>
-	<div class="row">
-			<table border="1" cellpadding="0" cellspacing="0" align="center">
+			<div class="content">
+			<table width="80%" border="1" cellpadding="0" cellspacing="0">
 				<tr align="center" height="50">
 					<td width="300">강의명</td>
 					<td width="300">강의 기간</td>
@@ -72,11 +70,11 @@
 					}
 				%>
 			</table>
-		</div>
+			</div>
 	  
 	
 </div>
-<div class="row">
+
 	<div class="left_article">
 	<form action="noteUpdatePro.jsp" name="noteContent" method="post" onsubmit="return writeSave()">
 		<table  border="1" cellpadding="0" cellspacing="0" align="center">
@@ -85,23 +83,23 @@
 	    		<input type="hidden" name="seqno" value="<%=note.getSeqno() %>"/>
 	    	</tr>
 	    	<tr>
-	    		<td align="center" > <textarea name="content" rows="13" cols="30"><%=note.getContent() %> </textarea> </td>
+	    		<td align="center" > <textarea name="content" rows="13" cols="50"><%=note.getContent() %> </textarea> </td>
 	    	</tr>
 	    	<tr>
 	    		<td align="center" >
 	    			<input type="submit" value="수정" />
-	    			<input type="button" onclick="window.location='note.jsp'" value="새 메모" >
+	    			<input type="button" onclick="window.location='../student/studentMain.jsp'" value="새 메모" >
 	    			<input type="button" value="삭제" onclick="window.location='noteDeletePro.jsp?seqno=<%=note.getSeqno()%>&pageNum=<%=pageNum%>'"/>
 				</td>
 			</tr>
 		</table>
 	</form>
 	</div>
-		<div>
+		<div class="right_article">
 	     <jsp:include page="noteList.jsp"></jsp:include>
 	    </div>
 	 </div>
-</div>	 
+
 <footer class="secondary_header footer">
 			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
 		 </footer>

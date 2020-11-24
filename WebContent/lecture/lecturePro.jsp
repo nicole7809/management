@@ -12,7 +12,7 @@
 
 <!-- css 파일 분리 -->
 <link href='../../css/join_style.css' rel='stylesheet' style='text/css' />
-
+<link href="../../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%-- JoinForm.jsp에서 입력한 정보를 넘겨 받아 처리한다. --%>
@@ -68,5 +68,8 @@
 			onclick="window.location='/Total.Management.System/management/courseList.jsp'">
 			강의정보</button>
 	</div>
+	<footer class="secondary_header footer">
+		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+	 </footer>	
 </body>
 </html>

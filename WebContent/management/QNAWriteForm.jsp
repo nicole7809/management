@@ -4,9 +4,9 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
-<script language="JavaScript" src="script.js"></script>
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="../board/script.js"></script>
 </head>
 
 <%
@@ -96,10 +96,10 @@
 						name="password"></td>
 				</tr> --%>
 				<tr>
-					<td colspan=2 bgcolor="<%=value_c%>" align="center"><input
-						type="submit" value="글쓰기"> <input type="reset"
-						value="다시작성"> <input type="button" value="목록보기"
-						OnClick="window.location='QNAList.jsp'"></td>
+					<td colspan=2 bgcolor="<%=value_c%>" align="center">
+					<input type="submit" value="글쓰기" class="button">
+					<input type="reset" value="다시작성" class="button">
+					<input type="button" value="목록보기" OnClick="window.location='QNAList.jsp'" class="button"></td>
 				</tr>
 			</table>
 			<%
@@ -109,9 +109,15 @@
 		</form>
 	</div>
 	<div>
-		<footer class="secondary_header footer">
-			<div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-		</footer>
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 	</div>
 </body>
 </html>

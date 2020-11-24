@@ -13,13 +13,9 @@
 <title>내 강의 정보</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<style>
-a {
-	text-decoration: none;
-}
-</style>
 </head>
 <body>
 	<%
@@ -62,7 +58,10 @@ a {
 					}
 				%>
 			</table>
-		</div>
+		</form></div>
+	<footer class="secondary_header footer">
+			<div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		 </footer>	
 </body>
 </html>
 	

@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* breakpoints */
+$col-xs : 480px;
+$col-sm : 768px;
+$col-md : 992px;
+$col-lg : 1330px;
+
+// mixin
+@mixin transform($type) {
+    -webkit-transform: $type;
+    -moz-transform: $type;
+    -ms-transform: $type;
+    transform: $type;
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} { @content; }
+    @-moz-keyframes #{$animation-name} { @content; }
+    @-ms-keyframes #{$animation-name} { @content; }
+    @-o-keyframes #{$animation-name} { @content; }
+    @keyframes #{$animation-name} { @content; }
+}
+
+@mixin transition($transitions...) {
+    $unfoldedTransitions: ();
+    @each $transition in $transitions {
+        $unfoldedTransitions: append($unfoldedTransitions, $unfoldedTransitions($transition), comma);
+    }
+
+    -webkit-transition: $unfoldedTransitions;
+    transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+    // Default values
+    $property: all;
+    $duration: .2s;
+    $easing: null; // Browser default is ease, which is what we want
+    $delay: null; // Browser default is 0, which is what we want
+    $defaultProperties: ($property, $duration, $easing, $delay);
+
+    // Grab transition properties if they exist
+    $unfoldedTransition: ();
+    @for $i from 1 through length($defaultProperties) {
+        $p: null;
+        @if $i <= length($transition) {
+            $p: nth($transition, $i)
+        } @else {
+            $p: nth($defaultProperties, $i)
+        }
+        $unfoldedTransition: append($unfoldedTransition, $p);
+    }
+
+    @return $unfoldedTransition;
+}

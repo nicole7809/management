@@ -8,8 +8,8 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
 <%
@@ -42,7 +42,7 @@
 	<center>
 		<b>글내용 보기</b> <br>
 		<form>
-			<table width="500" border="1" cellspacing="0" cellpadding="0"
+			<table width="60%" border="1" cellspacing="0" cellpadding="0"
 				bgcolor="<%=bodyback_c%>" align="center">
 				<tr height="30">
 					<td align="center" width="125" bgcolor="<%=value_c%>">글번호</td>
@@ -60,7 +60,7 @@
 					<td align="center" width="125" bgcolor="<%=value_c%>">글제목</td>
 					<td align="center" width="375" align="center" colspan="3"><%=article.getSubject()%></td>
 				</tr>
-				<tr>
+				<tr height="300">
 					<td align="center" width="125" bgcolor="<%=value_c%>">글내용</td>
 					<td align="left" width="375" colspan="3"><pre><%=article.getContent()%></pre></td>
 				</tr>
@@ -100,9 +100,15 @@
 		<input type="button" value="삭제" onclick="window.location.href='QNADeleteAdminPro.jsp';" />  -->
 	</div>
 	<div>
-	<footer class="secondary_header footer">
-		    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-	 </footer>
 	</div>
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>	
 </body>
 </html>

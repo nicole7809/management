@@ -6,6 +6,7 @@
 
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+		<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <html>
@@ -72,5 +73,8 @@ a {
 
 			</table>
 		</div>
+		<footer class="secondary_header footer">
+			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		 </footer>		
 </body>
 </html>

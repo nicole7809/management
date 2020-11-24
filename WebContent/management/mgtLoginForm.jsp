@@ -1,22 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- 
- <!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>관리자 로그인</title>
-<link href="/Total.Management.System/css/mainTemplate.css" rel="stylesheet" type="text/css">
-<div class="wrapper">
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <meta charset="UTF-8">
+    <title>5조 학사관리사이트 인트로</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <div id="web_bg" style="background-image: url(/Total.Management.System/img/MainDesktop.png);"></div>
-  
-</div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="5조 학사관리사이트 인트로"/>
 
+    <link rel="canonical" href="/rfgdbfd/" />
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/intro.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mainTemplate.css" />
 </head>
+<body>
+    <header>
+        <h1 class="logo"><a href="/Total.Management.System/">5조 학사관리사이트</a></h1>
+    </header>
 
+    <section>
+        <h2><span class="en"><br /><br /></span> </h2>
+
+        <div>
 <%
 			//자동로그인상태라면 login되야하기에 먼저 쿠키확인하기 -> 조건 맞으면 pro로 이동.
 			
@@ -38,62 +45,31 @@
 		%>	
 		
 <body>
-	<div class="container">
-	
-		<header>
-			<div class="primary_header">
-				<h1 class="title">학사관리시스템</h1>
-			</div>
-		</header>
-		
-		
-		<br/><br/><br/>
-		<div class="row">
-			
-				<a href="/Total.Management.System/management/mgtLoginForm.jsp"><p class="thumbnail_align">
-						<img src="/Total.Management.System/img/management.png" alt="" class="thumbnail" />
-					</p></a>
-					<h2 class="title"> 행정 로그인</h2>
-					<!-- <p>학원스텝은 학원스텝아이디로 로그인합니다.</p> -->
-		
-		
+		<h1 class="title">행정로그인</h1>
+		<div class="button_wrap">
 		
 		<form action= "mgtLoginPro.jsp" method="post" > 
-				
-				
-				<table border="1" cellpadding="0" cellspacing="0" align="center">
+			<table border="1" cellpadding="0" cellspacing="0" align="center">
 					<tr>
-						<td> 아이디 :  </td>
+						<td><h4 class="title"> 아이디 :  </h4></td>
 						<td> <input type="text" name ="admin_id" /> </td>
 					</tr>
 					<tr>
-						<td> 비밀번호 : </td>
+						<td><h4 class="title"> 비밀번호 : </h4></td>
 						<td> <input type="password" name="password" /> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="checkbox" name="auto" value="1" /> 자동로그인  <br><br>
-							<input type="submit" value="로그인" />
-							<input type="button" value="메인" onclick="window.location='../main.jsp'" />
+							<input type="checkbox" name="auto" value="1" /><h class="title"> 자동로그인  </h><br><br>
+							<input type="submit" value="로그인" class="button"/>
+							<input type="button" value="메인" onclick="window.location='../main.jsp'" class="button"/>
 						</td>
 					</tr>
 				</table>
-		</form>
-		
-		
-		
-		
-		</div>
-		<br/><br/><br/><br/><br/><br/>
-		
-		<footer class="secondary_header footer">
-			<div class="copyright">
-				&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong>
-			</div>
-		</footer>
-	</div>
+		</form></div>
+	</div></section>
+        <footer>
+        <p class="copyright">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+    </footer>
 </body>
 </html>
-    
-    
-

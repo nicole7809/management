@@ -11,6 +11,7 @@
 			a{text-decoration:none;}
 		</style>
 		<link href="../css/left.css" rel="stylesheet" type="text/css">
+		<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 	<%
@@ -28,15 +29,10 @@
 	%>
 		<jsp:include page="../left.jsp"/>
 		<div class="content">
-			<table border="1" cellpadding="0" cellspacing="0" align="center">
-				<tr align="center" height="50">
-					<td width="100"> 과정 명 </td>
-					<td width="500"> 강좌이름</td>
-					<td width="100"> 강사 </td>
-				</tr>
-				
+			<table width="60%" border="1" cellpadding="0" cellspacing="0" align="center">
+
 				<tr>
-					<td colspan="3" align="center" bgcolor="#f1f1f1" height="30" > 학생 리스트 </td>
+					<td colspan="3" align="center" bgcolor="#f1f1f1" height="30"> 전체 학생 리스트 </td>
 				</tr>		
 				<%
 					//for문으로 학생리스트 반복
@@ -48,16 +44,15 @@
 				<tr>
 					<%
 							if(adminId !=null) { %>	
-					<td colspan="2" align="center" height="20">	
+					<td colspan="2" align="center" height="20" width="200">	
 							<a href="/Total.Management.System/student/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>
-							
 					</td>
 					<td>
-								<button onclick="window.location='stDelete.jsp?student_id=<%=sdto.getStudent_id()%>&state=5'">탈퇴</button>
-								<button onclick="window.location='stStart.jsp?student_id=<%=sdto.getStudent_id()%>&state=1'">수강중</button>
+								<button onclick="window.location='stDelete.jsp?student_id=<%=sdto.getStudent_id()%>&state=5'" class="button">탈퇴</button>
+								<button onclick="window.location='stStart.jsp?student_id=<%=sdto.getStudent_id()%>&state=1'" class="button">수강중</button>
 					</td>	
 							<%}else { %>
-					<td colspan="3" align="center" height="20">	
+					<td colspan="3" align="center" height="20" width="200">	
 							<a href="/Total.Management.System/student/studentInfo.jsp?student_id=<%=sdto.getStudent_id()%>"> <%=sdto.getStudent_name()%></a>
 					</td>
 						<%}
@@ -67,10 +62,15 @@
 			</table>
 		</div>
 		<div>
-			<footer class="secondary_header footer">
-				<div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
-			</footer>
 		</div>
-		
+	<footer class="text-center">
+      <div>
+        <div>
+          <div class="col-12">
+            <p class="secondary_header">Ⓒ 2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</p>
+          </div>
+        </div>
+      </div>
+    </footer>		
 	</body>
 </html>

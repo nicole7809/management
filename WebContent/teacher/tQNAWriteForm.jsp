@@ -6,6 +6,7 @@
 <title>게시판</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="script.js"></script>
 </head>
 
@@ -52,7 +53,7 @@
 	<jsp:include page="../left.jsp"/>
 	<div class="content">
 	<center>
-		<b>글쓰기</b> <br>
+		<p class="primary_header"><b>글쓰기</b></p><br>
 		<form method="post" name="tQNAWriteForm" action="tQNAWritePro.jsp"
 			onsubmit="return writeSave()">
 			<input type="hidden" name="num" value="<%=num%>"> <input
@@ -60,16 +61,12 @@
 				type="hidden" name="re_step" value="<%=re_step%>"> <input
 				type="hidden" name="re_level" value="<%=re_level%>">
 
-			<table width="400" border="1" cellspacing="0" cellpadding="0"
+			<table width="60%" border="1" cellspacing="0" cellpadding="0"
 				bgcolor="<%=bodyback_c%>" align="center">
-				<%-- <tr>
-					<td align="right" colspan="2" bgcolor="<%=value_c%>"><a
-						href="tQNAList.jsp"> 글목록</a></td>
-				</tr> --%>
+
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td>
-					<td width="330"><%=adminId%> <input type="hidden"
-						name="writer" value="<%=adminId%>"></td>
+					<td width="330"><%=adminId%> <input type="hidden" name="writer" value="<%=adminId%>"></td>
 				</tr>
 			  <tr>
 			    <td  width="70"  bgcolor="<%=value_c%>" align="center" >제 목</td>
@@ -82,19 +79,13 @@
 			  </tr>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">Email</td>
-					<td width="330"><input type="text" size="40" maxlength="30"
-						name="email"></td>
+					<td width="330"><input type="text" size="40" maxlength="30" name="email"></td>
 				</tr>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">내 용</td>
-					<td width="330"><textarea name="content" rows="13" cols="40"></textarea>
+					<td width="330"><textarea name="content" rows="13" cols="70"></textarea>
 					</td>
 				</tr>
-				<%-- <tr>
-					<td width="70" bgcolor="<%=value_c%>" align="center">비밀번호</td>
-					<td width="330"><input type="password" size="8" maxlength="12"
-						name="password"></td>
-				</tr>--%>
 				<tr>
 					<td colspan=2 bgcolor="<%=value_c%>" align="center"><input
 						type="submit" value="글쓰기"> <input type="reset"

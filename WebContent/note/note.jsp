@@ -31,7 +31,7 @@
 			writer=request.getParameter("studentId");
 		} %>
 		
-    	<form action="noteWritePro.jsp" onsubmit="return writeSave()" method="post" >
+    	<form action="/Total.Management.System/note/noteWritePro.jsp" onsubmit="return writeSave()" method="post" >
 		<input type ="hidden" name="seqno" value="<%=seqno%>" />
 		<input type="hidden" name="writer" value="<%=studentId%>" />
     	<table  border="1" cellpadding="0" cellspacing="0" align="center">

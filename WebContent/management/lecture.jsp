@@ -3,20 +3,14 @@
 <%@ page import="team.elite.management.ControlDAO"%>
 <%@ page import="team.elite.management.Lecture_InformationDTO"%>
 <%@ page import="java.util.ArrayList"%>
-
-
-<head>
-<link href="../css/left.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>코드 강의정보</title>
 <head>
 <link href="../css/left.css" rel="stylesheet" type="text/css">
+		<link href="../css/mainTemplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<style>
@@ -72,5 +66,8 @@ a {
 
 			</table>
 		</div>
+		<footer class="secondary_header footer">
+			    <div class="copyright">&copy;2020 - <strong>5조 프로젝트 - 학사관리시스템 사이트</strong></div>
+		 </footer>	
 </body>
 </html>

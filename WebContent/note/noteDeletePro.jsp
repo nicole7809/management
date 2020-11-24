@@ -20,6 +20,6 @@
 	
 	<script>
 		alert("삭제 되었습니다.");
-		window.location="note.jsp";
+		window.location="../student/studentMain.jsp";
 	</script>
 
