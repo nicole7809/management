@@ -39,46 +39,34 @@
 				<td><%=dto.getAdmin_name()%></td>
 				<input type="hidden" name="admin_name" value="<%=dto.getAdmin_name()%>" />
 			</tr>
-
 			<tr>
 				<td>관리자 PW :</td>
 				<td><input type="password" name="password"
 					value="<%=dto.getPassword()%>" /></td>
 			</tr>
-
 			<tr>
 				<td>Email :</td>
 				<td><input type="text" name="email" value="<%=dto.getEmail()%>" /></td>
 			</tr>
-
 			<tr>
 				<td>Phone :</td>
 				<td><input type="text" name="phone" value="<%=dto.getPhone()%>" /></td>
 			</tr>
-
-
 			<tr>
 				<td>사진 :</td>
 				<td>
 				<input type="file" name="Admin_pic"/><br />
 	    		<input type="hidden" name="sysImg" value="<%=dto.getAdmin_pic() %>" />
 	    		<img src="/Total.Management.System/img/<%=dto.getAdmin_pic() %>" />
-				
-				
 				</td>
-				
 			</tr>
-
 			<tr>
 				<td>가입날짜 :</td>
 				<td><%=dto.getReg_date()%></td>
 			</tr>
-
-
 		</table>
 	</body>
 	<input type="submit" value="정보수정" class="button"/>
-
 <center/>
 
 </form>

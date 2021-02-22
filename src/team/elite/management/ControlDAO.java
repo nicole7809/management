@@ -1909,7 +1909,8 @@ public class ControlDAO {
 			try {
 				conn = DataBaseConnection.getConnection();
 				pstmt = conn.prepareStatement(
-						"select * from (select * from teacher_members where teacher_id =? ) th,lecture_information le where th.TEACHER_NAME=le.TEACHER");
+						"select * from (select * from teacher_members where teacher_id =? ) "
+						+ "th,lecture_information le where th.TEACHER_NAME=le.TEACHER");
 				pstmt.setString(1, name);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
@@ -1950,7 +1951,8 @@ public class ControlDAO {
 			try {
 				conn = DataBaseConnection.getConnection();
 				pstmt = conn.prepareStatement
-						("select * from (select * from student_members where student_id =? ) th,lecture_information le where th.STUDENT_NAME=le.STUDENT");
+						("select * from (select * from student_members where student_id =? ) "
+								+ "th,lecture_information le where th.STUDENT_NAME=le.STUDENT");
 				pstmt.setString(1, name);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {

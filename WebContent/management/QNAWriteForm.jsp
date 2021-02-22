@@ -53,19 +53,9 @@
 	<div class="content">
 	<center>
 		<b>글쓰기</b> <br>
-		<form method="post" name="QNAWriteForm" action="QNAWritePro.jsp"
-			onsubmit="return writeSave()">
-			<input type="hidden" name="num" value="<%=num%>"> <input
-				type="hidden" name="ref" value="<%=ref%>"> <input
-				type="hidden" name="re_step" value="<%=re_step%>"> <input
-				type="hidden" name="re_level" value="<%=re_level%>">
-
+		<form method="post" name="QNAWriteForm" action="QNAWritePro.jsp" onsubmit="return writeSave()">
 			<table width="400" border="1" cellspacing="0" cellpadding="0"
 				bgcolor="<%=bodyback_c%>" align="center">
-				<%-- <tr>
-					<td align="right" colspan="2" bgcolor="<%=value_c%>"><a
-						href="QNAList.jsp"> 글목록</a></td>
-				</tr> --%>
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>" align="center">이 름</td>
 					<td width="330"><%=adminId%> <input type="hidden"
@@ -90,11 +80,6 @@
 					<td width="330"><textarea name="content" rows="13" cols="40"></textarea>
 					</td>
 				</tr>
-		<%-- 		<tr>
-					<td width="70" bgcolor="<%=value_c%>" align="center">비밀번호</td>
-					<td width="330"><input type="password" size="8" maxlength="12"
-						name="password"></td>
-				</tr> --%>
 				<tr>
 					<td colspan=2 bgcolor="<%=value_c%>" align="center">
 					<input type="submit" value="글쓰기" class="button">

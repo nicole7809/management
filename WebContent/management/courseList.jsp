@@ -49,15 +49,12 @@
 							String lc = URLEncoder.encode( dto.getLecture_code(), "UTF-8");
 				%>
 				<tr>
-					<td><a
-						href="../management/lectureDetail.jsp?name=<%=le%>"><%=dto.getLecture_name()%></a></td>
+					<td><a href="../management/lectureDetail.jsp?name=<%=le%>"><%=dto.getLecture_name()%></a></td>
 					<td><%=dto.getLecture_course()%></td>
 					<td><%=dto.getLecture_room()%></td>
-					<td><a
-						href="../management/lectureContent.jsp?name=<%=tc%>"><%=dto.getTeacher()%></a></td>
+					<td><a href="../management/lectureContent.jsp?name=<%=tc%>"><%=dto.getTeacher()%></a></td>
 					<td><%=dto.getStudent()%></td>
-					<td><a
-						href="../management/lecture.jsp?name=<%=lc%>"><%=dto.getLecture_code()%></a></td>
+					<td><a href="../management/lecture.jsp?name=<%=lc%>"><%=dto.getLecture_code()%></a></td>
 				</tr>
 				<%
 					}
